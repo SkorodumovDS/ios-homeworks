@@ -69,6 +69,12 @@ class ProfileHeaderView: UIView {
         addSubview(catStatus)
         addSubview(actionButton)
         
+        self.setupConstraints()
+        
+    }
+    
+    func setupConstraints() {
+       
         let safeAreaLayoutGuide = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             
