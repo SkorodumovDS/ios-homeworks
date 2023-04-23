@@ -10,7 +10,7 @@ class ProfileHeaderView: UIView {
     
     private lazy var actionButton: UIButton = {
         let button = UIButton()
-        button.frame = CGRect(x: 166, y: 264, width: 200, height: 50)
+       // button.frame = CGRect(x: 166, y: 264, width: 200, height: 50)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -42,7 +42,8 @@ class ProfileHeaderView: UIView {
     }()
     
     private lazy var catTitle : UILabel = {
-        let titleOfCat = UILabel(frame: CGRect(x: 128, y: 27, width: 150, height: 25))
+        let titleOfCat = UILabel()
+        titleOfCat.translatesAutoresizingMaskIntoConstraints = false
         titleOfCat.text = "Hipster Cat"
         titleOfCat.font = UIFont(name: "Arial-Bold", size: 18)
         titleOfCat.textColor = UIColor.black
@@ -53,7 +54,8 @@ class ProfileHeaderView: UIView {
     
     private lazy var catStatus : UITextView = {
         
-        let statusCat = UITextView(frame: CGRect(x: 128, y: 94, width:200 , height: 18))
+        let statusCat = UITextView()
+        statusCat.translatesAutoresizingMaskIntoConstraints = false
         statusCat.text = "Waiting for something..."
         statusCat.textColor = .gray
         statusCat.font = UIFont(name: "Regular", size: 14)
@@ -68,7 +70,7 @@ class ProfileHeaderView: UIView {
         addSubview(catTitle)
         addSubview(catStatus)
         addSubview(actionButton)
-        
+        setupConstraints()
         self.setupConstraints()
         
     }
@@ -77,21 +79,27 @@ class ProfileHeaderView: UIView {
        
         let safeAreaLayoutGuide = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            
+            /*
             avatarCat.leadingAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.leadingAnchor,
                 constant: 16.0
             ),
             avatarCat.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            
+            */
             catTitle.centerXAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.centerXAnchor),
+            equalTo: safeAreaLayoutGuide.centerXAnchor),
+            //catTitle.leadingAnchor.constraint(equalTo: avatarCat.trailingAnchor, constant: 16),
+            //catTitle.widthAnchor.constraint(equalToConstant: 100),
             catTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            //catTitle.bottomAnchor.constraint(equalTo: catStatus.topAnchor, constant: -69),
+            catTitle.heightAnchor.constraint(equalToConstant: 20),
             
-            catStatus.centerXAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.centerXAnchor),
+            catStatus.leadingAnchor.constraint(
+                equalTo: catTitle.leadingAnchor),
             //catStatus.bottomAnchor.constraint(equalTo: actionButton.topAnchor, constant: 34),
-            catStatus.bottomAnchor.constraint(equalTo: catTitle.topAnchor, constant: 69),
+            catStatus.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 74),
+            catStatus.heightAnchor.constraint(equalToConstant: 20),
+            catStatus.widthAnchor.constraint(equalToConstant: 200),
             
             actionButton.leadingAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.leadingAnchor,
@@ -114,8 +122,8 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    /*NSLayoutConstraint.activate([
+   /*
+    NSLayoutConstraint.activate([
      actionButton.leadingAnchor.constraint(
      equalTo: safeAreaLayoutGuide.leadingAnchor,
      constant: 20.0
@@ -128,7 +136,7 @@ class ProfileHeaderView: UIView {
      actionButton.heightAnchor.constraint(equalToConstant: 44.0)
      ])
      */
-    //actionButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+ 
     
     
     @objc func buttonPressed(_ sender: UIButton) {
