@@ -12,7 +12,6 @@
 		C9CD266A29E319E800AF811D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD266929E319E800AF811D /* ViewController.swift */; };
 		C9CD266F29E319EA00AF811D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9CD266E29E319EA00AF811D /* Assets.xcassets */; };
 		C9CD267229E319EA00AF811D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9CD267029E319EA00AF811D /* LaunchScreen.storyboard */; };
-		C9CD267A29E31B1C00AF811D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C9CD267929E31B1C00AF811D /* .gitignore */; };
 		C9CD267C29E3284900AF811D /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD267B29E3284900AF811D /* FeedViewController.swift */; };
 		C9CD268029E329F500AF811D /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD267F29E329F500AF811D /* PostViewController.swift */; };
 		C9CD268229E3324A00AF811D /* PostFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD268129E3324A00AF811D /* PostFile.swift */; };
@@ -29,7 +28,6 @@
 		C9CD266E29E319EA00AF811D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9CD267129E319EA00AF811D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9CD267329E319EA00AF811D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9CD267929E31B1C00AF811D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C9CD267B29E3284900AF811D /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		C9CD267F29E329F500AF811D /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		C9CD268129E3324A00AF811D /* PostFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFile.swift; sourceTree = "<group>"; };
@@ -53,7 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				C9CD26A529ED997D00AF811D /* Profile */,
-				C9CD267929E31B1C00AF811D /* .gitignore */,
 				C9CD266429E319E800AF811D /* Navigation */,
 				C9CD266329E319E800AF811D /* Products */,
 			);
@@ -151,7 +148,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9CD267A29E31B1C00AF811D /* .gitignore in Resources */,
 				C9CD267229E319EA00AF811D /* LaunchScreen.storyboard in Resources */,
 				C9CD266F29E319EA00AF811D /* Assets.xcassets in Resources */,
 			);

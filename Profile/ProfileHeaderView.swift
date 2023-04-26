@@ -29,10 +29,11 @@ class ProfileHeaderView: UIView {
         let image  = UIImage(named: "Cat")
         let avatar =  UIImageView(image: image)
         
-        avatar.center = CGPoint(
-            x: 64,
-            y: 64)
-        avatar.frame = CGRect(x: 16, y: 16, width: 96, height: 96)
+        //avatar.center = CGPoint(
+         //   x: 64,
+         //   y: 64)
+        //avatar.frame = CGRect(x: 16, y: 16, width: 96, height: 96)
+        avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.clipsToBounds = true
         avatar.layer.cornerRadius = 48
         avatar.layer.borderColor = CGColor.init(red: 255, green: 255, blue: 255, alpha: 1)
@@ -71,7 +72,7 @@ class ProfileHeaderView: UIView {
         addSubview(catStatus)
         addSubview(actionButton)
         setupConstraints()
-        self.setupConstraints()
+        //self.setupConstraints()
         
     }
     
@@ -79,20 +80,20 @@ class ProfileHeaderView: UIView {
        
         let safeAreaLayoutGuide = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            /*
-            avatarCat.leadingAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.leadingAnchor,
-                constant: 16.0
-            ),
+            
+            avatarCat.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            avatarCat.widthAnchor.constraint(equalToConstant: 96),
             avatarCat.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            */
-            catTitle.centerXAnchor.constraint(
-            equalTo: safeAreaLayoutGuide.centerXAnchor),
+            avatarCat.heightAnchor.constraint(equalToConstant: 96),
+            
+            catTitle.leadingAnchor.constraint(
+            equalTo: avatarCat.trailingAnchor, constant: 20),
             //catTitle.leadingAnchor.constraint(equalTo: avatarCat.trailingAnchor, constant: 16),
             //catTitle.widthAnchor.constraint(equalToConstant: 100),
             catTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
             //catTitle.bottomAnchor.constraint(equalTo: catStatus.topAnchor, constant: -69),
             catTitle.heightAnchor.constraint(equalToConstant: 20),
+            
             
             catStatus.leadingAnchor.constraint(
                 equalTo: catTitle.leadingAnchor),
@@ -101,6 +102,15 @@ class ProfileHeaderView: UIView {
             catStatus.heightAnchor.constraint(equalToConstant: 20),
             catStatus.widthAnchor.constraint(equalToConstant: 200),
             
+            /*actionButton.leadingAnchor.constraint(
+                equalTo: safeAreaLayoutGuide.leadingAnchor,
+                constant: 16.0
+            ),
+             */
+            actionButton.trailingAnchor.constraint(
+                equalTo: safeAreaLayoutGuide.trailingAnchor,
+                constant: -16.0
+            ),
             actionButton.leadingAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.leadingAnchor,
                 constant: 16.0
@@ -109,35 +119,16 @@ class ProfileHeaderView: UIView {
                 equalTo: avatarCat.bottomAnchor,
                 constant: 16.0
             ),
-            actionButton.trailingAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.trailingAnchor,
-                constant: -16.0
-            ),
+           
             //actionButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-            actionButton.heightAnchor.constraint(equalToConstant: 50.0)
+            actionButton.heightAnchor.constraint(equalToConstant: 50.0),
+            //actionButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant:500) //actionButton.widthAnchor.constraint(equalToConstant: 1500)
         ])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-   /*
-    NSLayoutConstraint.activate([
-     actionButton.leadingAnchor.constraint(
-     equalTo: safeAreaLayoutGuide.leadingAnchor,
-     constant: 20.0
-     ),
-     actionButton.trailingAnchor.constraint(
-     equalTo: safeAreaLayoutGuide.trailingAnchor,
-     constant: -20.0
-     ),
-     actionButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-     actionButton.heightAnchor.constraint(equalToConstant: 44.0)
-     ])
-     */
- 
-    
     
     @objc func buttonPressed(_ sender: UIButton) {
         NSLog(catStatus.text)
@@ -148,5 +139,3 @@ class ProfileHeaderView: UIView {
     }
     
 }
-
-//avatarCat.leadingAnchor.constraint(equalTo: view?.leadingAnchor, constant: 16)

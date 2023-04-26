@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    /*
+    
     private lazy var changeTitle: UIButton = {
         let button = UIButton()
         //button.frame = CGRect(x: 166, y: 264, width: 200, height: 50)
@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController {
         button.addTarget(self, action: #selector(changeTitleCommand), for: .touchUpInside)
         return button
     }()
-    */
+    
     var profileView: UIView!
     
     override func viewDidLoad() {
@@ -35,12 +35,12 @@ class ProfileViewController: UIViewController {
        
         profileView = ProfileHeaderView()
         view.addSubview(profileView)
-        //view.addSubview(changeTitle)
-        //setupConstraintsProfile()
+        view.addSubview(changeTitle)
+        setupConstraintsProfile()
         // Do any additional setup after loading the view.
     }
     
-    /*
+    
     func setupConstraintsProfile() {
         
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
@@ -56,7 +56,7 @@ class ProfileViewController: UIViewController {
             ),
             profileView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             
-            profileView.heightAnchor.constraint(equalToConstant: 200),
+            profileView.heightAnchor.constraint(equalToConstant: 220),
             
             changeTitle.leadingAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.leadingAnchor,
@@ -70,10 +70,10 @@ class ProfileViewController: UIViewController {
             
         ])
     }
-    */
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        profileView.frame = view.safeAreaLayoutGuide.layoutFrame
+
         
     }
     @objc func changeTitleCommand(_ sender: UIButton) {
