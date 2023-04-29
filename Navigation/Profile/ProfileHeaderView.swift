@@ -8,6 +8,7 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+    
     private lazy var actionButton: UIButton = {
         let button = UIButton()
        // button.frame = CGRect(x: 166, y: 264, width: 200, height: 50)
@@ -67,6 +68,8 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        translatesAutoresizingMaskIntoConstraints = false
+        
         addSubview(avatarCat)
         addSubview(catTitle)
         addSubview(catStatus)
@@ -122,7 +125,7 @@ class ProfileHeaderView: UIView {
            
             //actionButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             actionButton.heightAnchor.constraint(equalToConstant: 50.0),
-            //actionButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant:500) //actionButton.widthAnchor.constraint(equalToConstant: 1500)
+            //actionButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant:500) //actionButton.widthAnchor.constraint(equalToConstant: 393)
         ])
     }
     

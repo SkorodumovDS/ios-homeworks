@@ -50,7 +50,6 @@
 		C9CD265929E319E800AF811D = {
 			isa = PBXGroup;
 			children = (
-				C9CD26A529ED997D00AF811D /* Profile */,
 				C9CD266429E319E800AF811D /* Navigation */,
 				C9CD266329E319E800AF811D /* Products */,
 			);
@@ -67,6 +66,7 @@
 		C9CD266429E319E800AF811D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				C9CD26A529ED997D00AF811D /* Profile */,
 				C9CD266529E319E800AF811D /* AppDelegate.swift */,
 				C9CD266729E319E800AF811D /* SceneDelegate.swift */,
 				C9CD266929E319E800AF811D /* ViewController.swift */,
