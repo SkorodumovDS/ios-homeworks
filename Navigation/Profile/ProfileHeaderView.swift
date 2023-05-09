@@ -54,9 +54,9 @@ class ProfileHeaderView: UIView {
         
     }()
     
-    private lazy var catStatus : UITextView = {
+    private lazy var catStatus : UILabel = {
         
-        let statusCat = UITextView()
+        let statusCat = UILabel()
         statusCat.translatesAutoresizingMaskIntoConstraints = false
         statusCat.text = "Waiting for something..."
         statusCat.textColor = .gray
@@ -91,25 +91,17 @@ class ProfileHeaderView: UIView {
             
             catTitle.leadingAnchor.constraint(
             equalTo: avatarCat.trailingAnchor, constant: 20),
-            //catTitle.leadingAnchor.constraint(equalTo: avatarCat.trailingAnchor, constant: 16),
-            //catTitle.widthAnchor.constraint(equalToConstant: 100),
             catTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
-            //catTitle.bottomAnchor.constraint(equalTo: catStatus.topAnchor, constant: -69),
             catTitle.heightAnchor.constraint(equalToConstant: 20),
             
             
             catStatus.leadingAnchor.constraint(
                 equalTo: catTitle.leadingAnchor),
-            //catStatus.bottomAnchor.constraint(equalTo: actionButton.topAnchor, constant: 34),
             catStatus.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 74),
             catStatus.heightAnchor.constraint(equalToConstant: 20),
             catStatus.widthAnchor.constraint(equalToConstant: 200),
             
-            /*actionButton.leadingAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.leadingAnchor,
-                constant: 16.0
-            ),
-             */
+         
             actionButton.trailingAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.trailingAnchor,
                 constant: -16.0
@@ -123,9 +115,8 @@ class ProfileHeaderView: UIView {
                 constant: 16.0
             ),
            
-            //actionButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             actionButton.heightAnchor.constraint(equalToConstant: 50.0),
-            //actionButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant:500) //actionButton.widthAnchor.constraint(equalToConstant: 393)
+           
         ])
     }
     
@@ -134,7 +125,7 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func buttonPressed(_ sender: UIButton) {
-        NSLog(catStatus.text)
+        NSLog(catStatus.text ?? "Waiting for something...")
     }
     
     override class func awakeFromNib() {

@@ -18,6 +18,10 @@
 		C9CD268429E337CB00AF811D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD268329E337CB00AF811D /* InfoViewController.swift */; };
 		C9CD26A929ED9B3900AF811D /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26A829ED9B3900AF811D /* ProfileHeaderView.swift */; };
 		C9CD26AB29ED9B8400AF811D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26AA29ED9B8300AF811D /* ProfileViewController.swift */; };
+		C9CD26B52A0A8EF800AF811D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26B42A0A8EF800AF811D /* LogInViewController.swift */; };
+		C9CD26B92A0AB6B200AF811D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26B82A0AB6B200AF811D /* Post.swift */; };
+		C9CD26BB2A0ABAD400AF811D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26BA2A0ABAD400AF811D /* PostTableViewCell.swift */; };
+		C9CD26BD2A0ABCB000AF811D /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26BC2A0ABCB000AF811D /* PostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		C9CD268329E337CB00AF811D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		C9CD26A829ED9B3900AF811D /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		C9CD26AA29ED9B8300AF811D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C9CD26B42A0A8EF800AF811D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		C9CD26B82A0AB6B200AF811D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		C9CD26BA2A0ABAD400AF811D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		C9CD26BC2A0ABCB000AF811D /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +94,10 @@
 			children = (
 				C9CD26A829ED9B3900AF811D /* ProfileHeaderView.swift */,
 				C9CD26AA29ED9B8300AF811D /* ProfileViewController.swift */,
+				C9CD26B42A0A8EF800AF811D /* LogInViewController.swift */,
+				C9CD26B82A0AB6B200AF811D /* Post.swift */,
+				C9CD26BA2A0ABAD400AF811D /* PostTableViewCell.swift */,
+				C9CD26BC2A0ABCB000AF811D /* PostViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -161,14 +173,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9CD268029E329F500AF811D /* PostViewController.swift in Sources */,
+				C9CD26B92A0AB6B200AF811D /* Post.swift in Sources */,
 				C9CD266A29E319E800AF811D /* ViewController.swift in Sources */,
+				C9CD26BD2A0ABCB000AF811D /* PostViewController.swift in Sources */,
 				C9CD26AB29ED9B8400AF811D /* ProfileViewController.swift in Sources */,
 				C9CD266629E319E800AF811D /* AppDelegate.swift in Sources */,
 				C9CD268229E3324A00AF811D /* PostFile.swift in Sources */,
 				C9CD26A929ED9B3900AF811D /* ProfileHeaderView.swift in Sources */,
 				C9CD267C29E3284900AF811D /* FeedViewController.swift in Sources */,
 				C9CD268429E337CB00AF811D /* InfoViewController.swift in Sources */,
+				C9CD26B52A0A8EF800AF811D /* LogInViewController.swift in Sources */,
 				C9CD266829E319E800AF811D /* SceneDelegate.swift in Sources */,
+				C9CD26BB2A0ABAD400AF811D /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
