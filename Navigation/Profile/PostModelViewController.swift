@@ -9,14 +9,11 @@ import UIKit
 
 class PostModelViewController: UIViewController {
 
-    
     private var data: PostModel? = nil
        
        func update(model: PostModel) {
            data = model
            
        }
-    
-
 }
 

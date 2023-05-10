@@ -8,7 +8,6 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    
     private lazy var actionButton: UIButton = {
         let button = UIButton()
     

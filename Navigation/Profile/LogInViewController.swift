@@ -9,7 +9,6 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -31,7 +30,6 @@ class LogInViewController: UIViewController {
         
         return contentView
     }()
-    
     
     private lazy var login: UITextField = { [unowned self] in
         let textField = UITextField()
@@ -97,7 +95,6 @@ class LogInViewController: UIViewController {
         avatar.clipsToBounds = true
         return avatar
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

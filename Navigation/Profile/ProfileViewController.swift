@@ -42,7 +42,6 @@ class ProfileViewController: UIViewController {
         tuneTableView()
     }
     
-    
     private func setupView() {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = false
