@@ -15,8 +15,6 @@ class PostModelViewController: UIViewController {
        func update(model: PostModel) {
            data = model
            
-           navigationItem.title = model.description
-           //view.backgroundColor = model.color
        }
     
 

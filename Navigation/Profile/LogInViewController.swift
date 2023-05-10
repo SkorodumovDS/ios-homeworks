@@ -15,8 +15,7 @@ class LogInViewController: UIViewController {
         
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
-        
-        
+          
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView
@@ -81,7 +80,6 @@ class LogInViewController: UIViewController {
     
     private lazy var loginButton: UIButton = {
         let button = UIButton()
-        // button.frame = CGRect(x: 166, y: 264, width: 200, height: 50)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -108,7 +106,6 @@ class LogInViewController: UIViewController {
         addSubviews()
         setupConstraints()
         
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,7 +122,7 @@ class LogInViewController: UIViewController {
     
     @objc func willShowKeyboard(_ notification: NSNotification) {
         let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
-        scrollView.contentInset.bottom += keyboardHeight ?? 0.0
+        scrollView.contentInset.bottom = 0.0 + (keyboardHeight ?? 0.0)
     }
     
     @objc func willHideKeyboard(_ notification: NSNotification) {
@@ -135,11 +132,11 @@ class LogInViewController: UIViewController {
     func setupConstraints() {
         
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
-       
+        
         NSLayoutConstraint.activate([
-            logo.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            logo.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             logo.widthAnchor.constraint(equalToConstant: 100),
-            logo.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 120),
+            logo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             logo.heightAnchor.constraint(equalToConstant: 100)
         ])
         
@@ -152,46 +149,48 @@ class LogInViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             contentView.leadingAnchor.constraint(
-                equalTo: scrollView.leadingAnchor, constant: 16),
+                equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(
-                equalTo: scrollView.trailingAnchor, constant: -16),
-            contentView.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 120),
-            contentView.heightAnchor.constraint(equalToConstant: 100)
+                equalTo: scrollView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 510)
         ])
         
         NSLayoutConstraint.activate([
             
-            login.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            login.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            login.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            login.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            login.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            login.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 120),
             login.heightAnchor.constraint(equalToConstant: 50)
         ])
         
         NSLayoutConstraint.activate([
-            password.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            password.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            password.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 50),
+            password.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            password.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            password.topAnchor.constraint(equalTo: login.bottomAnchor),
             password.heightAnchor.constraint(equalToConstant: 50)
         ])
         
         NSLayoutConstraint.activate([
             
             loginButton.trailingAnchor.constraint(
-                equalTo: scrollView.trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -16.0
             ),
             loginButton.leadingAnchor.constraint(
-                equalTo: scrollView.leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16.0
             ),
             loginButton.topAnchor.constraint(
-                equalTo: contentView.bottomAnchor,
+                equalTo: password.bottomAnchor,
                 constant: 16.0
             ),
             loginButton.heightAnchor.constraint(equalToConstant: 50.0)
         ])
         
     }
+    
     private func setupKeyboardObservers() {
         let notificationCenter = NotificationCenter.default
         
@@ -218,27 +217,22 @@ class LogInViewController: UIViewController {
     @objc func buttonPressed(_ sender: UIButton) {
         
         navigationController?.pushViewController(ProfileViewController(), animated: true)
-        //NSLog("Waiting for something...")
     }
     private func setupView() {
         view.backgroundColor = .white
-        
-        //navigationItem.title = "ScrollView example"
+
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.isHidden = true
     }
     
     private func addSubviews() {
         
-        //view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(logo)
-        view.addSubview(scrollView)
-        
-        //scrollView.addSubview(logo)
-        scrollView.addSubview(contentView)
+        contentView.addSubview(logo)
         contentView.addSubview(login)
         contentView.addSubview(password)
-        scrollView.addSubview(loginButton)
+        contentView.addSubview(loginButton)
+        scrollView.addSubview(contentView)
+        view.addSubview(scrollView)
     }
 }
 

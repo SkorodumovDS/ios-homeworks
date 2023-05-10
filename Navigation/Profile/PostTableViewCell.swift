@@ -9,6 +9,62 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
+    private lazy var mainImage: UIImageView = {
+        
+        let image  = UIImage(named: "Cat")
+        let avatar =  UIImageView(image: image)
+        
+        avatar.translatesAutoresizingMaskIntoConstraints = false
+        avatar.contentMode = .scaleAspectFit
+        avatar.backgroundColor = .black
+        return avatar
+    }()
+    
+    private lazy var postTitle : UILabel = {
+        let titlePost = UILabel()
+        titlePost.translatesAutoresizingMaskIntoConstraints = false
+        titlePost.text = "Hipster Cat"
+        titlePost.font = .systemFont(ofSize: 20,weight: .bold)
+        titlePost.textColor = UIColor.black
+        titlePost.numberOfLines = 2
+        
+        return titlePost
+        
+    }()
+    
+    private lazy var textPost : UILabel = {
+        
+        let postText = UILabel()
+        postText.translatesAutoresizingMaskIntoConstraints = false
+        postText.text = "Set your status..."
+        postText.textColor = .systemGray
+        postText.font = .systemFont(ofSize: 14)
+        postText.numberOfLines = 0
+        
+        return postText
+    }()
+    
+    private lazy var likesPost : UILabel = {
+        
+        let postText = UILabel()
+        postText.translatesAutoresizingMaskIntoConstraints = false
+        postText.text = "Likes"
+        postText.textColor = .black
+        postText.font = .systemFont(ofSize: 16)
+        
+        return postText
+    }()
+    
+    private lazy var viewsPost : UILabel = {
+        
+        let postText = UILabel()
+        postText.translatesAutoresizingMaskIntoConstraints = false
+        postText.text = "Views"
+        postText.textColor = .black
+        postText.font = .systemFont(ofSize: 16)
+        
+        return postText
+    }()
     
     override init(
         style: UITableViewCell.CellStyle,
@@ -18,53 +74,75 @@ class PostTableViewCell: UITableViewCell {
             style: .subtitle,
             reuseIdentifier: reuseIdentifier
         )
-
-        tuneView()
+        addsubviews()
+        setupConstrains()
+//        tuneView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        isHidden = false
-        isSelected = false
-        isHighlighted = false
+    private func addsubviews(){
+        addSubview(postTitle)
+        addSubview(mainImage)
+        addSubview(textPost)
+        addSubview(likesPost)
+        addSubview(viewsPost)
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    private func setupConstrains() {
         
-        guard let view = selectedBackgroundView else {
-            return
-        }
-        
-        contentView.insertSubview(view, at: 0)
-        selectedBackgroundView?.isHidden = !selected
-    }
-    
-    
-    private func tuneView() {
-        backgroundColor = .tertiarySystemBackground
-        contentView.backgroundColor = .tertiarySystemBackground
-        textLabel?.backgroundColor = .clear
-        detailTextLabel?.backgroundColor = .clear
-        imageView?.backgroundColor = .clear
+        let safeAreaLayoutGuide = safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            
+            postTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            postTitle.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            postTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            postTitle.heightAnchor.constraint(equalToConstant: 25),
+            
+            mainImage.leadingAnchor.constraint(
+            equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            mainImage.trailingAnchor.constraint(
+            equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            mainImage.topAnchor.constraint(equalTo: postTitle.bottomAnchor, constant: 0),
+            mainImage.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            mainImage.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            
+            textPost.leadingAnchor.constraint(
+                equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            textPost.trailingAnchor.constraint(
+                equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            textPost.topAnchor.constraint(equalTo: mainImage.bottomAnchor, constant: 16),
+            
+            
+            likesPost.leadingAnchor.constraint(
+                equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            likesPost.topAnchor.constraint(equalTo: textPost.bottomAnchor, constant: 16),
+            likesPost.heightAnchor.constraint(equalToConstant: 20),
+            likesPost.widthAnchor.constraint(equalToConstant: 50),
+            
+            
+            viewsPost.trailingAnchor.constraint(
+                equalTo: safeAreaLayoutGuide.trailingAnchor,
+                constant: -16.0
+            ),
 
-        accessoryView = nil
-        accessoryType = .disclosureIndicator
-        
-        selectionStyle = .gray
-        let selectedView = UIView()
-        selectedView.backgroundColor = .systemYellow
-        selectedBackgroundView = selectedView
+            viewsPost.topAnchor.constraint(
+                equalTo: textPost.bottomAnchor,
+                constant: 16.0
+            ),
+           
+            viewsPost.heightAnchor.constraint(equalToConstant: 20),
+            viewsPost.widthAnchor.constraint(equalToConstant: 50)
+        ])
     }
-    
     
     func update(_ post: PostModel) {
-        textLabel?.text = post.author
-        detailTextLabel?.text = post.description
+        mainImage.image = UIImage(named: post.image)
+        postTitle.text = post.author
+        textPost.text = post.description
+        likesPost.text = "Likes: " + String(post.likes)
+        viewsPost.text = "Views: " + String(post.views)
     }
 }

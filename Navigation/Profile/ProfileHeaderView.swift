@@ -11,9 +11,9 @@ class ProfileHeaderView: UIView {
     
     private lazy var actionButton: UIButton = {
         let button = UIButton()
-       // button.frame = CGRect(x: 166, y: 264, width: 200, height: 50)
+    
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Show status", for: .normal)
+        button.setTitle("Set status", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.backgroundColor = CGColor(srgbRed: 0, green: 191, blue: 255, alpha: 1)
         button.layer.cornerRadius = 4
@@ -30,10 +30,6 @@ class ProfileHeaderView: UIView {
         let image  = UIImage(named: "Cat")
         let avatar =  UIImageView(image: image)
         
-        //avatar.center = CGPoint(
-         //   x: 64,
-         //   y: 64)
-        //avatar.frame = CGRect(x: 16, y: 16, width: 96, height: 96)
         avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.clipsToBounds = true
         avatar.layer.cornerRadius = 48
@@ -61,7 +57,23 @@ class ProfileHeaderView: UIView {
         statusCat.text = "Waiting for something..."
         statusCat.textColor = .gray
         statusCat.font = UIFont(name: "Regular", size: 14)
-        statusCat.backgroundColor = backgroundColor
+       
+        return statusCat
+    }()
+    
+    private lazy var newCatStatus : UITextView = {
+        
+        let statusCat = UITextView()
+        statusCat.translatesAutoresizingMaskIntoConstraints = false
+        statusCat.text = "Set your status..."
+        statusCat.textColor = .gray
+        statusCat.font = UIFont(name: "Regular", size: 14)
+        statusCat.backgroundColor = .white
+        
+        statusCat.clipsToBounds = true
+        statusCat.layer.cornerRadius = 10
+        statusCat.layer.borderColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 1)
+        statusCat.layer.borderWidth = 3
         return statusCat
     }()
     
@@ -69,13 +81,13 @@ class ProfileHeaderView: UIView {
         super.init(frame: frame)
         
         translatesAutoresizingMaskIntoConstraints = false
-        
+    
         addSubview(avatarCat)
         addSubview(catTitle)
         addSubview(catStatus)
+        addSubview(newCatStatus)
         addSubview(actionButton)
         setupConstraints()
-        //self.setupConstraints()
         
     }
     
@@ -93,15 +105,19 @@ class ProfileHeaderView: UIView {
             equalTo: avatarCat.trailingAnchor, constant: 20),
             catTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
             catTitle.heightAnchor.constraint(equalToConstant: 20),
-            
-            
+                  
             catStatus.leadingAnchor.constraint(
                 equalTo: catTitle.leadingAnchor),
-            catStatus.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 74),
+            catStatus.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 64),
             catStatus.heightAnchor.constraint(equalToConstant: 20),
             catStatus.widthAnchor.constraint(equalToConstant: 200),
             
-         
+            newCatStatus.leadingAnchor.constraint(
+                equalTo: catStatus.leadingAnchor),
+            newCatStatus.topAnchor.constraint(equalTo: catStatus.bottomAnchor, constant: 5),
+            newCatStatus.heightAnchor.constraint(equalToConstant: 20),
+            newCatStatus.widthAnchor.constraint(equalToConstant: 200),
+            
             actionButton.trailingAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.trailingAnchor,
                 constant: -16.0
@@ -116,7 +132,7 @@ class ProfileHeaderView: UIView {
             ),
            
             actionButton.heightAnchor.constraint(equalToConstant: 50.0),
-           
+            actionButton.widthAnchor.constraint(equalToConstant: 361)
         ])
     }
     
@@ -125,7 +141,7 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func buttonPressed(_ sender: UIButton) {
-        NSLog(catStatus.text ?? "Waiting for something...")
+        catStatus.text = newCatStatus.text ?? "Waiting for something..."
     }
     
     override class func awakeFromNib() {
