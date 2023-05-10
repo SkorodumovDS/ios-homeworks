@@ -117,8 +117,8 @@ class PostTableViewCell: UITableViewCell {
             likesPost.leadingAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             likesPost.topAnchor.constraint(equalTo: textPost.bottomAnchor, constant: 16),
-            likesPost.heightAnchor.constraint(equalToConstant: 20),
-            likesPost.widthAnchor.constraint(equalToConstant: 50),
+            likesPost.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
+           // likesPost.widthAnchor.constraint(equalToConstant: 50),
             
             viewsPost.trailingAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.trailingAnchor,
@@ -129,8 +129,8 @@ class PostTableViewCell: UITableViewCell {
                 equalTo: textPost.bottomAnchor,
                 constant: 16.0
             ),
-            viewsPost.heightAnchor.constraint(equalToConstant: 20),
-            viewsPost.widthAnchor.constraint(equalToConstant: 50)
+            viewsPost.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            //viewsPost.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
     

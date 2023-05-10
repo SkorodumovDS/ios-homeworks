@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController {
     private func tuneTableView() {
         // 2. Настраиваем отображение таблицы
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 150.0
+        //tableView.estimatedRowHeight = 150.0
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0.0
         }

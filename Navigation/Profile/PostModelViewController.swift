@@ -13,7 +13,6 @@ class PostModelViewController: UIViewController {
        
        func update(model: PostModel) {
            data = model
-           
        }
 }
 
