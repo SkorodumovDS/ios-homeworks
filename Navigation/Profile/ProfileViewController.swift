@@ -17,7 +17,6 @@ class ProfileViewController: UIViewController {
             style: .grouped
         )
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
         return tableView
     }()
     
@@ -25,7 +24,7 @@ class ProfileViewController: UIViewController {
         case base = "BaseTableViewCell_ReuseID"
     }
     
-    private enum HeaderReuseID: String {
+    private enum HeaderFooterReuseID: String {
         case base = "BaseHeader_ReuseID"
     }
     
@@ -74,6 +73,11 @@ class ProfileViewController: UIViewController {
         tableView.register(
             PostTableViewCell.self,
             forCellReuseIdentifier: CellReuseID.base.rawValue
+        )
+        
+        tableView.register(
+                    TableSectionFooterHeaderView.self,
+                    forHeaderFooterViewReuseIdentifier: HeaderFooterReuseID.base.rawValue
         )
  
         // 4. Указываем основные делегаты таблицы
@@ -128,8 +132,8 @@ extension ProfileViewController: UITableViewDelegate {
         viewForHeaderInSection section: Int
     ) -> UIView? {
         
-        let headerView = ProfileHeaderView()
-        
+        let headerView = TableSectionFooterHeaderView()
+        headerView.isUserInteractionEnabled = true
         return headerView
         }
 }

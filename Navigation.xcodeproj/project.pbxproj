@@ -22,6 +22,7 @@
 		C9CD26B92A0AB6B200AF811D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26B82A0AB6B200AF811D /* Post.swift */; };
 		C9CD26BB2A0ABAD400AF811D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26BA2A0ABAD400AF811D /* PostTableViewCell.swift */; };
 		C9CD26BF2A0AC09D00AF811D /* PostModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26BE2A0AC09D00AF811D /* PostModelViewController.swift */; };
+		C9CD26C12A0D4E5200AF811D /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26C02A0D4E5200AF811D /* ProfileTableHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		C9CD26B82A0AB6B200AF811D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C9CD26BA2A0ABAD400AF811D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		C9CD26BE2A0AC09D00AF811D /* PostModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModelViewController.swift; sourceTree = "<group>"; };
+		C9CD26C02A0D4E5200AF811D /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				C9CD26B82A0AB6B200AF811D /* Post.swift */,
 				C9CD26BA2A0ABAD400AF811D /* PostTableViewCell.swift */,
 				C9CD26BE2A0AC09D00AF811D /* PostModelViewController.swift */,
+				C9CD26C02A0D4E5200AF811D /* ProfileTableHeaderView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			files = (
 				C9CD268029E329F500AF811D /* PostViewController.swift in Sources */,
 				C9CD26B92A0AB6B200AF811D /* Post.swift in Sources */,
+				C9CD26C12A0D4E5200AF811D /* ProfileTableHeaderView.swift in Sources */,
 				C9CD266A29E319E800AF811D /* ViewController.swift in Sources */,
 				C9CD26AB29ED9B8400AF811D /* ProfileViewController.swift in Sources */,
 				C9CD266629E319E800AF811D /* AppDelegate.swift in Sources */,

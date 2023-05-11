@@ -31,6 +31,28 @@ class LogInViewController: UIViewController {
         return contentView
     }()
     
+    private lazy var stack: UIStackView  = {
+        
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        stack.layer.borderWidth = 0.5
+        stack.layer.cornerRadius = 10
+        //stack.clipsToBounds = true
+        stack.axis = .vertical
+        stack.alignment = .fill
+        return stack
+    }()
+    
+    private lazy var emptyView: UIView = {
+       
+        let emView = UIView()
+        emView.translatesAutoresizingMaskIntoConstraints = false
+        emView.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        emView.layer.borderWidth = 0.5
+        return emView
+    }()
+    
     private lazy var login: UITextField = { [unowned self] in
         let textField = UITextField()
         
@@ -38,7 +60,7 @@ class LogInViewController: UIViewController {
         
         textField.placeholder = "Email or phone"
         textField.font = UIFont.systemFont(ofSize: 16)
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        //textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
         textField.returnKeyType = UIReturnKeyType.done
@@ -61,7 +83,7 @@ class LogInViewController: UIViewController {
         
         textField.placeholder = "Enter text here"
         textField.font = UIFont.systemFont(ofSize: 16)
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        //textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
         textField.returnKeyType = UIReturnKeyType.done
@@ -114,7 +136,7 @@ class LogInViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        removeKeyboardObservers()
+            removeKeyboardObservers()
     }
     
     @objc func willShowKeyboard(_ notification: NSNotification) {
@@ -134,43 +156,41 @@ class LogInViewController: UIViewController {
             logo.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             logo.widthAnchor.constraint(equalToConstant: 100),
             logo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
-            logo.heightAnchor.constraint(equalToConstant: 100)
-        ])
-        
-        NSLayoutConstraint.activate([
+            logo.heightAnchor.constraint(equalToConstant: 100),
+       
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
+            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
             contentView.leadingAnchor.constraint(
                 equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(
                 equalTo: scrollView.trailingAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 510)
-        ])
-        
-        NSLayoutConstraint.activate([
+            contentView.heightAnchor.constraint(equalToConstant: 510),
             
-            login.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            login.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            login.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 120),
-            login.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        NSLayoutConstraint.activate([
-            password.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            password.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            password.topAnchor.constraint(equalTo: login.bottomAnchor),
-            password.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        NSLayoutConstraint.activate([
+            stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            stack.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 120),
+            stack.heightAnchor.constraint(equalToConstant: 100.5),
             
+            login.trailingAnchor.constraint(equalTo: stack.trailingAnchor, constant: 0),
+            login.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 0),
+            login.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 0),
+            login.heightAnchor.constraint(equalToConstant: 50),
+        
+            emptyView.trailingAnchor.constraint(equalTo: stack.trailingAnchor, constant: 0),
+            emptyView.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 0),
+            emptyView.topAnchor.constraint(equalTo: login.bottomAnchor, constant: 0),
+            emptyView.heightAnchor.constraint(equalToConstant: 0.5),
+            
+            password.trailingAnchor.constraint(equalTo: stack.trailingAnchor, constant: 0),
+            password.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 0),
+            password.topAnchor.constraint(equalTo: emptyView.bottomAnchor, constant: 0),
+            password.heightAnchor.constraint(equalToConstant: 50),
+           
             loginButton.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor,
                 constant: -16.0
@@ -225,8 +245,10 @@ class LogInViewController: UIViewController {
     private func addSubviews() {
         
         contentView.addSubview(logo)
-        contentView.addSubview(login)
-        contentView.addSubview(password)
+        stack.addArrangedSubview(login)
+        stack.addArrangedSubview(emptyView)
+        stack.addArrangedSubview(password)
+        contentView.addSubview(stack)
         contentView.addSubview(loginButton)
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)

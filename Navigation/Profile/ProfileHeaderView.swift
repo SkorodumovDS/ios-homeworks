@@ -60,11 +60,11 @@ class ProfileHeaderView: UIView {
         return statusCat
     }()
     
-    private lazy var newCatStatus : UITextView = {
+    private lazy var newCatStatus : UITextField = {
         
-        let statusCat = UITextView()
+        let statusCat = UITextField()
         statusCat.translatesAutoresizingMaskIntoConstraints = false
-        statusCat.text = "Set your status..."
+        statusCat.placeholder = "Set your status..."
         statusCat.textColor = .gray
         statusCat.font = UIFont(name: "Regular", size: 14)
         statusCat.backgroundColor = .white
@@ -140,11 +140,11 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func buttonPressed(_ sender: UIButton) {
-        catStatus.text = newCatStatus.text ?? "Waiting for something..."
+        catStatus.text = newCatStatus.text ?? "123"
     }
     
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+   
 }

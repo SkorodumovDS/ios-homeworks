@@ -130,7 +130,6 @@ class PostTableViewCell: UITableViewCell {
                 constant: 16.0
             ),
             viewsPost.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            //viewsPost.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
     
