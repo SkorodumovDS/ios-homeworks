@@ -24,20 +24,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         FeedViewController.title = "News"
         FeedViewController.view.backgroundColor = .systemBackground
         
-        let ProfileViewController = ProfileViewController()
-        ProfileViewController.title = "Profile"
-        ProfileViewController.view.backgroundColor = .systemBackground
+        let LoginViewController = LogInViewController()
+        //ProfileViewController.title = "Profile"
+        LoginViewController.view.backgroundColor = .white
         
         let tapBarController = UITabBarController()
         
        // newsViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 0)
-        FeedViewController.tabBarItem.title = "News"
-        FeedViewController.tabBarItem.image = UIImage(systemName: "info.bubble")
+        FeedViewController.tabBarItem.title = "Feed"
+        FeedViewController.tabBarItem.image = UIImage(systemName: "house")
       //  profileViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
-        ProfileViewController.tabBarItem.title = "Profile"
-        ProfileViewController.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+        LoginViewController.tabBarItem.title = "Profile"
+        LoginViewController.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         
-        let controllers = [FeedViewController , ProfileViewController]
+        let controllers = [FeedViewController , LoginViewController]
         tapBarController.viewControllers = controllers.map {
             UINavigationController(rootViewController: $0)
         }
