@@ -73,7 +73,7 @@ class ProfileHeaderView: UIView {
         statusCat.clipsToBounds = true
         statusCat.layer.cornerRadius = 10
         statusCat.layer.borderColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 1)
-        statusCat.layer.borderWidth = 3
+        statusCat.layer.borderWidth = 1
         return statusCat
     }()
     
@@ -115,7 +115,7 @@ class ProfileHeaderView: UIView {
             newCatStatus.leadingAnchor.constraint(
                 equalTo: catStatus.leadingAnchor),
             newCatStatus.topAnchor.constraint(equalTo: catStatus.bottomAnchor, constant: 5),
-            newCatStatus.heightAnchor.constraint(equalToConstant: 25),
+            newCatStatus.heightAnchor.constraint(equalToConstant: 35),
             newCatStatus.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
             actionButton.trailingAnchor.constraint(
