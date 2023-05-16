@@ -14,7 +14,8 @@ class ProfileHeaderView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Set status", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.layer.backgroundColor = CGColor(srgbRed: 0, green: 191, blue: 255, alpha: 1)
+        //button.layer.backgroundColor = CGColor(srgbRed: 0, green: 191, blue: 255, alpha: 1)
+        button.backgroundColor = UIColor(patternImage: UIImage(named: "BluePixel")!)
         button.layer.cornerRadius = 4
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = CGFloat(4)
@@ -72,7 +73,7 @@ class ProfileHeaderView: UIView {
         statusCat.clipsToBounds = true
         statusCat.layer.cornerRadius = 10
         statusCat.layer.borderColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 1)
-        statusCat.layer.borderWidth = 3
+        statusCat.layer.borderWidth = 1
         return statusCat
     }()
     
@@ -114,8 +115,8 @@ class ProfileHeaderView: UIView {
             newCatStatus.leadingAnchor.constraint(
                 equalTo: catStatus.leadingAnchor),
             newCatStatus.topAnchor.constraint(equalTo: catStatus.bottomAnchor, constant: 5),
-            newCatStatus.heightAnchor.constraint(equalToConstant: 20),
-            newCatStatus.widthAnchor.constraint(equalToConstant: 200),
+            newCatStatus.heightAnchor.constraint(equalToConstant: 35),
+            newCatStatus.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
             actionButton.trailingAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.trailingAnchor,
