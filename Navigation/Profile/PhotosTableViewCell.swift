@@ -17,6 +17,8 @@ class PhotosTableViewCell: UITableViewCell {
         
         avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.contentMode = .scaleAspectFit
+        avatar.layer.cornerRadius = 6
+        avatar.clipsToBounds = true
         return avatar
     }()
     
@@ -27,6 +29,8 @@ class PhotosTableViewCell: UITableViewCell {
         
         avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.contentMode = .scaleAspectFit
+        avatar.layer.cornerRadius = 6
+        avatar.clipsToBounds = true
         return avatar
     }()
     
@@ -37,6 +41,8 @@ class PhotosTableViewCell: UITableViewCell {
         
         avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.contentMode = .scaleAspectFit
+        avatar.layer.cornerRadius = 6
+        avatar.clipsToBounds = true
         return avatar
     }()
     
@@ -47,6 +53,8 @@ class PhotosTableViewCell: UITableViewCell {
         
         avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.contentMode = .scaleAspectFit
+        avatar.layer.cornerRadius = 6
+        avatar.clipsToBounds = true
         return avatar
     }()
     
@@ -57,9 +65,6 @@ class PhotosTableViewCell: UITableViewCell {
         let arrowImage = UIImage(systemName: "arrow.right")
         let arrow = UIImageView(image: arrowImage)
         button.setImage(arrowImage, for: UIControl.State())
-        //button.setTitle("Log In", for: .normal)
-        //button.setTitleColor(.white, for: .normal)
-        //button.backgroundColor = UIColor(patternImage: UIImage(named: "BluePixel")!)
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
@@ -70,7 +75,6 @@ class PhotosTableViewCell: UITableViewCell {
         titlePost.text = "Photos"
         titlePost.font = .systemFont(ofSize: 24,weight: .bold)
         titlePost.textColor = UIColor.black
-        //titlePost.numberOfLines = 2
         
         return titlePost
         
@@ -80,8 +84,6 @@ class PhotosTableViewCell: UITableViewCell {
         
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
-        //stack.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
-        //stack.clipsToBounds = true
         stack.axis = .horizontal
         stack.alignment = .center
         stack.distribution = .fillEqually
@@ -123,13 +125,10 @@ class PhotosTableViewCell: UITableViewCell {
             self.heightAnchor.constraint(equalToConstant: 150),
             
             PhotosLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 12),
-            //PhotosLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -160),
             PhotosLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 12),
             PhotosLabel.widthAnchor.constraint(equalToConstant: 100),
             PhotosLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            //nextButton.leadingAnchor.constraint(
-           // equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0),
             nextButton.trailingAnchor.constraint(
             equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -12),
             nextButton.centerYAnchor.constraint(equalTo: PhotosLabel.centerYAnchor, constant: 0),
@@ -148,7 +147,6 @@ class PhotosTableViewCell: UITableViewCell {
     
     @objc func buttonPressed(_ sender: UIButton) {
         
-        //navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
     
 }

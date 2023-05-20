@@ -14,9 +14,6 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
         static let verticalSpacing: CGFloat = 8.0
         static let horizontalPadding: CGFloat = 8.0
         static let profileDescriptionVerticalPadding: CGFloat = 8.0
-        
-        // contentView layout constants
-        //static let contentViewCornerRadius: CGFloat = 4.0
 
         // profileImageView layout constants
         static let imageHeight: CGFloat = 180.0
@@ -51,7 +48,6 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
     
     private func setupView() {
         contentView.clipsToBounds = true
-        //contentView.layer.cornerRadius = Constants.contentViewCornerRadius
         contentView.backgroundColor = .white
     }
 
