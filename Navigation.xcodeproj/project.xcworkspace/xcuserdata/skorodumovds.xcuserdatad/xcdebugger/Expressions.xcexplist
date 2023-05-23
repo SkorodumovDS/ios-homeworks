@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "setupConstrainsTapButton #1 () in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "bigAvatarCat.topAnchor">
+            </PersistentString>
+            <PersistentString
+               value = "bigAvatarCat.bounds">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProfileHeaderView.tapAvatar():ProfileHeaderView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bigAvatarCat.bounds.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bigAvatarCat.frame.width - 30">
+            </PersistentString>
+            <PersistentString
+               value = "centerOrigin.y - self.bigAvatarCat.frame.width / 2">
+            </PersistentString>
+            <PersistentString
+               value = "self.tapButton.center">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

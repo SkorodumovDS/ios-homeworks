@@ -36,6 +36,14 @@ class ProfileHeaderView: UIView {
         avatar.layer.borderColor = CGColor.init(red: 255, green: 255, blue: 255, alpha: 1)
         avatar.layer.borderWidth = 3
         
+        
+        let tapAvatar = UITapGestureRecognizer(
+                   target: self,
+                   action: #selector(tapAvatar)
+               )
+        avatar.isUserInteractionEnabled = true
+        tapAvatar.numberOfTapsRequired = 1
+        avatar.addGestureRecognizer(tapAvatar)
         return avatar
     }()
     
@@ -77,6 +85,44 @@ class ProfileHeaderView: UIView {
         return statusCat
     }()
     
+    private lazy var tapButton: UIButton = {
+        let button = UIButton()
+    
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let exitImage = UIImage(systemName: "xmark")
+        let exit = UIImageView(image: exitImage)
+        button.setImage(exitImage, for: UIControl.State())
+        button.alpha = 0
+        button.addTarget(self, action: #selector(exitButton), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    private lazy var bigAvatarCat: UIImageView = {
+        
+        let image  = UIImage(named: "Cat")
+        let avatar =  UIImageView(image: image)
+        
+        avatar.translatesAutoresizingMaskIntoConstraints = false
+        avatar.contentMode = .scaleAspectFill
+        avatar.layer.opacity = 0
+        avatar.clipsToBounds = false
+        
+        return avatar
+        
+    }()
+    
+    let dimmingView: UIView = {
+        let dimmingView = UIView()
+        dimmingView.translatesAutoresizingMaskIntoConstraints = false
+        dimmingView.alpha = 0.8
+        dimmingView.backgroundColor = .gray
+        dimmingView.frame = UIScreen.main.bounds
+        
+        return dimmingView
+    }()
+       
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -87,8 +133,10 @@ class ProfileHeaderView: UIView {
         addSubview(catStatus)
         addSubview(newCatStatus)
         addSubview(actionButton)
+        addSubview(tapButton)
+        addSubview(bigAvatarCat)
         setupConstraints()
-        
+        //imageTapped()
     }
     
     func setupConstraints() {
@@ -132,7 +180,13 @@ class ProfileHeaderView: UIView {
             ),
            
             actionButton.heightAnchor.constraint(equalToConstant: 50.0),
-            actionButton.widthAnchor.constraint(equalToConstant: 361)
+            actionButton.widthAnchor.constraint(equalToConstant: 361),
+                    
+            bigAvatarCat.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            bigAvatarCat.widthAnchor.constraint(equalToConstant: 96),
+            bigAvatarCat.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            bigAvatarCat.heightAnchor.constraint(equalToConstant: 96)
+        
         ])
     }
     
@@ -140,10 +194,78 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func animateSize(width: CGFloat, height: CGFloat) {
+        CATransaction.begin()
+        let sizeAnimation = CABasicAnimation(keyPath: "bounds.size")
+        sizeAnimation.duration = 2
+        sizeAnimation.isRemovedOnCompletion = false
+        sizeAnimation.toValue = CGSize(width: width, height: width)
+        bigAvatarCat.layer.add(sizeAnimation, forKey: "bounds.size")
+        bigAvatarCat.layer.bounds.size = CGSize(width: width, height: width)
+        CATransaction.commit()
+    }
+    
+    @objc func tapAvatar(_ sender: UITapGestureRecognizer) {
+        let centerOrigin = superview!.superview!.superview!.center
+        bigAvatarCat.translatesAutoresizingMaskIntoConstraints = true
+        tapButton.translatesAutoresizingMaskIntoConstraints = true
+        UIView.animate(withDuration: 0.5) {
+           
+            addedSub()
+
+            self.bigAvatarCat.center = CGPoint(x: centerOrigin.x, y: centerOrigin.y - 20)
+            self.animateSize(width: self.superview!.frame.width,
+                             height: self.superview!.frame.width)
+            
+            self.tapButton.center = CGPoint(x: self.bigAvatarCat.bounds.width - 15, y: centerOrigin.y - self.bigAvatarCat.bounds.width / 2)
+
+            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0,
+                           options: .curveEaseInOut) {
+                
+                self.dimmingView.layer.opacity = 0.8
+                self.bigAvatarCat.layer.cornerRadius = 10
+                self.bigAvatarCat.layer.opacity = 1
+
+            }
+            
+            UIView.animate(withDuration: 0.3, delay: 0.5) {
+                self.tapButton.layer.opacity = 1
+                self.tapButton.alpha = 1
+            }
+        }
+        
+        func addedSub() {
+            addSubview(dimmingView)
+            addSubview(bigAvatarCat)
+            addSubview(tapButton)
+        }
+    }
+        
     @objc func buttonPressed(_ sender: UIButton) {
         catStatus.text = newCatStatus.text ?? "123"
     }
     
+    @objc func exitButton(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .curveEaseInOut) {
+            
+            self.tapButton.layer.opacity = 0
+            self.bigAvatarCat.center = CGPoint(x: 64, y: 64)
+            self.animateSize(width: 96,
+                             height: 96)
+            self.bigAvatarCat.clipsToBounds = true
+            self.bigAvatarCat.layer.cornerRadius = 48
+            self.bigAvatarCat.layer.borderColor = CGColor.init(red: 255, green: 255, blue: 255, alpha: 1)
+            self.bigAvatarCat.layer.borderWidth = 3
+            
+        } completion: { _ in
+            UIView.animate(withDuration: 0.5, delay: 0.0) {
+                self.dimmingView.layer.opacity = 0.0
+                self.bigAvatarCat.layer.opacity = 0
+                self.dimmingView.layoutIfNeeded()
+            }
+        }
+    }
+   
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
