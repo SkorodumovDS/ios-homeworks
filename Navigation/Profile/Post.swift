@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct PostModel {
+public struct PostModel {
     let author: String
     let description: String
     let image: String
@@ -15,7 +15,7 @@ struct PostModel {
     let views: Int
 }
 
-extension PostModel {
+public extension PostModel {
     
     static func make() -> [PostModel] {
         [
