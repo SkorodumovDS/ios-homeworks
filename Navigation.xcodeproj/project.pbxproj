@@ -19,7 +19,6 @@
 		C9CBF7A92A26633000E54C41 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CBF7942A26633000E54C41 /* StorageService.framework */; };
 		C9CBF7AA2A26633000E54C41 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9CBF7942A26633000E54C41 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C9CBF7B22A26635300E54C41 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26B82A0AB6B200AF811D /* Post.swift */; };
-		C9CBF7B32A26678B00E54C41 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26B82A0AB6B200AF811D /* Post.swift */; };
 		C9CD266629E319E800AF811D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD266529E319E800AF811D /* AppDelegate.swift */; };
 		C9CD266829E319E800AF811D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD266729E319E800AF811D /* SceneDelegate.swift */; };
 		C9CD266A29E319E800AF811D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD266929E319E800AF811D /* ViewController.swift */; };
@@ -383,7 +382,6 @@
 				C9CD26B52A0A8EF800AF811D /* LogInViewController.swift in Sources */,
 				C9CD26BF2A0AC09D00AF811D /* PostModelViewController.swift in Sources */,
 				C9417EFC2A195BDA007D2343 /* Reusable.swift in Sources */,
-				C9CBF7B32A26678B00E54C41 /* Post.swift in Sources */,
 				C9CD266829E319E800AF811D /* SceneDelegate.swift in Sources */,
 				C9CD26BB2A0ABAD400AF811D /* PostTableViewCell.swift in Sources */,
 			);

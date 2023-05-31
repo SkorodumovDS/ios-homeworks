@@ -8,11 +8,11 @@
 import UIKit
 
 public struct PostModel {
-    let author: String
-    let description: String
-    let image: String
-    let likes: Int
-    let views: Int
+    public let author: String
+    public let description: String
+    public let image: String
+    public let likes: Int
+    public let views: Int
 }
 
 public extension PostModel {
