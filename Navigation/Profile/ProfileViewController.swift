@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController {
     
@@ -43,10 +44,14 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = .white
+        //view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.isHidden = true
-        
+        #if DEBUG
+        view.backgroundColor = .gray
+        #else
+        view.backgroundColor = .green
+        #endif
     }
     
     private func addSubviews() {
