@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -77,6 +78,7 @@ class PostTableViewCell: UITableViewCell {
         )
         addsubviews()
         setupConstrains()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -133,6 +135,7 @@ class PostTableViewCell: UITableViewCell {
             viewsPost.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
         ])
     }
+    var imageProc = ImageProcessor()
     
     func update(_ post: PostModel) {
         mainImage.image = UIImage(named: post.image)
@@ -140,5 +143,14 @@ class PostTableViewCell: UITableViewCell {
         textPost.text = post.description
         likesPost.text = "Likes: " + String(post.likes)
         viewsPost.text = "Views: " + String(post.views)
+        
+       
+        let newImage = mainImage.image
+        imageProc.processImage(sourceImage: newImage!, filter: .allCases.randomElement() ?? .chrome) { (image) in
+            if let newImage = image {
+                mainImage.image = newImage
+            }
+        }
     }
+    
 }
