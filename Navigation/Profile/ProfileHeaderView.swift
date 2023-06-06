@@ -5,6 +5,7 @@
 //  Created by Skorodumov Dmitry on 17.04.2023.
 //
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UIView {
     
@@ -142,52 +143,55 @@ class ProfileHeaderView: UIView {
     func setupConstraints() {
        
         let safeAreaLayoutGuide = safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
+        //NSLayoutConstraint.activate([
             
-            avatarCat.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            avatarCat.widthAnchor.constraint(equalToConstant: 96),
-            avatarCat.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            avatarCat.heightAnchor.constraint(equalToConstant: 96),
-            
-            catTitle.leadingAnchor.constraint(
-            equalTo: avatarCat.trailingAnchor, constant: 20),
-            catTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
-            catTitle.heightAnchor.constraint(equalToConstant: 20),
-                  
-            catStatus.leadingAnchor.constraint(
-                equalTo: catTitle.leadingAnchor),
-            catStatus.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 64),
-            catStatus.heightAnchor.constraint(equalToConstant: 20),
-            catStatus.widthAnchor.constraint(equalToConstant: 200),
-            
-            newCatStatus.leadingAnchor.constraint(
-                equalTo: catStatus.leadingAnchor),
-            newCatStatus.topAnchor.constraint(equalTo: catStatus.bottomAnchor, constant: 5),
-            newCatStatus.heightAnchor.constraint(equalToConstant: 35),
-            newCatStatus.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            
-            actionButton.trailingAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.trailingAnchor,
-                constant: -16.0
-            ),
-            actionButton.leadingAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.leadingAnchor,
-                constant: 16.0
-            ),
-            actionButton.topAnchor.constraint(
-                equalTo: avatarCat.bottomAnchor,
-                constant: 16.0
-            ),
-           
-            actionButton.heightAnchor.constraint(equalToConstant: 50.0),
-            actionButton.widthAnchor.constraint(equalToConstant: 361),
-                    
-            bigAvatarCat.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            bigAvatarCat.widthAnchor.constraint(equalToConstant: 96),
-            bigAvatarCat.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            bigAvatarCat.heightAnchor.constraint(equalToConstant: 96)
+            avatarCat.snp.makeConstraints{ maker in
+                maker.leading.equalTo(safeAreaLayoutGuide).inset(16)
+                maker.width.equalTo(96)
+                maker.top.equalTo(safeAreaLayoutGuide).inset(16)
+                maker.height.equalTo(96)
+            }
         
-        ])
+        catTitle.snp.makeConstraints{ maker in
+            
+            maker.leading.equalTo(avatarCat.snp.trailing).inset(-20)
+            maker.top.equalTo(safeAreaLayoutGuide.snp.top).inset(27)
+            maker.height.equalTo(20)
+        }
+        
+        catStatus.snp.makeConstraints{ maker in
+            
+            maker.leading.equalTo(catTitle.snp.leading)
+            maker.top.equalTo(safeAreaLayoutGuide.snp.top).inset(64)
+            maker.height.equalTo(20)
+            maker.width.equalTo(200)
+        }
+        
+        newCatStatus.snp.makeConstraints{ maker in
+            
+            maker.leading.equalTo(catStatus.snp.leading)
+            maker.top.equalTo(catStatus.snp.bottom).inset(-5)
+            maker.height.equalTo(35)
+            maker.trailing.equalTo(safeAreaLayoutGuide.snp.trailing).inset(16)
+        }
+        
+        actionButton.snp.makeConstraints{ maker in
+            
+            maker.leading.equalTo(safeAreaLayoutGuide.snp.leading).inset(16)
+            maker.top.equalTo(avatarCat.snp.bottom).inset(-16)
+            maker.height.equalTo(50)
+            //maker.width.equalTo(361)
+            maker.trailing.equalTo(safeAreaLayoutGuide.snp.trailing).inset(16)
+        }
+        
+        bigAvatarCat.snp.makeConstraints{ maker in
+            
+            maker.leading.equalTo(safeAreaLayoutGuide.snp.leading).inset(16)
+            maker.top.equalTo(safeAreaLayoutGuide.snp.top).inset(16)
+            maker.height.equalTo(96)
+            maker.width.equalTo(96)
+        }
+       
     }
     
     required init?(coder: NSCoder) {
