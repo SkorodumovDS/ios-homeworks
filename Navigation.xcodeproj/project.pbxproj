@@ -12,6 +12,7 @@
 		C9417EF82A195690007D2343 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9417EF72A195690007D2343 /* PhotosViewController.swift */; };
 		C9417EFA2A1956D7007D2343 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9417EF92A1956D7007D2343 /* PhotosCollectionViewCell.swift */; };
 		C9417EFC2A195BDA007D2343 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9417EFB2A195BDA007D2343 /* Reusable.swift */; };
+		C97506CC2A31D56000A37A48 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97506CB2A31D56000A37A48 /* User.swift */; };
 		C9CBF7982A26633000E54C41 /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF7972A26633000E54C41 /* StorageService.docc */; };
 		C9CBF79E2A26633000E54C41 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CBF7942A26633000E54C41 /* StorageService.framework */; };
 		C9CBF7A52A26633000E54C41 /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF7A42A26633000E54C41 /* StorageServiceTests.swift */; };
@@ -80,6 +81,7 @@
 		C9417EF72A195690007D2343 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		C9417EF92A1956D7007D2343 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		C9417EFB2A195BDA007D2343 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		C97506CB2A31D56000A37A48 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C9CBF7942A26633000E54C41 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CBF7962A26633000E54C41 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		C9CBF7972A26633000E54C41 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				C9417EF32A17E67C007D2343 /* PhotosTableViewCell.swift */,
 				C9CD26BE2A0AC09D00AF811D /* PostModelViewController.swift */,
 				C9CD26C02A0D4E5200AF811D /* ProfileTableHeaderView.swift */,
+				C97506CB2A31D56000A37A48 /* User.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				C9417EFC2A195BDA007D2343 /* Reusable.swift in Sources */,
 				C9CD266829E319E800AF811D /* SceneDelegate.swift in Sources */,
 				C9CD26BB2A0ABAD400AF811D /* PostTableViewCell.swift in Sources */,
+				C97506CC2A31D56000A37A48 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

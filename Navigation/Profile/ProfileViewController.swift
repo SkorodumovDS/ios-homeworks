@@ -11,7 +11,7 @@ import StorageService
 class ProfileViewController: UIViewController {
     
     fileprivate let data = PostModel.make()
-    
+    var curUser : User?
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
             frame: .zero,
@@ -96,6 +96,9 @@ class ProfileViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
+    func initUser (user: User?) {
+        curUser = user
+    }
 }
 
 extension ProfileViewController: UITableViewDataSource {
@@ -166,6 +169,7 @@ extension ProfileViewController: UITableViewDelegate {
     ) -> UIView? {
         if section == 0 {
             let headerView = TableSectionFooterHeaderView()
+            headerView.initUser(user: curUser)
             headerView.isUserInteractionEnabled = true
             return headerView
         } else

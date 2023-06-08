@@ -10,11 +10,10 @@ import UIKit
 class TableSectionFooterHeaderView: UITableViewHeaderFooterView {
 
     // MARK: - Subviews
-    
+    var curUser : User?
     private lazy var profileView: ProfileHeaderView = {
         
         let prView = ProfileHeaderView()
-        
         return prView
     }()
 
@@ -30,10 +29,13 @@ class TableSectionFooterHeaderView: UITableViewHeaderFooterView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    // MARK: - Public
-
     
+    // MARK: - Public
+    
+    func initUser( user: User?) {
+        curUser = user!
+        profileView.initializeUser(user: curUser)
+    }
     // MARK: - Private
     
     private func addSubviews() {

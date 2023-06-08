@@ -17,6 +17,14 @@
          contextName = "ProfileHeaderView.tapAvatar():ProfileHeaderView.swift">
       </ContextState>
       <ContextState
+         contextName = "closure #1 in TableSectionFooterHeaderView.profileView.getter [inlined]:ProfileTableHeaderView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "curUser">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
          <PersistentStrings>
             <PersistentString

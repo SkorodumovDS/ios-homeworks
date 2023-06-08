@@ -233,7 +233,30 @@ class LogInViewController: UIViewController {
     
     @objc func buttonPressed(_ sender: UIButton) {
         
-        navigationController?.pushViewController(ProfileViewController(), animated: true)
+        #if DEBUG
+        let testUser = TestUserSevice()
+        let pvView = ProfileViewController()
+        pvView.initUser(user: testUser.currentUser)
+        navigationController?.pushViewController(pvView, animated: true)
+        #else
+        let profile = User(login: "Skorodumov", fullName: "Skorodumov Dmitriy", status: "Writing something...", avatar: UIImage(named: "20")!)
+        let curUser = CurrentUserService()
+        curUser.initializeUser(user: profile)
+        
+        if profile.login == curUser.authorize(login: login.text!)?.login {
+            
+            let pvView = ProfileViewController()
+            pvView.initUser(user: profile)
+            navigationController?.pushViewController(pvView, animated: true)}
+            
+        else {
+            let alert = UIAlertController(title: "authorization error", message: "Incorrect login", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+                //NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true)
+        }
+        #endif
     }
     private func setupView() {
         view.backgroundColor = .white
