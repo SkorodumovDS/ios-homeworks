@@ -45,3 +45,15 @@ class LoginInspector: LoginViewControllerDelegate {
         Checker.shared.check(typedLogin: typedLogin, typedPassword: typedPassword)
     }
 }
+
+protocol LoginFactory {
+     func makeLoginInspector () -> LoginInspector
+}
+
+
+struct MyLoginFactory : LoginFactory {
+    func makeLoginInspector() -> LoginInspector{
+        let inspector = LoginInspector()
+        return inspector
+    }
+}
