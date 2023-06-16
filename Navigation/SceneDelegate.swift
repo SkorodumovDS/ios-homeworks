@@ -24,7 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         FeedViewController.title = "News"
         FeedViewController.view.backgroundColor = .systemBackground
         
-        let LoginViewController = LogInViewController()
+        let loginInspector = LoginInspector()
+        let LoginViewController = LogInViewController(loginDelegate: loginInspector)
+        let loginInspectorObject = loginInspector 
+        loginInspectorObject.delegate = LoginViewController as? any LoginViewControllerDelegate
         //ProfileViewController.title = "Profile"
         LoginViewController.view.backgroundColor = .white
         

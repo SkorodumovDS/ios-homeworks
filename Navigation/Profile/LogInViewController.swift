@@ -9,6 +9,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    weak var loginDelegate : LoginViewControllerDelegate?
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -127,6 +129,15 @@ class LogInViewController: UIViewController {
         
     }
     
+    init(loginDelegate: LoginViewControllerDelegate) {
+        self.loginDelegate = loginDelegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -242,8 +253,11 @@ class LogInViewController: UIViewController {
         let profile = User(login: "Skorodumov", fullName: "Skorodumov Dmitriy", status: "Writing something...", avatar: UIImage(named: "20")!)
         let curUser = CurrentUserService()
         curUser.initializeUser(user: profile)
+        var chekerLogin: Bool? {
+            loginDelegate?.check(typedLogin: profile.login, typedPassword: "34525543")
+        }
         
-        if profile.login == curUser.authorize(login: login.text!)?.login {
+        if  chekerLogin != nil {
             
             let pvView = ProfileViewController()
             pvView.initUser(user: profile)
