@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in TableSectionFooterHeaderView.profileView.getter [inlined]:ProfileTableHeaderView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "curUser">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "setupConstrainsTapButton #1 () in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
          <PersistentStrings>
             <PersistentString
@@ -17,18 +25,27 @@
          contextName = "ProfileHeaderView.tapAvatar():ProfileHeaderView.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in TableSectionFooterHeaderView.profileView.getter [inlined]:ProfileTableHeaderView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "curUser">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "specialized ProfileViewController.tableView(_:viewForHeaderInSection:):ProfileViewController.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
          <PersistentStrings>
             <PersistentString
                value = "self.bigAvatarCat.bounds.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "specialized LogInViewController.buttonPressed(_:):LogInViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.loginDelegate">
+            </PersistentString>
+            <PersistentString
+               value = "loginDelegate">
+            </PersistentString>
+            <PersistentString
+               value = "delegate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -45,6 +62,9 @@
                value = "self.tapButton.center">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TableSectionFooterHeaderView.profileView.getter:ProfileTableHeaderView.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

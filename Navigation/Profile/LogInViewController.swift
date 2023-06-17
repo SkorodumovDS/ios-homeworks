@@ -16,7 +16,7 @@ class LogInViewController: UIViewController {
         
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
-          
+        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView
@@ -47,7 +47,7 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var emptyView: UIView = {
-       
+        
         let emView = UIView()
         emView.translatesAutoresizingMaskIntoConstraints = false
         emView.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
@@ -147,7 +147,7 @@ class LogInViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-            removeKeyboardObservers()
+        removeKeyboardObservers()
     }
     
     @objc func willShowKeyboard(_ notification: NSNotification) {
@@ -168,7 +168,7 @@ class LogInViewController: UIViewController {
             logo.widthAnchor.constraint(equalToConstant: 100),
             logo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             logo.heightAnchor.constraint(equalToConstant: 100),
-       
+            
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
@@ -191,7 +191,7 @@ class LogInViewController: UIViewController {
             login.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 0),
             login.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 0),
             login.heightAnchor.constraint(equalToConstant: 50),
-        
+            
             emptyView.trailingAnchor.constraint(equalTo: stack.trailingAnchor, constant: 0),
             emptyView.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 0),
             emptyView.topAnchor.constraint(equalTo: login.bottomAnchor, constant: 0),
@@ -201,7 +201,7 @@ class LogInViewController: UIViewController {
             password.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 0),
             password.topAnchor.constraint(equalTo: emptyView.bottomAnchor, constant: 0),
             password.heightAnchor.constraint(equalToConstant: 50),
-           
+            
             loginButton.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor,
                 constant: -16.0
@@ -244,25 +244,21 @@ class LogInViewController: UIViewController {
     
     @objc func buttonPressed(_ sender: UIButton) {
         
-        #if DEBUG
-        let testUser = TestUserSevice()
-        let pvView = ProfileViewController()
-        pvView.initUser(user: testUser.currentUser)
-        navigationController?.pushViewController(pvView, animated: true)
-        #else
-        let profile = User(login: "Skorodumov", fullName: "Skorodumov Dmitriy", status: "Writing something...", avatar: UIImage(named: "20")!)
-        let curUser = CurrentUserService()
-        curUser.initializeUser(user: profile)
-        var chekerLogin: Bool? {
-            loginDelegate?.check(typedLogin: profile.login, typedPassword: "34525543")
-        }
+        guard let delegate = self.loginDelegate else { return }
         
-        if  chekerLogin != nil {
+        let login  = login.text ?? "Skorodumov"
+        let password = password.text ?? "34525543"
+        
+        if delegate.check(typedLogin: login, typedPassword: password)
+        {
+            let profile = User(login: login, fullName: "Skorodumov Dmitriy", status: "Writing something...", avatar: UIImage(named: "20")!)
+            let curUser = CurrentUserService()
+            curUser.initializeUser(user: profile)
             
             let pvView = ProfileViewController()
             pvView.initUser(user: profile)
             navigationController?.pushViewController(pvView, animated: true)}
-            
+        
         else {
             let alert = UIAlertController(title: "authorization error", message: "Incorrect login", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
@@ -270,11 +266,10 @@ class LogInViewController: UIViewController {
             }))
             self.present(alert, animated: true)
         }
-        #endif
     }
     private func setupView() {
         view.backgroundColor = .white
-
+        
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.isHidden = true
     }
