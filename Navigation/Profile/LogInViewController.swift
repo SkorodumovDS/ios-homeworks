@@ -244,7 +244,7 @@ class LogInViewController: UIViewController {
     
     @objc func buttonPressed(_ sender: UIButton) {
         
-        guard let delegate = self.loginDelegate else { return }
+        guard let delegate = loginDelegate else { return }
         
         let login  = login.text ?? "Skorodumov"
         let password = password.text ?? "34525543"
