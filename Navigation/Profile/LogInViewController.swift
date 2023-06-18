@@ -9,7 +9,7 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    weak var loginDelegate : LoginViewControllerDelegate?
+    var loginDelegate : LoginViewControllerDelegate?
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
