@@ -24,9 +24,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         FeedViewController.title = "News"
         FeedViewController.view.backgroundColor = .systemBackground
         
-        let LoginViewController = LogInViewController()
+        let factory = MyLoginFactory()
+        let loginInspector = factory.makeLoginInspector()
+        let loginViewController = LogInViewController(loginDelegate: loginInspector)
+        let loginInspectorObject = loginInspector 
+        loginInspectorObject.delegate = loginViewController as? any LoginViewControllerDelegate
         //ProfileViewController.title = "Profile"
-        LoginViewController.view.backgroundColor = .white
+        loginViewController.view.backgroundColor = .white
         
         let tapBarController = UITabBarController()
         
@@ -34,10 +38,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         FeedViewController.tabBarItem.title = "Feed"
         FeedViewController.tabBarItem.image = UIImage(systemName: "house")
       //  profileViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
-        LoginViewController.tabBarItem.title = "Profile"
-        LoginViewController.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+        loginViewController.tabBarItem.title = "Profile"
+        loginViewController.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         
-        let controllers = [FeedViewController , LoginViewController]
+        let controllers = [FeedViewController , loginViewController]
         tapBarController.viewControllers = controllers.map {
             UINavigationController(rootViewController: $0)
         }

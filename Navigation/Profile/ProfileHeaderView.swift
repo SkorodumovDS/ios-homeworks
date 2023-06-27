@@ -8,6 +8,8 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+    var currentUser : User?
+    
     private lazy var actionButton: UIButton = {
         let button = UIButton()
     
@@ -28,6 +30,7 @@ class ProfileHeaderView: UIView {
     private lazy var avatarCat: UIImageView = {
         
         let image  = UIImage(named: "Cat")
+        
         let avatar =  UIImageView(image: image)
         
         avatar.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +54,7 @@ class ProfileHeaderView: UIView {
         let titleOfCat = UILabel()
         titleOfCat.translatesAutoresizingMaskIntoConstraints = false
         titleOfCat.text = "Hipster Cat"
+        
         titleOfCat.font = UIFont(name: "Arial-Bold", size: 18)
         titleOfCat.textColor = UIColor.black
         
@@ -63,6 +67,7 @@ class ProfileHeaderView: UIView {
         let statusCat = UILabel()
         statusCat.translatesAutoresizingMaskIntoConstraints = false
         statusCat.text = "Waiting for something..."
+        
         statusCat.textColor = .gray
         statusCat.font = UIFont(name: "Regular", size: 14)
        
@@ -124,8 +129,9 @@ class ProfileHeaderView: UIView {
        
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
         
+        super.init(frame: frame)
+    
         translatesAutoresizingMaskIntoConstraints = false
     
         addSubview(avatarCat)
@@ -137,6 +143,13 @@ class ProfileHeaderView: UIView {
         addSubview(bigAvatarCat)
         setupConstraints()
         //imageTapped()
+    }
+    
+    func initializeUser(user: User?) {
+        currentUser = user
+        catStatus.text = currentUser?.status
+        catTitle.text = currentUser?.fullName
+        avatarCat.image = currentUser?.avatar
     }
     
     func setupConstraints() {

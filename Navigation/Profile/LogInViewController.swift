@@ -9,12 +9,14 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    var loginDelegate : LoginViewControllerDelegate?
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
-          
+        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView
@@ -45,7 +47,7 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var emptyView: UIView = {
-       
+        
         let emView = UIView()
         emView.translatesAutoresizingMaskIntoConstraints = false
         emView.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
@@ -127,6 +129,15 @@ class LogInViewController: UIViewController {
         
     }
     
+    init(loginDelegate: LoginViewControllerDelegate) {
+        self.loginDelegate = loginDelegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -136,7 +147,7 @@ class LogInViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-            removeKeyboardObservers()
+        removeKeyboardObservers()
     }
     
     @objc func willShowKeyboard(_ notification: NSNotification) {
@@ -157,7 +168,7 @@ class LogInViewController: UIViewController {
             logo.widthAnchor.constraint(equalToConstant: 100),
             logo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             logo.heightAnchor.constraint(equalToConstant: 100),
-       
+            
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
@@ -180,7 +191,7 @@ class LogInViewController: UIViewController {
             login.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 0),
             login.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 0),
             login.heightAnchor.constraint(equalToConstant: 50),
-        
+            
             emptyView.trailingAnchor.constraint(equalTo: stack.trailingAnchor, constant: 0),
             emptyView.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 0),
             emptyView.topAnchor.constraint(equalTo: login.bottomAnchor, constant: 0),
@@ -190,7 +201,7 @@ class LogInViewController: UIViewController {
             password.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 0),
             password.topAnchor.constraint(equalTo: emptyView.bottomAnchor, constant: 0),
             password.heightAnchor.constraint(equalToConstant: 50),
-           
+            
             loginButton.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor,
                 constant: -16.0
@@ -233,11 +244,32 @@ class LogInViewController: UIViewController {
     
     @objc func buttonPressed(_ sender: UIButton) {
         
-        navigationController?.pushViewController(ProfileViewController(), animated: true)
+        guard let delegate = loginDelegate else { return }
+        
+        let login  = login.text ?? "Skorodumov"
+        let password = password.text ?? "34525543"
+        
+        if delegate.check(typedLogin: login, typedPassword: password)
+        {
+            let profile = User(login: login, fullName: "Skorodumov Dmitriy", status: "Writing something...", avatar: UIImage(named: "20")!)
+            let curUser = CurrentUserService()
+            curUser.initializeUser(user: profile)
+            
+            let pvView = ProfileViewController()
+            pvView.initUser(user: profile)
+            navigationController?.pushViewController(pvView, animated: true)}
+        
+        else {
+            let alert = UIAlertController(title: "authorization error", message: "Incorrect login", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+                //NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true)
+        }
     }
     private func setupView() {
         view.backgroundColor = .white
-
+        
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.isHidden = true
     }
