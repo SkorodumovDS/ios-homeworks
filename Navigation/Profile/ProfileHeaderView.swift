@@ -11,20 +11,15 @@ class ProfileHeaderView: UIView {
     var currentUser : User?
     
     private lazy var actionButton: UIButton = {
-        let button = UIButton()
-    
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Set status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        //button.layer.backgroundColor = CGColor(srgbRed: 0, green: 191, blue: 255, alpha: 1)
-        button.backgroundColor = UIColor(patternImage: UIImage(named: "BluePixel")!)
-        button.layer.cornerRadius = 4
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = CGFloat(4)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        return button
+        let buttonLog = CustomButton(title: "Set status", titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
+            self?.buttonPressed()
+                    }
+        buttonLog.layer.cornerRadius = 4
+        buttonLog.layer.shadowOffset = CGSize(width: 4, height: 4)
+        buttonLog.layer.shadowRadius = CGFloat(4)
+        buttonLog.layer.shadowColor = UIColor.black.cgColor
+        buttonLog.layer.shadowOpacity = 0.7
+        return buttonLog
     }()
     
     private lazy var avatarCat: UIImageView = {
@@ -254,7 +249,7 @@ class ProfileHeaderView: UIView {
         }
     }
         
-    @objc func buttonPressed(_ sender: UIButton) {
+    @objc func buttonPressed() {
         catStatus.text = newCatStatus.text ?? "123"
     }
     

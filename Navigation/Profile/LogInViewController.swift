@@ -101,13 +101,12 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var loginButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Log In", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(patternImage: UIImage(named: "BluePixel")!)
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        return button
+        let buttonLog = CustomButton(title: "Log In", titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
+            self?.buttonPressed()
+                }
+        buttonLog.translatesAutoresizingMaskIntoConstraints = false
+        return buttonLog
+        
     }()
     
     private lazy var logo: UIImageView = {
@@ -242,7 +241,7 @@ class LogInViewController: UIViewController {
         notificationCenter.removeObserver(self)
     }
     
-    @objc func buttonPressed(_ sender: UIButton) {
+    @objc func buttonPressed() {
         
         guard let delegate = loginDelegate else { return }
         

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C905B4522A67C14F00A9D005 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905B4512A67C14F00A9D005 /* CustomButton.swift */; };
+		C905B4542A67E22900A9D005 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905B4532A67E22900A9D005 /* FeedModel.swift */; };
 		C9417EF42A17E67C007D2343 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9417EF32A17E67C007D2343 /* PhotosTableViewCell.swift */; };
 		C9417EF62A1805F8007D2343 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9417EF52A1805F8007D2343 /* Photo.swift */; };
 		C9417EF82A195690007D2343 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9417EF72A195690007D2343 /* PhotosViewController.swift */; };
@@ -14,6 +16,7 @@
 		C9417EFC2A195BDA007D2343 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9417EFB2A195BDA007D2343 /* Reusable.swift */; };
 		C97506CC2A31D56000A37A48 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97506CB2A31D56000A37A48 /* User.swift */; };
 		C97506CE2A3C93E700A37A48 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97506CD2A3C93E700A37A48 /* Checker.swift */; };
+		C97506D12A4860AF00A37A48 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = C97506D02A4860AF00A37A48 /* iOSIntPackage */; };
 		C9CBF7982A26633000E54C41 /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF7972A26633000E54C41 /* StorageService.docc */; };
 		C9CBF79E2A26633000E54C41 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CBF7942A26633000E54C41 /* StorageService.framework */; };
 		C9CBF7A52A26633000E54C41 /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF7A42A26633000E54C41 /* StorageServiceTests.swift */; };
@@ -77,6 +80,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C905B4512A67C14F00A9D005 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		C905B4532A67E22900A9D005 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		C9417EF32A17E67C007D2343 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		C9417EF52A1805F8007D2343 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C9417EF72A195690007D2343 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9CBF7A92A26633000E54C41 /* StorageService.framework in Frameworks */,
+				C97506D12A4860AF00A37A48 /* iOSIntPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +193,7 @@
 				C9CD267F29E329F500AF811D /* PostViewController.swift */,
 				C9CD268129E3324A00AF811D /* PostFile.swift */,
 				C9CD268329E337CB00AF811D /* InfoViewController.swift */,
+				C905B4532A67E22900A9D005 /* FeedModel.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -208,6 +215,7 @@
 				C9CD26C02A0D4E5200AF811D /* ProfileTableHeaderView.swift */,
 				C97506CB2A31D56000A37A48 /* User.swift */,
 				C97506CD2A3C93E700A37A48 /* Checker.swift */,
+				C905B4512A67C14F00A9D005 /* CustomButton.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -278,6 +286,9 @@
 				C9CBF7A82A26633000E54C41 /* PBXTargetDependency */,
 			);
 			name = Navigation;
+			packageProductDependencies = (
+				C97506D02A4860AF00A37A48 /* iOSIntPackage */,
+			);
 			productName = Navigation;
 			productReference = C9CD266229E319E800AF811D /* Navigation.app */;
 			productType = "com.apple.product-type.application";
@@ -313,6 +324,9 @@
 				Base,
 			);
 			mainGroup = C9CD265929E319E800AF811D;
+			packageReferences = (
+				C97506CF2A4860AF00A37A48 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+			);
 			productRefGroup = C9CD266329E319E800AF811D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -383,6 +397,7 @@
 				C9CD266629E319E800AF811D /* AppDelegate.swift in Sources */,
 				C9CD268229E3324A00AF811D /* PostFile.swift in Sources */,
 				C9CD26A929ED9B3900AF811D /* ProfileHeaderView.swift in Sources */,
+				C905B4522A67C14F00A9D005 /* CustomButton.swift in Sources */,
 				C9417EFA2A1956D7007D2343 /* PhotosCollectionViewCell.swift in Sources */,
 				C9CD267C29E3284900AF811D /* FeedViewController.swift in Sources */,
 				C9CD268429E337CB00AF811D /* InfoViewController.swift in Sources */,
@@ -392,6 +407,7 @@
 				C9CD266829E319E800AF811D /* SceneDelegate.swift in Sources */,
 				C9CD26BB2A0ABAD400AF811D /* PostTableViewCell.swift in Sources */,
 				C97506CC2A31D56000A37A48 /* User.swift in Sources */,
+				C905B4542A67E22900A9D005 /* FeedModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,6 +749,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C97506CF2A4860AF00A37A48 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
+			requirement = {
+				branch = imagepublisher;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C97506D02A4860AF00A37A48 /* iOSIntPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C97506CF2A4860AF00A37A48 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			productName = iOSIntPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C9CD265A29E319E800AF811D /* Project object */;
 }

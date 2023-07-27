@@ -14,9 +14,9 @@
             filePath = "Navigation/Profile/LogInViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "buttonPressed(_:)"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
+            landmarkName = "buttonPressed()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -62,9 +62,9 @@
             filePath = "Navigation/Profile/LogInViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
-            landmarkName = "buttonPressed(_:)"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
+            landmarkName = "buttonPressed()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -78,9 +78,73 @@
             filePath = "Navigation/Profile/LogInViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "init(loginDelegate:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1119A19D-A716-4B53-A732-B9530F9C0A14"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Navigation-alsmjqkzwqhtxpedrbopkuyyppuc/SourcePackages/checkouts/iOSIntPackage/Sources/iOSIntPackage/ImagePublisher/ImagePublisherFacade.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "addImagesWithTimer(time:repeat:userImages:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D94781B7-2DB7-4542-AF85-6E3379E6EDD8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Navigation-alsmjqkzwqhtxpedrbopkuyyppuc/SourcePackages/checkouts/iOSIntPackage/Sources/iOSIntPackage/ImagePublisher/ImagePublisherFacade.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "addImagesWithTimer(time:repeat:userImages:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "05C53D51-7270-4DE3-BBF5-F0D0D2B31E66"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Navigation-alsmjqkzwqhtxpedrbopkuyyppuc/SourcePackages/checkouts/iOSIntPackage/Sources/iOSIntPackage/ImagePublisher/ImagePublisherFacade.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "addImagesWithTimer(time:repeat:userImages:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "591BF742-9B2B-4101-BF8B-8C80E1CC9F98"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Navigation-alsmjqkzwqhtxpedrbopkuyyppuc/SourcePackages/checkouts/iOSIntPackage/Sources/iOSIntPackage/ImagePublisher/ImagePublisherFacade.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "addImagesWithTimer(time:repeat:userImages:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
