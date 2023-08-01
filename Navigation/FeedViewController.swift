@@ -10,6 +10,7 @@ import UIKit
 class FeedViewController: UIViewController {
 
     var postText = Post(title: "New post")
+    private let feedViewModel: FeedViewModel
     
     private lazy var actionButton: UIButton = {
         let buttonLog = CustomButton(title: "Перейти", titleColor: .black, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
@@ -59,12 +60,40 @@ class FeedViewController: UIViewController {
         return passStatus
     }()
     
+    init(feedViewModel: FeedViewModel) {
+        
+        self.feedViewModel = feedViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func bindFeedViewModel() {
+        feedViewModel.stateChanged = { [weak self] state in
+            switch state{
+            case .initial :
+                self?.passwordStatus.backgroundColor = .white
+            case .passwordChecked:
+                self?.passwordStatus.backgroundColor = .green
+            case .passwordUnchecked:
+                self?.passwordStatus.backgroundColor = .red
+            case .nextScreen:
+                let postViewController = PostViewController()
+                postViewController.postTitle = self!.postText.title
+                self?.navigationController?.pushViewController(postViewController, animated: false)
+            }
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(actionButton)
         view.addSubview(password)
         view.addSubview(checkGuessButton)
         view.addSubview(passwordStatus)
+        bindFeedViewModel()
         
                 let safeAreaLayoutGuide = view.safeAreaLayoutGuide
                 NSLayoutConstraint.activate([
@@ -99,19 +128,12 @@ class FeedViewController: UIViewController {
     }
     
     @objc func buttonPressed() {
-        let postViewController = PostViewController()
-        postViewController.postTitle = postText.title
-        self.navigationController?.pushViewController(postViewController, animated: false)
-
+        feedViewModel.changeState(.nextButtonTapped)
         }
     
     @objc func Check() {
-        let feedModel = FeedModel()
-        var answer = feedModel.Check(secret: password.text ?? "password")
-        
-        if answer {passwordStatus.backgroundColor = .green}
-        else {passwordStatus.backgroundColor = .red}
-
+        feedViewModel.secret = password.text ?? "password"
+        feedViewModel.changeState(.passwordButtonTapped)
         }
 
 }

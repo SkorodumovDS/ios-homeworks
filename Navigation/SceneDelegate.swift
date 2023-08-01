@@ -20,7 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: scene)
         
-        let FeedViewController = FeedViewController()
+        let feedModel = FeedModel()
+        let feedViewModel = FeedViewModel(feedModel: feedModel)
+        let FeedViewController = FeedViewController(feedViewModel: feedViewModel)
         FeedViewController.title = "News"
         FeedViewController.view.backgroundColor = .systemBackground
         

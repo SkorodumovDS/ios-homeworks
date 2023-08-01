@@ -50,6 +50,22 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "FeedViewModel.changeState(_:):FeedViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "answer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FeedViewModel.changeState(_:) [inlined]:FeedViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "&#x2028;secret">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #2 in closure #1 in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
          <PersistentStrings>
             <PersistentString
