@@ -3,35 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in TableSectionFooterHeaderView.profileView.getter [inlined]:ProfileTableHeaderView.swift">
+         contextName = "FeedFlowCoordinator.showNextScreen():FeedFlowCoordinator.swift">
          <PersistentStrings>
             <PersistentString
-               value = "curUser">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "setupConstrainsTapButton #1 () in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "bigAvatarCat.topAnchor">
-            </PersistentString>
-            <PersistentString
-               value = "bigAvatarCat.bounds">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ProfileHeaderView.tapAvatar():ProfileHeaderView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "specialized ProfileViewController.tableView(_:viewForHeaderInSection:):ProfileViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.bigAvatarCat.bounds.width">
+               value = "navControlles">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -50,20 +25,40 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "FeedViewModel.changeState(_:):FeedViewModel.swift">
+         contextName = "Factory.startModule():Factory.swift">
          <PersistentStrings>
             <PersistentString
-               value = "answer">
+               value = "navigationController">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "FeedViewModel.changeState(_:) [inlined]:FeedViewModel.swift">
+         contextName = "closure #1 in TableSectionFooterHeaderView.profileView.getter [inlined]:ProfileTableHeaderView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "&#x2028;secret">
+               value = "curUser">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TableSectionFooterHeaderView.profileView.getter:ProfileTableHeaderView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "setupConstrainsTapButton #1 () in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "bigAvatarCat.topAnchor">
+            </PersistentString>
+            <PersistentString
+               value = "bigAvatarCat.bounds">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "specialized ProfileViewController.tableView(_:viewForHeaderInSection:):ProfileViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ProfileHeaderView.tapAvatar():ProfileHeaderView.swift">
       </ContextState>
       <ContextState
          contextName = "closure #2 in closure #1 in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
@@ -80,7 +75,28 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TableSectionFooterHeaderView.profileView.getter:ProfileTableHeaderView.swift">
+         contextName = "closure #1 in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bigAvatarCat.bounds.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FeedViewModel.changeState(_:):FeedViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "answer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FeedViewModel.changeState(_:) [inlined]:FeedViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "&#x2028;secret">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

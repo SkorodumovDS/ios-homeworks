@@ -118,6 +118,7 @@ class LogInViewController: UIViewController {
         avatar.clipsToBounds = true
         return avatar
     }()
+    private let coordinator : ProfileFlowCoordinator
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,8 +129,9 @@ class LogInViewController: UIViewController {
         
     }
     
-    init(loginDelegate: LoginViewControllerDelegate) {
+    init(loginDelegate: LoginViewControllerDelegate, coordinator: ProfileFlowCoordinator) {
         self.loginDelegate = loginDelegate
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -250,14 +252,17 @@ class LogInViewController: UIViewController {
         
         if delegate.check(typedLogin: login, typedPassword: password)
         {
-            let profile = User(login: login, fullName: "Skorodumov Dmitriy", status: "Writing something...", avatar: UIImage(named: "20")!)
-            let curUser = CurrentUserService()
-            curUser.initializeUser(user: profile)
-            
-            let pvView = ProfileViewController()
-            pvView.initUser(user: profile)
-            navigationController?.pushViewController(pvView, animated: true)}
-        
+            /*let profile = User(login: login, fullName: "Skorodumov Dmitriy", status: "Writing something...", avatar: UIImage(named: "20")!)
+             let curUser = CurrentUserService()
+             curUser.initializeUser(user: profile)
+             
+             let pvView = ProfileViewController()
+             pvView.initUser(user: profile)
+             */
+            coordinator.login = login
+            coordinator.showNextScreen()
+            //navigationController?.pushViewController(pvView, animated: true)}
+        }
         else {
             let alert = UIAlertController(title: "authorization error", message: "Incorrect login", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in

@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: scene)
         
+        /*
         let feedModel = FeedModel()
         let feedViewModel = FeedViewModel(feedModel: feedModel)
         let FeedViewController = FeedViewController(feedViewModel: feedViewModel)
@@ -49,7 +50,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         tapBarController.selectedIndex = 0
-        window.rootViewController = tapBarController
+        */
+        let mainCoordinator = MainCoordinatorImp()
+        window.rootViewController = mainCoordinator.startApplication()
         window.makeKeyAndVisible()
         
         self.window = window
