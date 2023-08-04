@@ -14,7 +14,15 @@ final class ProfileFlowCoordinator {
     
     func showNextScreen() {
 
-        let viewController = Factory(flow: .profile, login: login!).viewController
+        let viewController = Factory(flow: .profile, login: login!, navigation: navControlles ?? UINavigationController()).viewController
+
+        guard let viewController  = viewController else {return}
+        navControlles?.pushViewController(viewController, animated: true)
+    }
+    
+    func showPhotoScreen() {
+
+        let viewController = Factory(flow: .photo, login: "", navigation: navControlles ?? UINavigationController()).viewController
 
         guard let viewController  = viewController else {return}
         navControlles?.pushViewController(viewController, animated: true)

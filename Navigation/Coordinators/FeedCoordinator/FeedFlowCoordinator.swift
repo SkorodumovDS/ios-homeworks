@@ -12,9 +12,17 @@ final class FeedFlowCoordinator {
     var navControlles : UINavigationController?
     
     func showNextScreen() {
-        let viewController = Factory(flow: .post, login: "").viewController
+        let viewController = Factory(flow: .post, login: "", navigation: navControlles ?? UINavigationController()).viewController
 
         guard let viewController  = viewController else {return}
         navControlles?.pushViewController(viewController, animated: true)
+    }
+    
+    func showInfoScreen() {
+        let viewController = Factory(flow: .info, login: "", navigation: navControlles ?? UINavigationController()).viewController
+
+        guard let viewController  = viewController else {return}
+        navControlles?.pushViewController(viewController, animated: true)
+        //navControlles?.present(viewController, animated: true)
     }
 }

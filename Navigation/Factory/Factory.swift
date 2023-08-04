@@ -13,16 +13,19 @@ final class Factory {
         case profileinfo
         case post
         case profile
+        case photo
+        case info
     }
     
     private let flow : Flow
     private let login : String
     private (set) var navigationController = UINavigationController()
-    private (set) var viewController : UIViewController!
-   
-    init(flow: Flow, login: String) {
+    private (set) var viewController : UIViewController?
+    
+    init(flow: Flow, login: String, navigation: UINavigationController) {
         self.flow = flow
         self.login = login
+        self.navigationController = navigation
         startModule()
     }
     
@@ -56,7 +59,9 @@ final class Factory {
             
             navigationController.setViewControllers([loginViewController], animated: true)
         case .post:
-            let postViewController = PostViewController()
+            let feedFlowCoordinator = FeedFlowCoordinator()
+            let postViewController = PostViewController(coordinator: feedFlowCoordinator)
+            feedFlowCoordinator.navControlles = navigationController
             viewController = postViewController
         case .profile:
             
@@ -64,9 +69,28 @@ final class Factory {
             let curUser = CurrentUserService()
             curUser.initializeUser(user: profile)
             
+            let profileFlowCoordinator = ProfileFlowCoordinator()
+            profileFlowCoordinator.navControlles = navigationController
             let pvView = ProfileViewController()
+            pvView.coordinator = profileFlowCoordinator
             pvView.initUser(user: profile)
             viewController = pvView
+        case .photo:
+            let profileFlowCoordinator = ProfileFlowCoordinator()
+            profileFlowCoordinator.navControlles = navigationController
+            let photoViewController = PhotosViewController()
+            photoViewController.coordimator = profileFlowCoordinator
+            viewController = photoViewController
+        case .info:
+            let feedFlowCoordinator = FeedFlowCoordinator()
+            feedFlowCoordinator.navControlles = navigationController
+            let infoViewController = InfoViewController()
+            infoViewController.coordinator = feedFlowCoordinator
+            infoViewController.modalTransitionStyle = .flipHorizontal // flipHorizontal
+            infoViewController.modalPresentationStyle = .pageSheet // pageSheet
+            viewController = infoViewController
+            //present(infoViewController, animated: true)
+            
         }
     }
     

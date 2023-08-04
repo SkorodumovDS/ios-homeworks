@@ -17,7 +17,7 @@ class InfoViewController: UIViewController {
         
         return button
     }()
-    
+    var coordinator: FeedFlowCoordinator?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(actionButton)

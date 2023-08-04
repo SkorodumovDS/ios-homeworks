@@ -3,7 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "PostViewController.infoPressed(_:):PostViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "FeedFlowCoordinator.showNextScreen():FeedFlowCoordinator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navControlles">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProfileFlowCoordinator.showPhotoScreen():ProfileFlowCoordinator.swift">
          <PersistentStrings>
             <PersistentString
                value = "navControlles">
@@ -44,6 +55,25 @@
          contextName = "TableSectionFooterHeaderView.profileView.getter:ProfileTableHeaderView.swift">
       </ContextState>
       <ContextState
+         contextName = "PostViewController.viewDidLoad():PostViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "feedCoordinator">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProfileViewController.tableView(_:didSelectRowAt:) [inlined]:ProfileViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.coordinator">
+            </PersistentString>
+            <PersistentString
+               value = "coordinator">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "setupConstrainsTapButton #1 () in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
          <PersistentStrings>
             <PersistentString
@@ -56,6 +86,14 @@
       </ContextState>
       <ContextState
          contextName = "specialized ProfileViewController.tableView(_:viewForHeaderInSection:):ProfileViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ProfileViewController.viewDidLoad() [inlined]:ProfileViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "coordinator">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "ProfileHeaderView.tapAvatar():ProfileHeaderView.swift">
@@ -95,6 +133,28 @@
          <PersistentStrings>
             <PersistentString
                value = "&#x2028;secret">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FeedFlowCoordinator.showInfoScreen():FeedFlowCoordinator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navControlles!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PostViewController.infoPressed(_:) [inlined]:PostViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.feedCoordinator">
+            </PersistentString>
+            <PersistentString
+               value = "coordinator">
+            </PersistentString>
+            <PersistentString
+               value = "feedCoordinator!">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

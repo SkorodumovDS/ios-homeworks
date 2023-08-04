@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
+    var coordinator : ProfileFlowCoordinator?
     private enum CellReuseID: String {
         case base = "BaseTableViewCell_ReuseID"
         case photos = "PhotosTableViewCell_ReuseID"
@@ -148,8 +148,12 @@ extension ProfileViewController: UITableViewDataSource {
         didSelectRowAt indexPath: IndexPath
     ) {
         if indexPath.section == 0
-        {let photoViewController = PhotosViewController()
-        navigationController?.pushViewController(photoViewController, animated: true)}
+        {self.coordinator!.showPhotoScreen()
+            /*
+            let photoViewController = PhotosViewController()
+        navigationController?.pushViewController(photoViewController, animated: true)
+             */
+             }
     }
 }
 

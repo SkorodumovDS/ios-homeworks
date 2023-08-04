@@ -80,10 +80,14 @@ class FeedViewController: UIViewController {
             case .passwordUnchecked:
                 self?.passwordStatus.backgroundColor = .red
             case .nextScreen:
+                print("next screen")
+                /*
                 let postViewController = PostViewController()
                 postViewController.postTitle = self!.postText.title
                 self?.navigationController?.pushViewController(postViewController, animated: false)
-            }
+                 */
+                 }
+                 
         }
         
     }

@@ -9,15 +9,19 @@ import UIKit
 
 final class MainTabBarController : UITabBarController {
     
-    private let feedVC = Factory(flow: .feed, login: "")
-    private let profileVC = Factory(flow: .profileinfo, login: "")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setControlles()
     }
     
     private func setControlles() {
+       
+        let feedNavController = UINavigationController()
+        let profileNavController = UINavigationController()
+        
+        let feedVC = Factory(flow: .feed, login: "", navigation: feedNavController)
+        let profileVC = Factory(flow: .profileinfo, login: "", navigation: profileNavController)
+        
         viewControllers = [feedVC.navigationController, profileVC.navigationController]
     }
 }
