@@ -14,11 +14,13 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     // MARK: - Data
     
     fileprivate lazy var photos: [PhotoModel] = PhotoModel.make()
-    var imageFacade = ImagePublisherFacade()
+    //var imageFacade = ImagePublisherFacade()
+    var imageProcessor = ImageProcessor()
     var array = [UIImage]()
     var index = 0
     var photoarray = [UIImage]()
     var coordimator : ProfileFlowCoordinator?
+    let clock = ContinuousClock()
     // MARK: - Subviews
     
     private let collectionView: UICollectionView = {
@@ -48,31 +50,38 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         setupSubviews()
         setupLayouts()
         
+        /*
         imageFacade.subscribe(self)
         imageFacade.addImagesWithTimer(time: 1, repeat: 20, userImages: photoarray)
+         */
     }
     
     override func viewWillDisappear(_ animated: Bool){
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = true
-        imageFacade.removeSubscription(for: self)
+        //imageFacade.removeSubscription(for: self)
     }
     
     // MARK: - Private
     
     private func setupView() {
+        
         photoarray.removeAll()
         for photo in photos {
             photoarray.append(UIImage(named: photo.image)!)
         }
-        
+         
         view.backgroundColor = .systemBackground
         title = "Photo Gallery"
         navigationController?.navigationBar.isHidden = false
-        imageFacade.subscribe(self)
+        let resultFilter = clock.measure {
+            imageProcessor.processImagesOnThread(sourceImages: photoarray, filter: .chrome, qos: .userInteractive, completion: {_ in })
+        }
+        print("Filter process time is \(resultFilter)")
+        //imageFacade.subscribe(self)
         
     }
-    
+   
     private func setupSubviews() {
         setupCollectionView()
     }
@@ -107,7 +116,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        array.count
+        photoarray.count
     }
     
     
@@ -119,9 +128,10 @@ extension PhotosViewController: UICollectionViewDataSource {
             withReuseIdentifier: PhotosCollectionViewCell.identifier,
             for: indexPath) as! PhotosCollectionViewCell
         
-        let new = array[indexPath.row]
+        let new = photoarray[indexPath.row]
         cell.setup(with: new)
         
+    
         return cell
     }
 }
