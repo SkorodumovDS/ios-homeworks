@@ -10,6 +10,16 @@ import UIKit
 class PostViewController: UIViewController {
 
     var postTitle : String = "null"
+    var coordinator :FeedFlowCoordinator
+    
+    init(coordinator: FeedFlowCoordinator) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +35,15 @@ class PostViewController: UIViewController {
     }
     
     @objc func infoPressed(_ sender: UIButton) {
+           /*
             let infoViewController = InfoViewController()
             
         infoViewController.modalTransitionStyle = .flipHorizontal // flipHorizontal
         infoViewController.modalPresentationStyle = .pageSheet // pageSheet
             
             present(infoViewController, animated: true)
+            */
+        self.coordinator.showInfoScreen()
         }
     /*
     // MARK: - Navigation

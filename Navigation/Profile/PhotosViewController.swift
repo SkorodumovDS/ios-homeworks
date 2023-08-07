@@ -18,7 +18,7 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     var array = [UIImage]()
     var index = 0
     var photoarray = [UIImage]()
-    
+    var coordimator : ProfileFlowCoordinator?
     // MARK: - Subviews
     
     private let collectionView: UICollectionView = {

@@ -3,10 +3,73 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "PostViewController.infoPressed(_:):PostViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "FeedFlowCoordinator.showNextScreen():FeedFlowCoordinator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navControlles">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProfileFlowCoordinator.showPhotoScreen():ProfileFlowCoordinator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navControlles">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "specialized LogInViewController.buttonPressed(_:):LogInViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.loginDelegate">
+            </PersistentString>
+            <PersistentString
+               value = "loginDelegate">
+            </PersistentString>
+            <PersistentString
+               value = "delegate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Factory.startModule():Factory.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in TableSectionFooterHeaderView.profileView.getter [inlined]:ProfileTableHeaderView.swift">
          <PersistentStrings>
             <PersistentString
                value = "curUser">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TableSectionFooterHeaderView.profileView.getter:ProfileTableHeaderView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PostViewController.viewDidLoad():PostViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "feedCoordinator">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProfileViewController.tableView(_:didSelectRowAt:) [inlined]:ProfileViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.coordinator">
+            </PersistentString>
+            <PersistentString
+               value = "coordinator">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -22,30 +85,38 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "specialized ProfileViewController.tableView(_:viewForHeaderInSection:):ProfileViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ProfileViewController.viewDidLoad() [inlined]:ProfileViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "coordinator">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ProfileHeaderView.tapAvatar():ProfileHeaderView.swift">
       </ContextState>
       <ContextState
-         contextName = "specialized ProfileViewController.tableView(_:viewForHeaderInSection:):ProfileViewController.swift">
+         contextName = "closure #2 in closure #1 in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bigAvatarCat.frame.width - 30">
+            </PersistentString>
+            <PersistentString
+               value = "centerOrigin.y - self.bigAvatarCat.frame.width / 2">
+            </PersistentString>
+            <PersistentString
+               value = "self.tapButton.center">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
          <PersistentStrings>
             <PersistentString
                value = "self.bigAvatarCat.bounds.width">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "specialized LogInViewController.buttonPressed(_:):LogInViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.loginDelegate">
-            </PersistentString>
-            <PersistentString
-               value = "loginDelegate">
-            </PersistentString>
-            <PersistentString
-               value = "delegate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -66,21 +137,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #2 in closure #1 in ProfileHeaderView.tapAvatar(_:):ProfileHeaderView.swift">
+         contextName = "FeedFlowCoordinator.showInfoScreen():FeedFlowCoordinator.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.bigAvatarCat.frame.width - 30">
-            </PersistentString>
-            <PersistentString
-               value = "centerOrigin.y - self.bigAvatarCat.frame.width / 2">
-            </PersistentString>
-            <PersistentString
-               value = "self.tapButton.center">
+               value = "navControlles!">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TableSectionFooterHeaderView.profileView.getter:ProfileTableHeaderView.swift">
+         contextName = "PostViewController.infoPressed(_:) [inlined]:PostViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.feedCoordinator">
+            </PersistentString>
+            <PersistentString
+               value = "coordinator">
+            </PersistentString>
+            <PersistentString
+               value = "feedCoordinator!">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

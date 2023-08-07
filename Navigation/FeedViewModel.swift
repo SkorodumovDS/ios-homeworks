@@ -33,10 +33,12 @@ final class FeedViewModel {
             
         }
     }
+    private let coordinator : FeedFlowCoordinator
     var secret: String = ""
     
-    init(feedModel: FeedModel) {
+    init(feedModel: FeedModel, coordinator: FeedFlowCoordinator) {
         self.feedModel = feedModel
+        self.coordinator = coordinator
     }
     
     func changeState(_ action : Action) {
@@ -44,7 +46,8 @@ final class FeedViewModel {
         case.viewReady:
             state = .initial
         case .nextButtonTapped:
-            state = .nextScreen
+            //state = .nextScreen
+            coordinator.showNextScreen()
         case .passwordButtonTapped :
             feedModel.check(secret: self.secret, completion: {
                 [weak self] result in switch result {
