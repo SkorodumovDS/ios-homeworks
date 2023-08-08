@@ -74,10 +74,23 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         view.backgroundColor = .systemBackground
         title = "Photo Gallery"
         navigationController?.navigationBar.isHidden = false
-        let resultFilter = clock.measure {
-            imageProcessor.processImagesOnThread(sourceImages: photoarray, filter: .chrome, qos: .userInteractive, completion: {_ in })
-        }
-        print("Filter process time is \(resultFilter)")
+        let start = DispatchTime.now()
+                imageProcessor.processImagesOnThread(sourceImages: photoarray, filter: .colorInvert, qos:.userInteractive, completion: { [self] photoArrayImp in
+                        self.array.removeAll()
+                        for photo in  photoArrayImp {
+                            array.append(UIImage(cgImage: photo!))
+                        }
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                        let end = DispatchTime.now()// <<<<<<<<<<   end time
+                        let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
+                            let timeInterval = Double(nanoTime) / 1_000_000_000 // Technically could overflow for long running tests
+
+                        print("Filter process time is \(timeInterval.formatted(.number))")
+                    }
+                    })
+       
+       
         //imageFacade.subscribe(self)
         
     }
@@ -116,7 +129,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        photoarray.count
+        array.count
     }
     
     
@@ -128,7 +141,7 @@ extension PhotosViewController: UICollectionViewDataSource {
             withReuseIdentifier: PhotosCollectionViewCell.identifier,
             for: indexPath) as! PhotosCollectionViewCell
         
-        let new = photoarray[indexPath.row]
+        let new = array[indexPath.row]
         cell.setup(with: new)
         
     
