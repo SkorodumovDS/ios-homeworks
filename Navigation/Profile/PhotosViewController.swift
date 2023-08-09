@@ -14,11 +14,13 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     // MARK: - Data
     
     fileprivate lazy var photos: [PhotoModel] = PhotoModel.make()
-    var imageFacade = ImagePublisherFacade()
+    //var imageFacade = ImagePublisherFacade()
+    var imageProcessor = ImageProcessor()
     var array = [UIImage]()
     var index = 0
     var photoarray = [UIImage]()
     var coordimator : ProfileFlowCoordinator?
+    let clock = ContinuousClock()
     // MARK: - Subviews
     
     private let collectionView: UICollectionView = {
@@ -48,31 +50,51 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         setupSubviews()
         setupLayouts()
         
+        /*
         imageFacade.subscribe(self)
         imageFacade.addImagesWithTimer(time: 1, repeat: 20, userImages: photoarray)
+         */
     }
     
     override func viewWillDisappear(_ animated: Bool){
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = true
-        imageFacade.removeSubscription(for: self)
+        //imageFacade.removeSubscription(for: self)
     }
     
     // MARK: - Private
     
     private func setupView() {
+        
         photoarray.removeAll()
         for photo in photos {
             photoarray.append(UIImage(named: photo.image)!)
         }
-        
+         
         view.backgroundColor = .systemBackground
         title = "Photo Gallery"
         navigationController?.navigationBar.isHidden = false
-        imageFacade.subscribe(self)
+        let start = DispatchTime.now()
+                imageProcessor.processImagesOnThread(sourceImages: photoarray, filter: .colorInvert, qos:.userInteractive, completion: { [self] photoArrayImp in
+                        self.array.removeAll()
+                        for photo in  photoArrayImp {
+                            array.append(UIImage(cgImage: photo!))
+                        }
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                        let end = DispatchTime.now()// <<<<<<<<<<   end time
+                        let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
+                            let timeInterval = Double(nanoTime) / 1_000_000_000 // Technically could overflow for long running tests
+
+                        print("Filter process time is \(timeInterval.formatted(.number))")
+                    }
+                    })
+       
+       
+        //imageFacade.subscribe(self)
         
     }
-    
+   
     private func setupSubviews() {
         setupCollectionView()
     }
@@ -122,6 +144,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         let new = array[indexPath.row]
         cell.setup(with: new)
         
+    
         return cell
     }
 }
