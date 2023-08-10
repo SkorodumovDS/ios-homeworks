@@ -75,7 +75,7 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         title = "Photo Gallery"
         navigationController?.navigationBar.isHidden = false
         let start = DispatchTime.now()
-                imageProcessor.processImagesOnThread(sourceImages: photoarray, filter: .colorInvert, qos:.userInteractive, completion: { [self] photoArrayImp in
+        imageProcessor.processImagesOnThread(sourceImages: photoarray, filter: .colorInvert, qos:.userInteractive, completion: { [self] photoArrayImp in
                         self.array.removeAll()
                         for photo in  photoArrayImp {
                             array.append(UIImage(cgImage: photo!))
