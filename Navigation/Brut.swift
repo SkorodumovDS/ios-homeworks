@@ -9,7 +9,7 @@ import Foundation
 
 class Brut{
     
-    func bruteForce(passwordToUnlock: String) {
+    func bruteForce(passwordToUnlock: String, myClosure: @escaping () -> Void) {
         let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
         
         var password: String = ""
@@ -22,6 +22,7 @@ class Brut{
             // Your stuff here
         }
         //print(password)
+        myClosure()
     }
 }
 

@@ -320,16 +320,21 @@ class LogInViewController: UIViewController {
        // print(rndPswd)   // "oLS1w3bK\
         
         let queue = DispatchQueue(label: "MyQueue", qos: .default, attributes: .concurrent)
+        
+        let asyncClosure:()-> Void  = {
+            DispatchQueue.main.async {
+                self.activeSpinner.stopAnimating()
+                self.password.isSecureTextEntry = false
+                self.password.text = self.randomPassword
+            }
+        }
         DispatchQueue.main.async {
             self.activeSpinner.startAnimating()
            
             queue.async {
                 let brutImp = Brut()
-                brutImp.bruteForce(passwordToUnlock: self.randomPassword)
+                brutImp.bruteForce(passwordToUnlock: self.randomPassword, myClosure: asyncClosure)
             }
-            self.activeSpinner.stopAnimating()
-            self.password.isSecureTextEntry = false
-            self.password.text = self.randomPassword
         }
     }
     
