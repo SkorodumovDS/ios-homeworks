@@ -10,6 +10,7 @@ import UIKit
 class LogInViewController: UIViewController {
     
     var loginDelegate : LoginViewControllerDelegate?
+    var randomPassword: String = ""
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -99,6 +100,15 @@ class LogInViewController: UIViewController {
         
         return textField
     }()
+   
+    private lazy var activeSpinner :UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView()
+        spinner.style = .medium
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.hidesWhenStopped = true
+        spinner.stopAnimating()
+        return spinner
+    }()
     
     private lazy var loginButton: UIButton = {
         let buttonLog = CustomButton(title: "Log In", titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
@@ -106,6 +116,15 @@ class LogInViewController: UIViewController {
                 }
         buttonLog.translatesAutoresizingMaskIntoConstraints = false
         return buttonLog
+        
+    }()
+    
+    private lazy var brutPasswordButton: UIButton = {
+        let pswButtonLog = CustomButton(title: "Подобрать пароль", titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [self] in
+            self.brutButtonPressed()
+                }
+        pswButtonLog.translatesAutoresizingMaskIntoConstraints = false
+        return pswButtonLog
         
     }()
     
@@ -181,7 +200,7 @@ class LogInViewController: UIViewController {
                 equalTo: scrollView.trailingAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 510),
+            contentView.heightAnchor.constraint(equalToConstant: 580),
             
             stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -215,7 +234,28 @@ class LogInViewController: UIViewController {
                 equalTo: password.bottomAnchor,
                 constant: 16.0
             ),
-            loginButton.heightAnchor.constraint(equalToConstant: 50.0)
+            loginButton.heightAnchor.constraint(equalToConstant: 50.0),
+            
+            brutPasswordButton.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -16.0
+            ),
+            brutPasswordButton.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: 16.0
+            ),
+            brutPasswordButton.topAnchor.constraint(
+                equalTo: loginButton.bottomAnchor,
+                constant: 16.0
+            ),
+            brutPasswordButton.heightAnchor.constraint(equalToConstant: 50.0),
+            
+            activeSpinner.centerYAnchor.constraint(
+                equalTo: password.centerYAnchor
+            ),
+            activeSpinner.centerXAnchor.constraint(
+                equalTo: password.centerXAnchor
+            )
         ])
         
     }
@@ -271,6 +311,33 @@ class LogInViewController: UIViewController {
             self.present(alert, animated: true)
         }
     }
+    
+    @objc func brutButtonPressed() {
+        //password generate
+        let pswdChars = Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
+        let rndPswd = String((0..<4).map{ _ in pswdChars[Int(arc4random_uniform(UInt32(pswdChars.count)))]})
+        self.randomPassword = rndPswd
+       // print(rndPswd)   // "oLS1w3bK\
+        
+        let queue = DispatchQueue(label: "MyQueue", qos: .default, attributes: .concurrent)
+        
+        let asyncClosure:()-> Void  = {
+            DispatchQueue.main.async {
+                self.activeSpinner.stopAnimating()
+                self.password.isSecureTextEntry = false
+                self.password.text = self.randomPassword
+            }
+        }
+        DispatchQueue.main.async {
+            self.activeSpinner.startAnimating()
+           
+            queue.async {
+                let brutImp = Brut()
+                brutImp.bruteForce(passwordToUnlock: self.randomPassword, myClosure: asyncClosure)
+            }
+        }
+    }
+    
     private func setupView() {
         view.backgroundColor = .white
         
@@ -284,8 +351,10 @@ class LogInViewController: UIViewController {
         stack.addArrangedSubview(login)
         stack.addArrangedSubview(emptyView)
         stack.addArrangedSubview(password)
+        password.addSubview(activeSpinner)
         contentView.addSubview(stack)
         contentView.addSubview(loginButton)
+        contentView.addSubview(brutPasswordButton)
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
     }
