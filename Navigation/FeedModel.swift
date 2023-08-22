@@ -11,8 +11,8 @@ class FeedModel {
     
     let secretWord : String = "password"
     
-    func check(secret:String, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func check(secret:String, completion: @escaping (Result<Bool, AppError>) -> Void) {
         if secret == secretWord {completion(.success(true))}
-        else {completion(.success(false))}
+        else {completion(.failure(.wrongPassword))}
     }
 }

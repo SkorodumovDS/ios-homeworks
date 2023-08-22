@@ -54,11 +54,11 @@ final class FeedViewModel {
                 case .success(let answer):
                     if answer == true {self?.state = .passwordChecked}
                     else {self?.state = .passwordUnchecked}
-                case .failure(_):
-                    self?.state = .initial
+                case .failure(let appError):
+                    if appError == AppError.wrongPassword {
+                        self?.state = .passwordUnchecked}
                 }
             })
         }
     }
-    
 }

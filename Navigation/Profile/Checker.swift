@@ -21,13 +21,14 @@ class Checker {
     func check( typedLogin:String, typedPassword:String) -> Bool{
         if typedLogin == login && typedPassword == passwqord {
             return true
-        }else {return false}
+        }else
+        {return false}
     }
 }
 
 protocol LoginViewControllerDelegate : AnyObject {
      
-    func check( typedLogin:String, typedPassword:String) -> Bool
+    func check( typedLogin:String, typedPassword:String) throws -> Bool
 }
 
 /*
@@ -41,8 +42,10 @@ protocol LoginViewControllerDelegate : AnyObject {
 
 class LoginInspector: LoginViewControllerDelegate {
     var delegate: (LoginViewControllerDelegate)?
-    func check( typedLogin:String , typedPassword:String) -> Bool {
-        Checker.shared.check(typedLogin: typedLogin, typedPassword: typedPassword)
+    func check( typedLogin:String , typedPassword:String) throws -> Bool {
+        if Checker.shared.check(typedLogin: typedLogin, typedPassword: typedPassword)
+        {return true}
+        else {throw AppError.unauthorized}
     }
 }
 
