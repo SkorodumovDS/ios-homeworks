@@ -8,7 +8,7 @@
 import UIKit
 
 class LogInViewController: UIViewController {
-    
+    var delayCounter = 10
     var loginDelegate : LoginViewControllerDelegate?
     var randomPassword: String = ""
     
@@ -100,31 +100,13 @@ class LogInViewController: UIViewController {
         
         return textField
     }()
-   
-    private lazy var activeSpinner :UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView()
-        spinner.style = .medium
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.hidesWhenStopped = true
-        spinner.stopAnimating()
-        return spinner
-    }()
     
     private lazy var loginButton: UIButton = {
         let buttonLog = CustomButton(title: "Log In", titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
             self?.buttonPressed()
-                }
+        }
         buttonLog.translatesAutoresizingMaskIntoConstraints = false
         return buttonLog
-        
-    }()
-    
-    private lazy var brutPasswordButton: UIButton = {
-        let pswButtonLog = CustomButton(title: "Подобрать пароль", titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [self] in
-            self.brutButtonPressed()
-                }
-        pswButtonLog.translatesAutoresizingMaskIntoConstraints = false
-        return pswButtonLog
         
     }()
     
@@ -234,28 +216,7 @@ class LogInViewController: UIViewController {
                 equalTo: password.bottomAnchor,
                 constant: 16.0
             ),
-            loginButton.heightAnchor.constraint(equalToConstant: 50.0),
-            
-            brutPasswordButton.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor,
-                constant: -16.0
-            ),
-            brutPasswordButton.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: 16.0
-            ),
-            brutPasswordButton.topAnchor.constraint(
-                equalTo: loginButton.bottomAnchor,
-                constant: 16.0
-            ),
-            brutPasswordButton.heightAnchor.constraint(equalToConstant: 50.0),
-            
-            activeSpinner.centerYAnchor.constraint(
-                equalTo: password.centerYAnchor
-            ),
-            activeSpinner.centerXAnchor.constraint(
-                equalTo: password.centerXAnchor
-            )
+            loginButton.heightAnchor.constraint(equalToConstant: 50.0)
         ])
         
     }
@@ -304,60 +265,50 @@ class LogInViewController: UIViewController {
             //navigationController?.pushViewController(pvView, animated: true)}
         }
         else {
-            let alert = UIAlertController(title: "authorization error", message: "Incorrect login", preferredStyle: .alert)
+            let alert = UIAlertController(title: "authorization error", message: "Incorrect login, Try again after \(self.delayCounter) seconds", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
                 //NSLog("The \"OK\" alert occured.")
             }))
             self.present(alert, animated: true)
+            alert.actions.first?.isEnabled = false
+            let timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                             target: self,
+                                             selector: #selector(authorizeDelay),
+                                             userInfo: alert,
+                                             repeats: true)
+            
         }
     }
     
-    @objc func brutButtonPressed() {
-        //password generate
-        let pswdChars = Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
-        let rndPswd = String((0..<4).map{ _ in pswdChars[Int(arc4random_uniform(UInt32(pswdChars.count)))]})
-        self.randomPassword = rndPswd
-       // print(rndPswd)   // "oLS1w3bK\
-        
-        let queue = DispatchQueue(label: "MyQueue", qos: .default, attributes: .concurrent)
-        
-        let asyncClosure:()-> Void  = {
-            DispatchQueue.main.async {
-                self.activeSpinner.stopAnimating()
-                self.password.isSecureTextEntry = false
-                self.password.text = self.randomPassword
-            }
-        }
-        DispatchQueue.main.async {
-            self.activeSpinner.startAnimating()
-           
-            queue.async {
-                let brutImp = Brut()
-                brutImp.bruteForce(passwordToUnlock: self.randomPassword, myClosure: asyncClosure)
-            }
+    @objc private func authorizeDelay(timer: Timer) {
+        guard var context = timer.userInfo as? UIAlertController else {return}
+        self.delayCounter = self.delayCounter - 1
+        context.message = "Incorrect login, Try again after \(self.delayCounter) seconds"
+        if self.delayCounter == 0 {
+            timer.invalidate()
+            context.actions.first?.isEnabled = true
+            context.message = "Incorrect login, Try again"
         }
     }
     
-    private func setupView() {
-        view.backgroundColor = .white
-        
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.isHidden = true
-    }
+private func setupView() {
+    view.backgroundColor = .white
     
-    private func addSubviews() {
-        
-        contentView.addSubview(logo)
-        stack.addArrangedSubview(login)
-        stack.addArrangedSubview(emptyView)
-        stack.addArrangedSubview(password)
-        password.addSubview(activeSpinner)
-        contentView.addSubview(stack)
-        contentView.addSubview(loginButton)
-        contentView.addSubview(brutPasswordButton)
-        scrollView.addSubview(contentView)
-        view.addSubview(scrollView)
-    }
+    navigationController?.navigationBar.prefersLargeTitles = false
+    navigationController?.navigationBar.isHidden = true
+}
+
+private func addSubviews() {
+    
+    contentView.addSubview(logo)
+    stack.addArrangedSubview(login)
+    stack.addArrangedSubview(emptyView)
+    stack.addArrangedSubview(password)
+    contentView.addSubview(stack)
+    contentView.addSubview(loginButton)
+    scrollView.addSubview(contentView)
+    view.addSubview(scrollView)
+}
 }
 
 extension LogInViewController: UITextFieldDelegate {
