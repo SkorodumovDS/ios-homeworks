@@ -139,5 +139,4 @@ class FeedViewController: UIViewController {
         feedViewModel.secret = password.text ?? "password"
         feedViewModel.changeState(.passwordButtonTapped)
         }
-
 }

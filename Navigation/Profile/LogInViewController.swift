@@ -251,8 +251,9 @@ class LogInViewController: UIViewController {
         let login  = login.text ?? "Skorodumov"
         let password = password.text ?? "34525543"
         
-        if delegate.check(typedLogin: login, typedPassword: password)
-        {
+        do {
+        try delegate.check(typedLogin: login, typedPassword: password)
+        
             /*let profile = User(login: login, fullName: "Skorodumov Dmitriy", status: "Writing something...", avatar: UIImage(named: "20")!)
              let curUser = CurrentUserService()
              curUser.initializeUser(user: profile)
@@ -261,10 +262,10 @@ class LogInViewController: UIViewController {
              pvView.initUser(user: profile)
              */
             coordinator.login = login
-            coordinator.showNextScreen()
+            coordinator.showNextScreen()}
+        catch AppError.unauthorized {
             //navigationController?.pushViewController(pvView, animated: true)}
-        }
-        else {
+        
             let alert = UIAlertController(title: "authorization error", message: "Incorrect login, Try again after \(self.delayCounter) seconds", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
                 //NSLog("The \"OK\" alert occured.")
@@ -278,11 +279,13 @@ class LogInViewController: UIViewController {
                                              repeats: true)
             
         }
+        catch {}
     }
     
     @objc private func authorizeDelay(timer: Timer) {
         guard var context = timer.userInfo as? UIAlertController else {return}
         self.delayCounter = self.delayCounter - 1
+    
         context.message = "Incorrect login, Try again after \(self.delayCounter) seconds"
         if self.delayCounter == 0 {
             timer.invalidate()
