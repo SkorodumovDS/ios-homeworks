@@ -19,38 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: scene)
+        let appConfiguration:AppConfiguration = AppConfiguration.allCases.randomElement() ?? AppConfiguration.planets
+        NetworkService.request(for: appConfiguration)
         
-        /*
-        let feedModel = FeedModel()
-        let feedViewModel = FeedViewModel(feedModel: feedModel)
-        let FeedViewController = FeedViewController(feedViewModel: feedViewModel)
-        FeedViewController.title = "News"
-        FeedViewController.view.backgroundColor = .systemBackground
-        
-        let factory = MyLoginFactory()
-        let loginInspector = factory.makeLoginInspector()
-        let loginViewController = LogInViewController(loginDelegate: loginInspector)
-        let loginInspectorObject = loginInspector 
-        loginInspectorObject.delegate = loginViewController as? any LoginViewControllerDelegate
-        //ProfileViewController.title = "Profile"
-        loginViewController.view.backgroundColor = .white
-        
-        let tapBarController = UITabBarController()
-        
-       // newsViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 0)
-        FeedViewController.tabBarItem.title = "Feed"
-        FeedViewController.tabBarItem.image = UIImage(systemName: "house")
-      //  profileViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
-        loginViewController.tabBarItem.title = "Profile"
-        loginViewController.tabBarItem.image = UIImage(systemName: "person.crop.circle")
-        
-        let controllers = [FeedViewController , loginViewController]
-        tapBarController.viewControllers = controllers.map {
-            UINavigationController(rootViewController: $0)
-        }
-        
-        tapBarController.selectedIndex = 0
-        */
         let mainCoordinator = MainCoordinatorImp()
         window.rootViewController = mainCoordinator.startApplication()
         window.makeKeyAndVisible()
