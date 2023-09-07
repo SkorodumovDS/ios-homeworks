@@ -19,6 +19,8 @@
 		C905B46B2A94BFD100A9D005 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905B46A2A94BFD100A9D005 /* AppError.swift */; };
 		C905B46E2AA4BA4C00A9D005 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905B46D2AA4BA4C00A9D005 /* NetworkService.swift */; };
 		C905B4702AA4BABE00A9D005 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905B46F2AA4BABE00A9D005 /* AppConfiguration.swift */; };
+		C905B4722AA7863600A9D005 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905B4712AA7863600A9D005 /* TodoModel.swift */; };
+		C905B4742AA9A86E00A9D005 /* PlanetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905B4732AA9A86E00A9D005 /* PlanetModel.swift */; };
 		C9417EF42A17E67C007D2343 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9417EF32A17E67C007D2343 /* PhotosTableViewCell.swift */; };
 		C9417EF62A1805F8007D2343 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9417EF52A1805F8007D2343 /* Photo.swift */; };
 		C9417EF82A195690007D2343 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9417EF72A195690007D2343 /* PhotosViewController.swift */; };
@@ -102,6 +104,8 @@
 		C905B46A2A94BFD100A9D005 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		C905B46D2AA4BA4C00A9D005 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C905B46F2AA4BABE00A9D005 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		C905B4712AA7863600A9D005 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
+		C905B4732AA9A86E00A9D005 /* PlanetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetModel.swift; sourceTree = "<group>"; };
 		C9417EF32A17E67C007D2343 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		C9417EF52A1805F8007D2343 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C9417EF72A195690007D2343 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 			children = (
 				C905B46D2AA4BA4C00A9D005 /* NetworkService.swift */,
 				C905B46F2AA4BABE00A9D005 /* AppConfiguration.swift */,
+				C905B4712AA7863600A9D005 /* TodoModel.swift */,
+				C905B4732AA9A86E00A9D005 /* PlanetModel.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -475,6 +481,7 @@
 				C9417EF62A1805F8007D2343 /* Photo.swift in Sources */,
 				C905B4592A7A93FE00A9D005 /* MainCoordinator.swift in Sources */,
 				C905B46B2A94BFD100A9D005 /* AppError.swift in Sources */,
+				C905B4722AA7863600A9D005 /* TodoModel.swift in Sources */,
 				C905B45C2A7A949D00A9D005 /* MainTabBarController.swift in Sources */,
 				C97506CE2A3C93E700A37A48 /* Checker.swift in Sources */,
 				C9417EF82A195690007D2343 /* PhotosViewController.swift in Sources */,
@@ -496,6 +503,7 @@
 				C9CD268429E337CB00AF811D /* InfoViewController.swift in Sources */,
 				C905B4602A7A956000A9D005 /* Factory.swift in Sources */,
 				C9CD26B52A0A8EF800AF811D /* LogInViewController.swift in Sources */,
+				C905B4742AA9A86E00A9D005 /* PlanetModel.swift in Sources */,
 				C9CD26BF2A0AC09D00AF811D /* PostModelViewController.swift in Sources */,
 				C9417EFC2A195BDA007D2343 /* Reusable.swift in Sources */,
 				C9CD266829E319E800AF811D /* SceneDelegate.swift in Sources */,

@@ -17,10 +17,62 @@ class InfoViewController: UIViewController {
         
         return button
     }()
+    
+    private lazy var todoTitile: UILabel = {
+        let label = UILabel()
+        label.text = "none"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .systemBlue
+        return label
+    }()
+    
+    private lazy var planetTitle: UILabel = {
+        let label = UILabel()
+        label.text = "none"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .systemBlue
+        return label
+    }()
     var coordinator: FeedFlowCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/todos/1") else {return}
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) {data , response, error in
+            if let error {return}
+            
+            if let httpResponse = response as? HTTPURLResponse {return}
+            guard let data else {return}
+            do{
+                let jsonData = try JSONSerialization.jsonObject(with: data)
+                if let dictionary = jsonData as? [String: Any]{
+                    self.todoTitile.text = dictionary["title"] as? String ?? ""}
+            }catch {
+            }
+        }
+        task.resume()
+        
+        guard let urlPlanet = URL(string: "https://swapi.dev/api/planets/1") else {return}
+        let sessionPlanet = URLSession.shared
+        let taskPlanet = sessionPlanet.dataTask(with: urlPlanet) {data , response, error in
+            if let error {return}
+            
+            if let httpResponse = response as? HTTPURLResponse {return}
+            guard let data else {return}
+            do{
+                let planet = try JSONDecoder().decode(PlanetModel.self, from: data)
+                self.planetTitle.text = "Orbital period is \(planet.orbitalPeriod)"
+            }catch {
+            }
+        }
+        taskPlanet.resume()
+        
         view.addSubview(actionButton)
+        view.addSubview(todoTitile)
+        view.addSubview(planetTitle)
+        
         
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -33,7 +85,17 @@ class InfoViewController: UIViewController {
                 constant: -20.0
             ),
             actionButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-            actionButton.heightAnchor.constraint(equalToConstant: 44.0)
+            actionButton.heightAnchor.constraint(equalToConstant: 44.0),
+            
+            todoTitile.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            todoTitile.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            todoTitile.heightAnchor.constraint(equalToConstant: 20.0),
+            todoTitile.widthAnchor.constraint(equalToConstant: 20.0),
+            
+            planetTitle.topAnchor.constraint(equalTo: todoTitile.bottomAnchor,constant: 30),
+            planetTitle.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            planetTitle.heightAnchor.constraint(equalToConstant: 20.0),
+            planetTitle.widthAnchor.constraint(equalToConstant: 20.0)
         ])
         
         actionButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
