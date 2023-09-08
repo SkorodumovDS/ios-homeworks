@@ -23,6 +23,7 @@ class InfoViewController: UIViewController {
         label.text = "none"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemBlue
+        label.isHidden = true
         return label
     }()
     
@@ -31,6 +32,7 @@ class InfoViewController: UIViewController {
         label.text = "none"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemBlue
+        label.isHidden = true
         return label
     }()
     var coordinator: FeedFlowCoordinator?
@@ -43,12 +45,16 @@ class InfoViewController: UIViewController {
         let task = session.dataTask(with: url) {data , response, error in
             if let error {return}
             
-            if let httpResponse = response as? HTTPURLResponse {return}
+            if let httpResponse = response as? HTTPURLResponse {}
             guard let data else {return}
             do{
                 let jsonData = try JSONSerialization.jsonObject(with: data)
                 if let dictionary = jsonData as? [String: Any]{
-                    self.todoTitile.text = dictionary["title"] as? String ?? ""}
+                    DispatchQueue.main.async {
+                        self.todoTitile.text = dictionary["title"] as? String ?? ""
+                        self.todoTitile.isHidden = false
+                    }
+                }
             }catch {
             }
         }
@@ -59,11 +65,14 @@ class InfoViewController: UIViewController {
         let taskPlanet = sessionPlanet.dataTask(with: urlPlanet) {data , response, error in
             if let error {return}
             
-            if let httpResponse = response as? HTTPURLResponse {return}
+            if let httpResponse = response as? HTTPURLResponse {}
             guard let data else {return}
             do{
                 let planet = try JSONDecoder().decode(PlanetModel.self, from: data)
-                self.planetTitle.text = "Orbital period is \(planet.orbitalPeriod)"
+                DispatchQueue.main.async {
+                    self.planetTitle.text = "Orbital period is \(planet.orbitalPeriod)"
+                    self.planetTitle.isHidden = false
+                }
             }catch {
             }
         }
@@ -72,7 +81,7 @@ class InfoViewController: UIViewController {
         view.addSubview(actionButton)
         view.addSubview(todoTitile)
         view.addSubview(planetTitle)
-        
+       
         
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -89,20 +98,20 @@ class InfoViewController: UIViewController {
             
             todoTitile.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             todoTitile.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-            todoTitile.heightAnchor.constraint(equalToConstant: 20.0),
-            todoTitile.widthAnchor.constraint(equalToConstant: 20.0),
+            todoTitile.heightAnchor.constraint(equalToConstant: 40.0),
+            todoTitile.widthAnchor.constraint(equalToConstant: 200.0),
             
             planetTitle.topAnchor.constraint(equalTo: todoTitile.bottomAnchor,constant: 30),
             planetTitle.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-            planetTitle.heightAnchor.constraint(equalToConstant: 20.0),
-            planetTitle.widthAnchor.constraint(equalToConstant: 20.0)
+            planetTitle.heightAnchor.constraint(equalToConstant: 40.0),
+            planetTitle.widthAnchor.constraint(equalToConstant: 200.0)
         ])
         
         actionButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         // Do any additional setup after loading the view.
         // Do any additional setup after loading the view.
     }
-    
+ 
     @objc func buttonPressed(_ sender: UIButton) {
         
         let alert = UIAlertController(title: "My Alert", message: "This is an alert.", preferredStyle: .alert)
