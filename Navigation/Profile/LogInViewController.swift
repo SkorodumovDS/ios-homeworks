@@ -9,7 +9,7 @@ import UIKit
 
 class LogInViewController: UIViewController {
     var delayCounter = 10
-    var loginDelegate : LoginViewControllerDelegate?
+    private var loginDelegate : LoginViewControllerDelegate?
     var randomPassword: String = ""
     
     private lazy var scrollView: UIScrollView = {
@@ -248,23 +248,15 @@ class LogInViewController: UIViewController {
         
         guard let delegate = loginDelegate else { return }
         
-        let login  = login.text ?? "Skorodumov"
-        let password = password.text ?? "34525543"
-        
+        //let login  = login.text ?? "Skorodumov"
+        //let password = password.text ?? "34525543"
+        let login  = login.text ?? ""
+        let passwordText = password.text?.description ?? ""
         do {
-        try delegate.check(typedLogin: login, typedPassword: password)
-        
-            /*let profile = User(login: login, fullName: "Skorodumov Dmitriy", status: "Writing something...", avatar: UIImage(named: "20")!)
-             let curUser = CurrentUserService()
-             curUser.initializeUser(user: profile)
-             
-             let pvView = ProfileViewController()
-             pvView.initUser(user: profile)
-             */
+        try delegate.check(typedLogin: login, typedPassword: passwordText)
             coordinator.login = login
             coordinator.showNextScreen()}
         catch AppError.unauthorized {
-            //navigationController?.pushViewController(pvView, animated: true)}
         
             let alert = UIAlertController(title: "authorization error", message: "Incorrect login, Try again after \(self.delayCounter) seconds", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
@@ -272,9 +264,43 @@ class LogInViewController: UIViewController {
             }))
             self.present(alert, animated: true)
             alert.actions.first?.isEnabled = false
+            self.delayCounter = 10
             let timer = Timer.scheduledTimer(timeInterval: 1.0,
                                              target: self,
                                              selector: #selector(authorizeDelay),
+                                             userInfo: alert,
+                                             repeats: true)
+            
+        }
+        
+        catch AppError.emptyLogin {
+           
+            let alert = UIAlertController(title: "Login is empty", message: "Fill login field and try again after \(self.delayCounter) seconds", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+                //NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true)
+            alert.actions.first?.isEnabled = false
+            self.delayCounter = 10
+            let timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                             target: self,
+                                             selector: #selector(emptyFieldDelay),
+                                             userInfo: alert,
+                                             repeats: true)
+            
+        }
+        catch AppError.emptyPassword {
+           
+            let alert = UIAlertController(title: "Password is empty", message: "Fill password field and try again after \(self.delayCounter) seconds", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+                //NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true)
+            alert.actions.first?.isEnabled = false
+            self.delayCounter = 10
+            let timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                             target: self,
+                                             selector: #selector(emptyFieldDelay),
                                              userInfo: alert,
                                              repeats: true)
             
@@ -291,6 +317,18 @@ class LogInViewController: UIViewController {
             timer.invalidate()
             context.actions.first?.isEnabled = true
             context.message = "Incorrect login, Try again"
+        }
+    }
+    
+    @objc private func emptyFieldDelay(timer: Timer) {
+        guard var context = timer.userInfo as? UIAlertController else {return}
+        self.delayCounter = self.delayCounter - 1
+    
+        context.message = "Fill login and password fields and try again after \(self.delayCounter) seconds"
+        if self.delayCounter == 0 {
+            timer.invalidate()
+            context.actions.first?.isEnabled = true
+            context.message = "Login is empty"
         }
     }
     

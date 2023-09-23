@@ -31,21 +31,41 @@ protocol LoginViewControllerDelegate : AnyObject {
     func check( typedLogin:String, typedPassword:String) throws -> Bool
 }
 
-/*
- extension LoginViewControllerDelegate {
-    
-    func check( typedLogin:String , typedPassword:String) -> Bool {
-        Checker.shared.check(typedLogin: typedLogin, typedPassword: typedPassword)
-    }
-}
-*/
-
 class LoginInspector: LoginViewControllerDelegate {
     var delegate: (LoginViewControllerDelegate)?
     func check( typedLogin:String , typedPassword:String) throws -> Bool {
-        if Checker.shared.check(typedLogin: typedLogin, typedPassword: typedPassword)
-        {return true}
-        else {throw AppError.unauthorized}
+        /*if Checker.shared.check(typedLogin: typedLogin, typedPassword: typedPassword)
+         {return true}
+         else {throw AppError.unauthorized}
+         */
+        var checkResult = false
+        if typedLogin == ""
+            {throw AppError.emptyLogin}
+        else if String(typedPassword) == ""
+            {throw AppError.emptyPassword}
+        else {
+            let checkService = CheckerService()
+            checkService.signUp(email: typedLogin, password: typedPassword as String) {_signData,_error in
+                if let _error {
+                    checkService.checkCredentials(email: typedLogin, password: typedPassword) { _AuthDataResult,_authError in
+                        
+                        if let _authError {
+                            checkResult = false
+                        }
+                        
+                        if let _AuthDataResult {
+                            checkResult = true
+                        }
+                    }
+                }
+                if let _signData {
+                    checkResult = true
+                }
+            }
+            if checkResult == false {throw AppError.unauthorized}
+            else {
+                return checkResult}}
+        
     }
 }
 

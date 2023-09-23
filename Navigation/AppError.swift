@@ -11,4 +11,6 @@ enum AppError: Error {
     case unauthorized
     case networkError
     case wrongPassword
+    case emptyLogin
+    case emptyPassword
 }
