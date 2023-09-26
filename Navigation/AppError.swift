@@ -13,4 +13,5 @@ enum AppError: Error {
     case wrongPassword
     case emptyLogin
     case emptyPassword
+    case signUpError
 }

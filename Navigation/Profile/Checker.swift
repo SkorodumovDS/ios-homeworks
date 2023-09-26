@@ -29,15 +29,11 @@ class Checker {
 protocol LoginViewControllerDelegate : AnyObject {
      
     func check( typedLogin:String, typedPassword:String) throws -> Bool
+    func signUp( typedLogin:String, typedPassword:String) throws -> Bool
 }
 
 class LoginInspector: LoginViewControllerDelegate {
-    var delegate: (LoginViewControllerDelegate)?
-    func check( typedLogin:String , typedPassword:String) throws -> Bool {
-        /*if Checker.shared.check(typedLogin: typedLogin, typedPassword: typedPassword)
-         {return true}
-         else {throw AppError.unauthorized}
-         */
+    func signUp(typedLogin: String, typedPassword: String) throws -> Bool {
         var checkResult = false
         if typedLogin == ""
             {throw AppError.emptyLogin}
@@ -47,6 +43,29 @@ class LoginInspector: LoginViewControllerDelegate {
             let checkService = CheckerService()
             checkService.signUp(email: typedLogin, password: typedPassword as String) {_signData,_error in
                 if let _error {
+                    checkResult = false
+                }
+                
+                if let _signData {
+                    checkResult = true
+                }
+            }
+        }
+        if checkResult == false {throw AppError.signUpError}
+        else {
+            return checkResult}
+    }
+
+    var delegate: (LoginViewControllerDelegate)?
+    
+    func check( typedLogin:String , typedPassword:String) throws -> Bool {
+        var checkResult = false
+        if typedLogin == ""
+            {throw AppError.emptyLogin}
+        else if String(typedPassword) == ""
+            {throw AppError.emptyPassword}
+        else {
+            let checkService = CheckerService()
                     checkService.checkCredentials(email: typedLogin, password: typedPassword) { _AuthDataResult,_authError in
                         
                         if let _authError {
@@ -57,15 +76,9 @@ class LoginInspector: LoginViewControllerDelegate {
                             checkResult = true
                         }
                     }
-                }
-                if let _signData {
-                    checkResult = true
-                }
-            }
             if checkResult == false {throw AppError.unauthorized}
             else {
                 return checkResult}}
-        
     }
 }
 
