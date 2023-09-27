@@ -9,7 +9,7 @@ import UIKit
 
 class LogInViewController: UIViewController {
     var delayCounter = 10
-    var loginDelegate : LoginViewControllerDelegate?
+    private var loginDelegate : LoginViewControllerDelegate?
     var randomPassword: String = ""
     
     private lazy var scrollView: UIScrollView = {
@@ -110,6 +110,15 @@ class LogInViewController: UIViewController {
         
     }()
     
+    private lazy var signUpButton: UIButton = {
+        let buttonLog = CustomButton(title: "Sign Up", titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
+            self?.signUp()
+        }
+        buttonLog.translatesAutoresizingMaskIntoConstraints = false
+        return buttonLog
+        
+    }()
+    
     private lazy var logo: UIImageView = {
         
         let image  = UIImage(named: "Logo")
@@ -182,7 +191,7 @@ class LogInViewController: UIViewController {
                 equalTo: scrollView.trailingAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 580),
+            contentView.heightAnchor.constraint(equalToConstant: 630),
             
             stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -216,7 +225,21 @@ class LogInViewController: UIViewController {
                 equalTo: password.bottomAnchor,
                 constant: 16.0
             ),
-            loginButton.heightAnchor.constraint(equalToConstant: 50.0)
+            loginButton.heightAnchor.constraint(equalToConstant: 50.0),
+            
+            signUpButton.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -16.0
+            ),
+            signUpButton.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: 16.0
+            ),
+            signUpButton.topAnchor.constraint(
+                equalTo: loginButton.bottomAnchor,
+                constant: 16.0
+            ),
+            signUpButton.heightAnchor.constraint(equalToConstant: 50.0)
         ])
         
     }
@@ -248,23 +271,15 @@ class LogInViewController: UIViewController {
         
         guard let delegate = loginDelegate else { return }
         
-        let login  = login.text ?? "Skorodumov"
-        let password = password.text ?? "34525543"
-        
+        //let login  = login.text ?? "Skorodumov"
+        //let password = password.text ?? "34525543"
+        let login  = login.text ?? ""
+        let passwordText = password.text?.description ?? ""
         do {
-        try delegate.check(typedLogin: login, typedPassword: password)
-        
-            /*let profile = User(login: login, fullName: "Skorodumov Dmitriy", status: "Writing something...", avatar: UIImage(named: "20")!)
-             let curUser = CurrentUserService()
-             curUser.initializeUser(user: profile)
-             
-             let pvView = ProfileViewController()
-             pvView.initUser(user: profile)
-             */
+        try delegate.check(typedLogin: login, typedPassword: passwordText)
             coordinator.login = login
             coordinator.showNextScreen()}
         catch AppError.unauthorized {
-            //navigationController?.pushViewController(pvView, animated: true)}
         
             let alert = UIAlertController(title: "authorization error", message: "Incorrect login, Try again after \(self.delayCounter) seconds", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
@@ -272,9 +287,107 @@ class LogInViewController: UIViewController {
             }))
             self.present(alert, animated: true)
             alert.actions.first?.isEnabled = false
+            self.delayCounter = 10
             let timer = Timer.scheduledTimer(timeInterval: 1.0,
                                              target: self,
                                              selector: #selector(authorizeDelay),
+                                             userInfo: alert,
+                                             repeats: true)
+            
+        }
+        
+        catch AppError.emptyLogin {
+           
+            let alert = UIAlertController(title: "Login is empty", message: "Fill login field and try again after \(self.delayCounter) seconds", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+                //NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true)
+            alert.actions.first?.isEnabled = false
+            self.delayCounter = 10
+            let timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                             target: self,
+                                             selector: #selector(emptyFieldDelay),
+                                             userInfo: alert,
+                                             repeats: true)
+            
+        }
+        catch AppError.emptyPassword {
+           
+            let alert = UIAlertController(title: "Password is empty", message: "Fill password field and try again after \(self.delayCounter) seconds", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+                //NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true)
+            alert.actions.first?.isEnabled = false
+            self.delayCounter = 10
+            let timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                             target: self,
+                                             selector: #selector(emptyFieldDelay),
+                                             userInfo: alert,
+                                             repeats: true)
+            
+        }
+        catch {}
+    }
+    
+    @objc func signUp() {
+        
+        guard let delegate = loginDelegate else { return }
+        
+        //let login  = login.text ?? "Skorodumov"
+        //let password = password.text ?? "34525543"
+        let login  = login.text ?? ""
+        let passwordText = password.text?.description ?? ""
+        do {
+            try delegate.signUp(typedLogin: login, typedPassword: passwordText)
+            coordinator.login = login
+            coordinator.showNextScreen()}
+        catch AppError.signUpError {
+        
+            let alert = UIAlertController(title: "sign up error", message: "Invalid format for login or password field, or check network, Try again after \(self.delayCounter) seconds", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+                //NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true)
+            alert.actions.first?.isEnabled = false
+            self.delayCounter = 10
+            let timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                             target: self,
+                                             selector: #selector(signUpDelay),
+                                             userInfo: alert,
+                                             repeats: true)
+            
+        }
+        
+        catch AppError.emptyLogin {
+           
+            let alert = UIAlertController(title: "Login is empty", message: "Fill login field and try again after \(self.delayCounter) seconds", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+                //NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true)
+            alert.actions.first?.isEnabled = false
+            self.delayCounter = 10
+            let timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                             target: self,
+                                             selector: #selector(emptyFieldDelay),
+                                             userInfo: alert,
+                                             repeats: true)
+            
+        }
+        catch AppError.emptyPassword {
+           
+            let alert = UIAlertController(title: "Password is empty", message: "Fill password field and try again after \(self.delayCounter) seconds", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+                //NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true)
+            alert.actions.first?.isEnabled = false
+            self.delayCounter = 10
+            let timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                             target: self,
+                                             selector: #selector(emptyFieldDelay),
                                              userInfo: alert,
                                              repeats: true)
             
@@ -294,6 +407,30 @@ class LogInViewController: UIViewController {
         }
     }
     
+    @objc private func emptyFieldDelay(timer: Timer) {
+        guard var context = timer.userInfo as? UIAlertController else {return}
+        self.delayCounter = self.delayCounter - 1
+    
+        context.message = "Fill login and password fields and try again after \(self.delayCounter) seconds"
+        if self.delayCounter == 0 {
+            timer.invalidate()
+            context.actions.first?.isEnabled = true
+            context.message = "Login is empty"
+        }
+    }
+    
+    @objc private func signUpDelay(timer: Timer) {
+        guard var context = timer.userInfo as? UIAlertController else {return}
+        self.delayCounter = self.delayCounter - 1
+    
+        context.message = "Fill correct login and password fields, check network connection and try again after \(self.delayCounter) seconds"
+        if self.delayCounter == 0 {
+            timer.invalidate()
+            context.actions.first?.isEnabled = true
+            context.message = "Sign up error"
+        }
+    }
+    
 private func setupView() {
     view.backgroundColor = .white
     
@@ -309,6 +446,7 @@ private func addSubviews() {
     stack.addArrangedSubview(password)
     contentView.addSubview(stack)
     contentView.addSubview(loginButton)
+    contentView.addSubview(signUpButton)
     scrollView.addSubview(contentView)
     view.addSubview(scrollView)
 }
