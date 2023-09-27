@@ -15,6 +15,7 @@ final class Factory {
         case profile
         case photo
         case info
+        case documents
     }
     
     private let flow : Flow
@@ -43,6 +44,14 @@ final class Factory {
             FeedViewController.tabBarItem.image = UIImage(systemName: "house")
             feedFlowCoordinator.navControlles = navigationController
             navigationController.setViewControllers([FeedViewController], animated: true)
+            
+        case .documents:
+            let DocumentsViewController = DocumentsViewController()
+            DocumentsViewController.title = "Documents"
+            DocumentsViewController.view.backgroundColor = .systemBackground
+            DocumentsViewController.tabBarItem.title = "Documents"
+            DocumentsViewController.tabBarItem.image = UIImage(systemName: "folder")
+            navigationController.setViewControllers([DocumentsViewController], animated: true)
             
         case .profileinfo:
             let factory = MyLoginFactory()

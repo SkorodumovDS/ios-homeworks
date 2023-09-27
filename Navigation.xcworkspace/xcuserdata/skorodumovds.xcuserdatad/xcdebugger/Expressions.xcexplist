@@ -6,10 +6,21 @@
          contextName = "LogInViewController.buttonPressed():LogInViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "password.description">
+               value = "password.text?.description">
             </PersistentString>
             <PersistentString
-               value = "password.text?.description">
+               value = "password.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DocumentsViewController.tableView(_:cellForRowAt:):DocumentsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "data">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -21,6 +32,14 @@
             </PersistentString>
             <PersistentString
                value = "typedPassword.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DocumentsViewController.viewDidLoad():DocumentsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "pathToDocum?.absoluteString">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
