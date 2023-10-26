@@ -15,6 +15,7 @@ final class Factory {
         case profile
         case photo
         case info
+        case liked
     }
     
     private let flow : Flow
@@ -90,6 +91,14 @@ final class Factory {
             infoViewController.modalPresentationStyle = .pageSheet // pageSheet
             viewController = infoViewController
             //present(infoViewController, animated: true)
+        case .liked:
+            
+            let likedViewController = LikedPostsViewController()
+            likedViewController.title = "Liked posts"
+            likedViewController.view.backgroundColor = .systemBackground
+            likedViewController.tabBarItem.title = "Liked posts"
+            likedViewController.tabBarItem.image = UIImage(systemName: "heart")
+            navigationController.setViewControllers([likedViewController], animated: true)
             
         }
     }

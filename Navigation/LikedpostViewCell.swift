@@ -1,16 +1,13 @@
 //
-//  PostTableViewCell.swift
+//  LikedpostViewCell.swift
 //  Navigation
 //
-//  Created by Skorodumov Dmitry on 09.05.2023.
+//  Created by Skorodumov Dmitry on 26.10.2023.
 //
 
 import UIKit
-import StorageService
 
-class PostTableViewCell: UITableViewCell {
-    
-    private var data: PostModel? = nil
+class LikedpostViewCell: UITableViewCell {
     
     private lazy var mainImage: UIImageView = {
         
@@ -79,17 +76,10 @@ class PostTableViewCell: UITableViewCell {
         )
         addsubviews()
         setupConstrains()
-        let tapInput = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
-        tapInput.numberOfTapsRequired = 2
-        self.addGestureRecognizer(tapInput)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc func doubleTapped(){
-        LikedModel.save(postModel: data!)
     }
     
     private func addsubviews(){
@@ -99,6 +89,7 @@ class PostTableViewCell: UITableViewCell {
         addSubview(likesPost)
         addSubview(viewsPost)
     }
+    
     private func setupConstrains() {
         
         let safeAreaLayoutGuide = safeAreaLayoutGuide
@@ -142,12 +133,12 @@ class PostTableViewCell: UITableViewCell {
         ])
     }
     
-    func update(_ post: PostModel) {
-        mainImage.image = UIImage(named: post.image)
-        postTitle.text = post.author
-        textPost.text = post.description
-        likesPost.text = "Likes: " + String(post.likes)
-        viewsPost.text = "Views: " + String(post.views)
-        data = post
+    func update(_ liked: LikedModel) {
+        mainImage.image = UIImage(named: liked.image)
+        postTitle.text = liked.author
+        textPost.text = liked.description
+        likesPost.text = "Likes: " + String(liked.likes)
+        viewsPost.text = "Views: " + String(liked.views)
     }
 }
+

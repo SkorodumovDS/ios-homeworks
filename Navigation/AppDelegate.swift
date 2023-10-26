@@ -8,11 +8,22 @@
 import UIKit
 import FirebaseCore
 import FirebaseAuth
+import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    
+    lazy var persistentContainer: NSPersistentContainer = {
+
+        let container = NSPersistentContainer(name: "LikedModelData")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error {
+
+                fatalError("Unresolved error, \((error as NSError).userInfo)")
+            }
+        })
+        return container
+    }()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

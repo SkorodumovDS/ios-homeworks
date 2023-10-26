@@ -18,10 +18,12 @@ final class MainTabBarController : UITabBarController {
        
         let feedNavController = UINavigationController()
         let profileNavController = UINavigationController()
+        let likedNavController = UINavigationController()
         
         let feedVC = Factory(flow: .feed, login: "", navigation: feedNavController)
         let profileVC = Factory(flow: .profileinfo, login: "", navigation: profileNavController)
+        let likedVC = Factory(flow: .liked, login: "", navigation: likedNavController)
         
-        viewControllers = [feedVC.navigationController, profileVC.navigationController]
+        viewControllers = [feedVC.navigationController, profileVC.navigationController, likedVC.navigationController]
     }
 }
