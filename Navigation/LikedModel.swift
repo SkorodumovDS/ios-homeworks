@@ -29,42 +29,22 @@ public struct LikedModel {
 public extension LikedModel {
     
     static func make() -> [LikedModel] {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest: NSFetchRequest<LikedModelData> = LikedModelData.fetchRequest()
-        
-        do {
-            
-            let likedModels: [LikedModelData] = try context.fetch(fetchRequest)
-            let likedModel =  likedModels.map{
-                _element in
-                LikedModel(navigationModel: _element)
-            }
-            return Array(likedModel)
-        } catch {
-            return []
-        }
+        return CoreDataSevice().fetchModels()
+    }
+    
+    static func makeWithFilter(author : String) -> [LikedModel] {
+        return CoreDataSevice().fetchModelsWithFilter(author: author)
     }
     
     static func save(postModel: PostModel) {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        
-        let navigation = LikedModelData(context: context)
-        navigation.author = postModel.author
-        navigation.descriptionText = postModel.description
-        navigation.image = postModel.image
-        navigation.likes = Int32(postModel.likes)
-        navigation.views = Int32(postModel.views)
-        //сохраняем изменения
-        do {
-            try context.save()
-        } catch {
-            print(error.localizedDescription)
-        }
+        CoreDataSevice().save(postModel: postModel)
+    }
+    
+    static func search(postModel: PostModel) -> Bool {
+        return CoreDataSevice().search(postModel: postModel)
+    }
+    
+    static func remove(postModel: PostModel) ->Bool {
+        return CoreDataSevice().remove(postModel: postModel)
     }
 }

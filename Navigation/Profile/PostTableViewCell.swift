@@ -89,7 +89,16 @@ class PostTableViewCell: UITableViewCell {
     }
     
     @objc func doubleTapped(){
-        LikedModel.save(postModel: data!)
+        if self.likesPost.textColor == .red  {
+           
+            }
+        else
+        {
+            if LikedModel.search(postModel: data!) {} else {
+                LikedModel.save(postModel: data!)
+                self.likesPost.textColor = .red
+            }
+        }
     }
     
     private func addsubviews(){
@@ -149,5 +158,9 @@ class PostTableViewCell: UITableViewCell {
         likesPost.text = "Likes: " + String(post.likes)
         viewsPost.text = "Views: " + String(post.views)
         data = post
+        
+        if LikedModel.search(postModel: data!) {
+            likesPost.textColor = .red
+        }else {likesPost.textColor = .black}
     }
 }
