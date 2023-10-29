@@ -3,24 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "LogInViewController.buttonPressed():LogInViewController.swift">
+         contextName = "PostTableViewCell.doubleTapped():PostTableViewCell.swift">
          <PersistentStrings>
             <PersistentString
-               value = "password.description">
-            </PersistentString>
-            <PersistentString
-               value = "password.text?.description">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in LoginInspector.check(typedLogin:typedPassword:):Checker.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "typedPassword as String">
-            </PersistentString>
-            <PersistentString
-               value = "typedPassword.description">
+               value = "Data">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
