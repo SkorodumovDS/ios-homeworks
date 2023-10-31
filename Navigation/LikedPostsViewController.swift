@@ -5,10 +5,14 @@
 //  Created by Skorodumov Dmitry on 26.10.2023.
 //
 import UIKit
+import CoreData
 
 class LikedPostsViewController: UIViewController {
-    
-    fileprivate var data = LikedModel.make()
+   
+    var fetchedResultController: NSFetchedResultsController<LikedModelData>!
+    fileprivate var data : [LikedModel] = []
+    private var context :NSManagedObjectContext?
+    var coreDataService: CoreDataSevice? = CoreDataSevice()
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
             frame: .zero,
@@ -31,16 +35,28 @@ class LikedPostsViewController: UIViewController {
         
         // 1. Задаем размеры и позицию tableView
         setupConstraints()
-        
+        configureFetchController()
+        fetchData()
         // 2-4.
         tuneTableView()
         tuneNavigationBar()
+        
     }
    
    
     override func viewWillAppear(_ animated: Bool) {
-        self.data = LikedModel.make()
-        tableView.reloadData()
+        do {
+            try fetchedResultController.performFetch()
+            let likedModels: [LikedModelData] = fetchedResultController.fetchedObjects ?? []
+            var likeModel = likedModels.map{
+                _element in
+                   LikedModel(navigationModel: _element)
+            }
+            data = Array(likeModel)
+            tableView.reloadData()
+        }catch {
+            print(error.localizedDescription)
+        }
     }
    
     private func tuneNavigationBar() {
@@ -55,12 +71,80 @@ class LikedPostsViewController: UIViewController {
         
     }
     
+    private func fetchData() {
+        do {
+            try fetchedResultController.performFetch()
+            let likedModels: [LikedModelData] = fetchedResultController.fetchedObjects ?? []
+            var likeModel = likedModels.map{
+                _element in
+                   LikedModel(navigationModel: _element)
+            }
+            data = Array(likeModel)
+            tableView.reloadData()
+        }catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func configureFetchController() {
+        let fetchRequest: NSFetchRequest<LikedModelData> = LikedModelData.fetchRequest()
+        let sortDecriptor = NSSortDescriptor(key: "author", ascending: false)
+        fetchRequest.sortDescriptors = [sortDecriptor]
+        
+        context = coreDataService!.mainContext
+        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest
+            , managedObjectContext: context!
+            , sectionNameKeyPath: nil
+            ,cacheName: nil)
+        fetchedResultController.delegate = self
+        
+        do {
+            try fetchedResultController.performFetch()
+            let likedModels: [LikedModelData] = fetchedResultController.fetchedObjects ?? []
+            var likeModel = likedModels.map{
+                _element in
+                   LikedModel(navigationModel: _element)
+            }
+            data = Array(likeModel)
+            tableView.reloadData()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func configureFetchControllerWithFilter(author:String) {
+        let fetchRequest: NSFetchRequest<LikedModelData> = LikedModelData.fetchRequest()
+        let sortDecriptor = NSSortDescriptor(key: "author", ascending: false)
+        fetchRequest.sortDescriptors = [sortDecriptor]
+        fetchRequest.predicate = NSPredicate(format: "author == %@", author)
+        
+        context = coreDataService!.mainContext
+        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest
+            , managedObjectContext: context!
+            , sectionNameKeyPath: nil
+            ,cacheName: nil)
+        fetchedResultController.delegate = self
+        
+        do {
+            try fetchedResultController.performFetch()
+            let likedModels: [LikedModelData] = fetchedResultController.fetchedObjects ?? []
+            var likeModel = likedModels.map{
+                _element in
+                   LikedModel(navigationModel: _element)
+            }
+            data = Array(likeModel)
+            tableView.reloadData()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    
     @objc func filterPressed(_ sender: UIButton) {
         let filterController = UIAlertController(title: "Введите автора", message: nil, preferredStyle: .alert)
         
         let filterAction = UIAlertAction(title: "Применить", style: .default) {_ in
-            self.data = LikedModel.makeWithFilter(author: filterController.textFields?.first?.text ?? "")
-            self.tableView.reloadData()
+            self.configureFetchControllerWithFilter(author: filterController.textFields?.first?.text ?? "")
         }
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
         
@@ -72,8 +156,7 @@ class LikedPostsViewController: UIViewController {
         }
     
     @objc func clearFilterPressed(_ sender: UIButton) {
-        self.data = LikedModel.make()
-        tableView.reloadData()
+            self.configureFetchController()
         }
     
     private func setupView() {
@@ -157,15 +240,57 @@ extension LikedPostsViewController: UITableViewDataSource {
 
 extension LikedPostsViewController: UITableViewDelegate {
     
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let delete = UIContextualAction(style: .normal, title: "Delete") {(action, view, completionHandler) in
-            CoreDataSevice().remove(likedModel: self.data[indexPath.row])
-            self.data = LikedModel.make()
+            
+            //fetchedResultController.fetchedObjects?.remove(at: indexPath.row)
+            
+            self.coreDataService!.remove(likedModel: self.data[indexPath.row])
+           
+/*            self.data = LikedModel.make()
             tableView.reloadData()
+             */
             completionHandler(true)
         }
         let swipe = UISwipeActionsConfiguration(actions: [delete])
         return swipe
+    }
+    
+}
+
+extension LikedPostsViewController : NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+            
+        case .insert:
+            guard let newIndexPath else {return}
+            tableView.insertRows(at: [newIndexPath], with: .left)
+        case .delete:
+            guard let indexPath else {return}
+            self.data.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .right)
+        case .move:
+            guard let indexPath , let newIndexPath else {return}
+            
+            tableView.deleteRows(at: [indexPath], with: .right)
+            tableView.insertRows(at: [newIndexPath], with: .left)
+        case .update:
+            guard let indexPath else {return}
+            
+            tableView.reloadRows(at: [indexPath], with: .fade)
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
     }
 }

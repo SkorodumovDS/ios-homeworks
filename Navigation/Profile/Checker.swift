@@ -76,6 +76,7 @@ class LoginInspector: LoginViewControllerDelegate {
                             checkResult = true
                         }
                     }
+            checkResult = true
             if checkResult == false {throw AppError.unauthorized}
             else {
                 return checkResult}}

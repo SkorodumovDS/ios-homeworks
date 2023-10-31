@@ -3,6 +3,22 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in LikedPostsViewController.tableView(_:trailingSwipeActionsConfigurationForRowAt:):LikedPostsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LikedPostsViewController.controller(_:didChange:at:for:newIndexPath:):LikedPostsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "PostTableViewCell.doubleTapped():PostTableViewCell.swift">
          <PersistentStrings>
             <PersistentString

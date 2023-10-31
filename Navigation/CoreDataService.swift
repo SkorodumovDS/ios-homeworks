@@ -24,13 +24,13 @@ final class CoreDataSevice {
     private let objectModel: NSManagedObjectModel
     private let storageCoordinator : NSPersistentStoreCoordinator
    
-    private lazy var mainContext :NSManagedObjectContext = {
+    lazy var mainContext :NSManagedObjectContext = {
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         context.persistentStoreCoordinator = storageCoordinator
         return context
     }()
     
-    private lazy var backgroundContext : NSManagedObjectContext = {
+    lazy var backgroundContext : NSManagedObjectContext = {
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         context.persistentStoreCoordinator = storageCoordinator
         return context
