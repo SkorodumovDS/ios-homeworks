@@ -10,7 +10,7 @@ import StorageService
 
 class ProfileViewController: UIViewController {
     
-    fileprivate let data = PostModel.make()
+    fileprivate var data = PostModel.make()
     var curUser : User?
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
@@ -42,7 +42,11 @@ class ProfileViewController: UIViewController {
         // 2-4.
         tuneTableView()
     }
-    
+   
+    override func viewWillAppear(_ animated: Bool) {
+        self.data = PostModel.make()
+        tableView.reloadData()
+    }
     private func setupView() {
         //view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = false

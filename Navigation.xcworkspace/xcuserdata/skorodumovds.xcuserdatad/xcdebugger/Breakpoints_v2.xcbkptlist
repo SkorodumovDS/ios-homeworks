@@ -30,8 +30,8 @@
             filePath = "Navigation/LikedModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "make()"
             landmarkType = "7">
          </BreakpointContent>
@@ -80,6 +80,51 @@
                   startingLineNumber = "92"
                   endingLineNumber = "92"
                   offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "08EA0CDA-4668-4201-B65F-478780537B1A - 83baf05e6d052d52"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.PostTableViewCell.doubleTapped() -&gt; ()"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/skorodumovds/Desktop/navigation/Navigation/Navigation/Profile/PostTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "08EA0CDA-4668-4201-B65F-478780537B1A - 83baf05e6d052d33"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.PostTableViewCell.doubleTapped() -&gt; ()"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/skorodumovds/Desktop/navigation/Navigation/Navigation/Profile/PostTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "08EA0CDA-4668-4201-B65F-478780537B1A - 83baf05e6d052d52"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.PostTableViewCell.doubleTapped() -&gt; ()"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/skorodumovds/Desktop/navigation/Navigation/Navigation/Profile/PostTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>

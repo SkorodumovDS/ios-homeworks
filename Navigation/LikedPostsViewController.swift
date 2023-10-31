@@ -8,7 +8,7 @@ import UIKit
 
 class LikedPostsViewController: UIViewController {
     
-    fileprivate let data = LikedModel.make()
+    fileprivate var data = LikedModel.make()
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
             frame: .zero,
@@ -34,12 +34,47 @@ class LikedPostsViewController: UIViewController {
         
         // 2-4.
         tuneTableView()
+        tuneNavigationBar()
     }
    
    
     override func viewWillAppear(_ animated: Bool) {
+        self.data = LikedModel.make()
         tableView.reloadData()
     }
+   
+    private func tuneNavigationBar() {
+       
+        let filter = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterPressed(_:)))
+
+        navigationItem.rightBarButtonItem =  filter
+        
+        let clearFilter = UIBarButtonItem(title: "Clear filter", style: .plain, target: self, action: #selector(clearFilterPressed(_:)))
+
+        navigationItem.leftBarButtonItem =  clearFilter
+        
+    }
+    
+    @objc func filterPressed(_ sender: UIButton) {
+        let filterController = UIAlertController(title: "Введите автора", message: nil, preferredStyle: .alert)
+        
+        let filterAction = UIAlertAction(title: "Применить", style: .default) {_ in
+            self.data = LikedModel.makeWithFilter(author: filterController.textFields?.first?.text ?? "")
+            self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        
+        filterController.addTextField()
+        filterController.addAction(filterAction)
+        filterController.addAction(cancelAction)
+        
+        present(filterController, animated: true)
+        }
+    
+    @objc func clearFilterPressed(_ sender: UIButton) {
+        self.data = LikedModel.make()
+        tableView.reloadData()
+        }
     
     private func setupView() {
         //view.backgroundColor = .white
@@ -121,4 +156,16 @@ extension LikedPostsViewController: UITableViewDataSource {
 }
 
 extension LikedPostsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let delete = UIContextualAction(style: .normal, title: "Delete") {(action, view, completionHandler) in
+            CoreDataSevice().remove(likedModel: self.data[indexPath.row])
+            self.data = LikedModel.make()
+            tableView.reloadData()
+            completionHandler(true)
+        }
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        return swipe
+    }
 }
