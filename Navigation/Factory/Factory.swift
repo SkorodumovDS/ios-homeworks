@@ -39,9 +39,9 @@ final class Factory {
             let feedFlowCoordinator = FeedFlowCoordinator()
             let feedViewModel = FeedViewModel(feedModel: feedModel, coordinator: feedFlowCoordinator)
             let FeedViewController = FeedViewController(feedViewModel: feedViewModel)
-            FeedViewController.title = "News"
+            FeedViewController.title = "News".localized()
             FeedViewController.view.backgroundColor = .systemBackground
-            FeedViewController.tabBarItem.title = "Feed"
+            FeedViewController.tabBarItem.title = "Feed".localized()
             FeedViewController.tabBarItem.image = UIImage(systemName: "house")
             feedFlowCoordinator.navControlles = navigationController
             navigationController.setViewControllers([FeedViewController], animated: true)
@@ -56,7 +56,7 @@ final class Factory {
             //ProfileViewController.title = "Profile"
             profileFlowCoordinator.navControlles = navigationController
             loginViewController.view.backgroundColor = .white
-            loginViewController.tabBarItem.title = "Profile"
+            loginViewController.tabBarItem.title = "Profile".localized()
             loginViewController.tabBarItem.image = UIImage(systemName: "person.crop.circle")
             
             navigationController.setViewControllers([loginViewController], animated: true)
@@ -95,18 +95,18 @@ final class Factory {
         case .liked:
             
             let likedViewController = LikedPostsViewController()
-            likedViewController.title = "Liked posts"
+            likedViewController.title = "Liked posts".localized()
             likedViewController.view.backgroundColor = .systemBackground
-            likedViewController.tabBarItem.title = "Liked posts"
+            likedViewController.tabBarItem.title = "Liked posts".localized()
             likedViewController.tabBarItem.image = UIImage(systemName: "heart")
             navigationController.setViewControllers([likedViewController], animated: true)
             
         case .geo:
             
             let geolocationViewController = GeolocationViewController()
-            geolocationViewController.title = "Geo"
+            geolocationViewController.title = "Geo".localized()
             geolocationViewController.view.backgroundColor = .systemBackground
-            geolocationViewController.tabBarItem.title = "Geo"
+            geolocationViewController.tabBarItem.title = "Geo".localized()
             geolocationViewController.tabBarItem.image = UIImage(systemName: "paperplane.circle.fill")
             navigationController.setViewControllers([geolocationViewController], animated: true)
             

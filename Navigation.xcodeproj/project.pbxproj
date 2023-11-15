@@ -61,6 +61,8 @@
 		C9CD26BB2A0ABAD400AF811D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26BA2A0ABAD400AF811D /* PostTableViewCell.swift */; };
 		C9CD26BF2A0AC09D00AF811D /* PostModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26BE2A0AC09D00AF811D /* PostModelViewController.swift */; };
 		C9CD26C12A0D4E5200AF811D /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD26C02A0D4E5200AF811D /* ProfileTableHeaderView.swift */; };
+		C9FA71B72B0508F5007B801D /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA71B62B0508F5007B801D /* ExtensionString.swift */; };
+		C9FA71BA2B050A24007B801D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9FA71BC2B050A24007B801D /* Localizable.strings */; };
 		D79766EE68AF340B907A8FE6 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A415988639FFFCFD9A24A2A /* Pods_Navigation.framework */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +165,9 @@
 		C9CD26BA2A0ABAD400AF811D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		C9CD26BE2A0AC09D00AF811D /* PostModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModelViewController.swift; sourceTree = "<group>"; };
 		C9CD26C02A0D4E5200AF811D /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
+		C9FA71B62B0508F5007B801D /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
+		C9FA71BB2B050A24007B801D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C9FA71BD2B050A3D007B801D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D52865C65FA149764346124A /* Pods-StorageService-StorageServiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.release.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -349,6 +354,8 @@
 				C910D2482AEAE423003F0294 /* LikedModelData.xcdatamodeld */,
 				C910D24B2AEE796A003F0294 /* CoreDataService.swift */,
 				C9C495C92AFD43550090EFE8 /* GeolocationViewController.swift */,
+				C9FA71B62B0508F5007B801D /* ExtensionString.swift */,
+				C9FA71BC2B050A24007B801D /* Localizable.strings */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -482,6 +489,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = C9CD265929E319E800AF811D;
 			packageReferences = (
@@ -518,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9CD267229E319EA00AF811D /* LaunchScreen.storyboard in Resources */,
+				C9FA71BA2B050A24007B801D /* Localizable.strings in Resources */,
 				C9CD266F29E319EA00AF811D /* Assets.xcassets in Resources */,
 				C925D91A2ABC7D4700CBCFC6 /* GoogleService-Info.plist in Resources */,
 			);
@@ -659,6 +668,7 @@
 				C905B4522A67C14F00A9D005 /* CustomButton.swift in Sources */,
 				C935FCD02ABED3F4003F04B1 /* CheckServise.swift in Sources */,
 				C9417EFA2A1956D7007D2343 /* PhotosCollectionViewCell.swift in Sources */,
+				C9FA71B72B0508F5007B801D /* ExtensionString.swift in Sources */,
 				C9CD267C29E3284900AF811D /* FeedViewController.swift in Sources */,
 				C905B4692A83D68300A9D005 /* Brut.swift in Sources */,
 				C9CD268429E337CB00AF811D /* InfoViewController.swift in Sources */,
@@ -704,6 +714,15 @@
 				C9CD267129E319EA00AF811D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C9FA71BC2B050A24007B801D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9FA71BB2B050A24007B801D /* en */,
+				C9FA71BD2B050A3D007B801D /* ru */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -817,6 +836,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -877,6 +897,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

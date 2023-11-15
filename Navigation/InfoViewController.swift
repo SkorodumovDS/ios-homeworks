@@ -12,7 +12,7 @@ class InfoViewController: UIViewController {
     private lazy var actionButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Alert", for: .normal)
+        button.setTitle("Alert".localized(), for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         
         return button
@@ -114,11 +114,11 @@ class InfoViewController: UIViewController {
  
     @objc func buttonPressed(_ sender: UIButton) {
         
-        let alert = UIAlertController(title: "My Alert", message: "This is an alert.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "My Alert".localized(), message: "This is an alert.".localized(), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
             NSLog("The \"OK\" alert occured.")
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("What's wrong", comment: "Something went wrong"), style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("What's wrong".localized(), comment: "Something went wrong"), style: .default, handler: { _ in
             NSLog("The \"Something went wrong\" alert occured.")
         }))
         self.present(alert, animated: true, completion: nil)

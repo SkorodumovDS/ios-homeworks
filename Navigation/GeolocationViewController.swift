@@ -29,9 +29,9 @@ class GeolocationViewController: UIViewController {
     
     private lazy var segment: UISegmentedControl  = {
         let newSegment = UISegmentedControl()
-        newSegment.insertSegment(withTitle: "Standart", at: 0, animated: true)
-        newSegment.insertSegment(withTitle: "Satelite", at: 1, animated: true)
-        newSegment.insertSegment(withTitle: "Hybrid", at: 2, animated: true)
+        newSegment.insertSegment(withTitle: "Standart".localized(), at: 0, animated: true)
+        newSegment.insertSegment(withTitle: "Satelite".localized(), at: 1, animated: true)
+        newSegment.insertSegment(withTitle: "Hybrid".localized(), at: 2, animated: true)
         newSegment.selectedSegmentIndex = 0
         newSegment.backgroundColor = .systemBackground
         newSegment.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +43,7 @@ class GeolocationViewController: UIViewController {
        let button = UIButton()
         button.backgroundColor = .systemBlue
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("clear points", for: .normal)
+        button.setTitle("clear points".localized(), for: .normal)
         button.addTarget(self, action: #selector(ClearPoints), for: .touchUpInside)
         
         return button
@@ -53,7 +53,7 @@ class GeolocationViewController: UIViewController {
        let button = UIButton()
         button.backgroundColor = .systemBlue
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Route", for: .normal)
+        button.setTitle("Route".localized(), for: .normal)
         button.addTarget(self, action: #selector(GetRoute), for: .touchUpInside)
         
         return button
@@ -125,7 +125,7 @@ class GeolocationViewController: UIViewController {
         let point = sender.location(in: self.mapView)
         let coordinate = self.mapView.convert(point, toCoordinateFrom: self.mapView)
         
-        addAnnotation(coordinates: coordinate, title: "newPoint")
+        addAnnotation(coordinates: coordinate, title: "newPoint".localized())
     }
     
     @objc func ClearPoints(sender: UILongPressGestureRecognizer) {
@@ -166,7 +166,7 @@ extension GeolocationViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let annotation = MKPointAnnotation()
         annotation.coordinate = locations.first!.coordinate
-        annotation.title = "MyLocation"
+        annotation.title = "MyLocation".localized()
         self.myLocation = annotation
     }
 }

@@ -61,11 +61,11 @@ class LikedPostsViewController: UIViewController {
    
     private func tuneNavigationBar() {
        
-        let filter = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterPressed(_:)))
+        let filter = UIBarButtonItem(title: "Filter".localized(), style: .plain, target: self, action: #selector(filterPressed(_:)))
 
         navigationItem.rightBarButtonItem =  filter
         
-        let clearFilter = UIBarButtonItem(title: "Clear filter", style: .plain, target: self, action: #selector(clearFilterPressed(_:)))
+        let clearFilter = UIBarButtonItem(title: "Clear filter".localized(), style: .plain, target: self, action: #selector(clearFilterPressed(_:)))
 
         navigationItem.leftBarButtonItem =  clearFilter
         
@@ -141,12 +141,12 @@ class LikedPostsViewController: UIViewController {
     
     
     @objc func filterPressed(_ sender: UIButton) {
-        let filterController = UIAlertController(title: "Введите автора", message: nil, preferredStyle: .alert)
+        let filterController = UIAlertController(title: "Введите автора".localized(), message: nil, preferredStyle: .alert)
         
-        let filterAction = UIAlertAction(title: "Применить", style: .default) {_ in
+        let filterAction = UIAlertAction(title: "Применить".localized(), style: .default) {_ in
             self.configureFetchControllerWithFilter(author: filterController.textFields?.first?.text ?? "")
         }
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        let cancelAction = UIAlertAction(title: "Отмена".localized(), style: .cancel)
         
         filterController.addTextField()
         filterController.addAction(filterAction)
@@ -243,7 +243,7 @@ extension LikedPostsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let delete = UIContextualAction(style: .normal, title: "Delete") {(action, view, completionHandler) in
+        let delete = UIContextualAction(style: .normal, title: "Delete".localized()) {(action, view, completionHandler) in
             
             //fetchedResultController.fetchedObjects?.remove(at: indexPath.row)
             

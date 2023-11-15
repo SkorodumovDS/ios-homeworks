@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Skorodumov Dmitry on 15.11.2023.
+  
+*/
+"Перейти" = "Next";
+"Введите автора" = "enter an author";
+"Применить" = "Apply";
+"Отмена" = "Cancel";
