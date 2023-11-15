@@ -16,6 +16,7 @@ final class Factory {
         case photo
         case info
         case liked
+        case geo
     }
     
     private let flow : Flow
@@ -99,6 +100,15 @@ final class Factory {
             likedViewController.tabBarItem.title = "Liked posts"
             likedViewController.tabBarItem.image = UIImage(systemName: "heart")
             navigationController.setViewControllers([likedViewController], animated: true)
+            
+        case .geo:
+            
+            let geolocationViewController = GeolocationViewController()
+            geolocationViewController.title = "Geo"
+            geolocationViewController.view.backgroundColor = .systemBackground
+            geolocationViewController.tabBarItem.title = "Geo"
+            geolocationViewController.tabBarItem.image = UIImage(systemName: "paperplane.circle.fill")
+            navigationController.setViewControllers([geolocationViewController], animated: true)
             
         }
     }
