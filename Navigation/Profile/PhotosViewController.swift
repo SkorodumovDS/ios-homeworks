@@ -56,6 +56,25 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
          */
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if  UITraitCollection.current.userInterfaceStyle == .dark{
+            Theme.current = .dark
+        }else {
+            Theme.current = .light
+        }
+        
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if  UITraitCollection.current.userInterfaceStyle == .dark{
+            Theme.current = .dark
+        }else {
+            Theme.current = .light
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool){
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = true
