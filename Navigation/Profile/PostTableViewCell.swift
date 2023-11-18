@@ -51,7 +51,7 @@ class PostTableViewCell: UITableViewCell {
         
         let postText = UILabel()
         postText.translatesAutoresizingMaskIntoConstraints = false
-        postText.text = "Likes"
+        postText.text = "Likes".localized()
         postText.textColor = .black
         postText.font = .systemFont(ofSize: 16)
         
@@ -62,7 +62,7 @@ class PostTableViewCell: UITableViewCell {
         
         let postText = UILabel()
         postText.translatesAutoresizingMaskIntoConstraints = false
-        postText.text = "Views"
+        postText.text = "Views".localized()
         postText.textColor = .black
         postText.font = .systemFont(ofSize: 16)
         

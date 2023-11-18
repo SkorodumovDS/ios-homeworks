@@ -11,7 +11,7 @@ class ProfileHeaderView: UIView {
     var currentUser : User?
     
     private lazy var actionButton: UIButton = {
-        let buttonLog = CustomButton(title: "Set status", titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
+        let buttonLog = CustomButton(title: "Set status".localized(), titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
             self?.buttonPressed()
                     }
         buttonLog.layer.cornerRadius = 4
@@ -73,7 +73,7 @@ class ProfileHeaderView: UIView {
         
         let statusCat = UITextField()
         statusCat.translatesAutoresizingMaskIntoConstraints = false
-        statusCat.placeholder = "Set your status..."
+        statusCat.placeholder = "Set your status...".localized()
         statusCat.textColor = .gray
         statusCat.font = UIFont(name: "Regular", size: 14)
         statusCat.backgroundColor = .white

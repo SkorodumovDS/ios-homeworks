@@ -1,0 +1,54 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Skorodumov Dmitry on 15.11.2023.
+  
+*/
+"New post" = "Новый пост";
+"Enter password here" = "Введите пароль";
+"Check password" = "Проверить пароль";
+"News" = "Новости";
+"Feed" = "Лента";
+"Email or phone" = "Электронная почта или телефон";
+"Enter text here" = "Введите текст";
+"Log In" = "Логин";
+"Sign Up" = "Регистрация";
+"authorization error" = "Ошибка авторизации";
+"Incorrect login, Try again after" = "Неверный логин, попробуйте позже через ";
+"seconds" = "секунд";
+"Try again" = "Попробуйте позже";
+"Login is empty" = "Логин не может быть пустым";
+"Fill login field and try again after" = "Заполните логин и попробуйте снова через ";
+"Password is empty" = "Пароль не может быть пустым";
+"Fill password field and try again after" = "Заполните пароль и попроуйте снова через";
+"sign up error" = "Ошибка регистрации";
+"Invalid format for login or password field, or check network, Try again after" = "Неверный формат логина или пароля, возможна сетевая ошибка, попробуйте снова через ";
+"Incorrect login, Try again" = "Неверный логин, попробуйте снова";
+"Fill login and password fields and try again after" = "Заполните пароль и логин и попробуйте снова через";
+"Fill correct login and password fields, check network connection and try again after" = "Заполните логин и пароль, проверьте сетевое соединение и попробуйте снова через ";
+"Sign up error" = "Ошибка регистрации";
+"Filter" = "Отбор";
+"Clear filter" = "Очистить отбор";
+"Delete" = "Удалить";
+"Standart" = "Стандартная";
+"Satelite" = "Спутник";
+"Hybrid" = "Гибрид";
+"clear points" = "Удалить точки";
+"Route" = "Маршрут";
+"newPoint" = "Новая точка";
+"MyLocation" = "Моя геопозиция";
+"Info" = "Информация";
+"Alert" = "Предупреждение";
+"My Alert" = "Мое предупреждение";
+"This is an alert." = "Это предупреждение";
+"What's wrong" = "Что то не так";
+"Photo Gallery" = "Фотогалерея";
+"Set status" = "Установить статус";
+"Set your status..." = "Установите статус";
+"Photos" = "Фото";
+"Likes" = "Понравилось";
+"Views" = "Просмотрено";
+"Profile" = "Профиль";
+"Liked posts" = "Понравившиеся посты";
+"Geo" = "Геопозиция";

@@ -61,7 +61,7 @@ class LogInViewController: UIViewController {
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         
-        textField.placeholder = "Email or phone"
+        textField.placeholder = "Email or phone".localized()
         textField.font = UIFont.systemFont(ofSize: 16)
         //textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.autocorrectionType = UITextAutocorrectionType.no
@@ -84,7 +84,7 @@ class LogInViewController: UIViewController {
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         
-        textField.placeholder = "Enter text here"
+        textField.placeholder = "Enter text here".localized()
         textField.font = UIFont.systemFont(ofSize: 16)
         //textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.autocorrectionType = UITextAutocorrectionType.no
@@ -102,7 +102,7 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var loginButton: UIButton = {
-        let buttonLog = CustomButton(title: "Log In", titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
+        let buttonLog = CustomButton(title: "Log In".localized(), titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
             self?.buttonPressed()
         }
         buttonLog.translatesAutoresizingMaskIntoConstraints = false
@@ -111,7 +111,7 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var signUpButton: UIButton = {
-        let buttonLog = CustomButton(title: "Sign Up", titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
+        let buttonLog = CustomButton(title: "Sign Up".localized(), titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
             self?.signUp()
         }
         buttonLog.translatesAutoresizingMaskIntoConstraints = false
@@ -281,8 +281,8 @@ class LogInViewController: UIViewController {
             coordinator.showNextScreen()}
         catch AppError.unauthorized {
         
-            let alert = UIAlertController(title: "authorization error", message: "Incorrect login, Try again after \(self.delayCounter) seconds", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+            let alert = UIAlertController(title: "authorization error".localized(), message: "Incorrect login, Try again after".localized() +  String(self.delayCounter) + "seconds".localized(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again".localized(), comment: "Default action"), style: .default, handler: { _ in
                 //NSLog("The \"OK\" alert occured.")
             }))
             self.present(alert, animated: true)
@@ -298,8 +298,8 @@ class LogInViewController: UIViewController {
         
         catch AppError.emptyLogin {
            
-            let alert = UIAlertController(title: "Login is empty", message: "Fill login field and try again after \(self.delayCounter) seconds", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+            let alert = UIAlertController(title: "Login is empty".localized(), message: "Fill login field and try again after" + String(self.delayCounter) + "seconds".localized(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again".localized(), comment: "Default action"), style: .default, handler: { _ in
                 //NSLog("The \"OK\" alert occured.")
             }))
             self.present(alert, animated: true)
@@ -314,8 +314,8 @@ class LogInViewController: UIViewController {
         }
         catch AppError.emptyPassword {
            
-            let alert = UIAlertController(title: "Password is empty", message: "Fill password field and try again after \(self.delayCounter) seconds", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+            let alert = UIAlertController(title: "Password is empty".localized(), message: "Fill password field and try again after".localized() + String(self.delayCounter) + "seconds".localized(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again".localized(), comment: "Default action"), style: .default, handler: { _ in
                 //NSLog("The \"OK\" alert occured.")
             }))
             self.present(alert, animated: true)
@@ -345,8 +345,8 @@ class LogInViewController: UIViewController {
             coordinator.showNextScreen()}
         catch AppError.signUpError {
         
-            let alert = UIAlertController(title: "sign up error", message: "Invalid format for login or password field, or check network, Try again after \(self.delayCounter) seconds", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+            let alert = UIAlertController(title: "sign up error".localized(), message: "Invalid format for login or password field, or check network, Try again after".localized() + String(self.delayCounter) + "seconds".localized(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again".localized(), comment: "Default action"), style: .default, handler: { _ in
                 //NSLog("The \"OK\" alert occured.")
             }))
             self.present(alert, animated: true)
@@ -362,8 +362,8 @@ class LogInViewController: UIViewController {
         
         catch AppError.emptyLogin {
            
-            let alert = UIAlertController(title: "Login is empty", message: "Fill login field and try again after \(self.delayCounter) seconds", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+            let alert = UIAlertController(title: "Login is empty".localized(), message: "Fill login field and try again after".localized() + String(self.delayCounter) + "seconds".localized(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again".localized(), comment: "Default action"), style: .default, handler: { _ in
                 //NSLog("The \"OK\" alert occured.")
             }))
             self.present(alert, animated: true)
@@ -378,8 +378,8 @@ class LogInViewController: UIViewController {
         }
         catch AppError.emptyPassword {
            
-            let alert = UIAlertController(title: "Password is empty", message: "Fill password field and try again after \(self.delayCounter) seconds", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Default action"), style: .default, handler: { _ in
+            let alert = UIAlertController(title: "Password is empty".localized(), message: "Fill password field and try again after".localized() + String(self.delayCounter) + "seconds".localized(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try again".localized(), comment: "Default action"), style: .default, handler: { _ in
                 //NSLog("The \"OK\" alert occured.")
             }))
             self.present(alert, animated: true)
@@ -399,11 +399,11 @@ class LogInViewController: UIViewController {
         guard var context = timer.userInfo as? UIAlertController else {return}
         self.delayCounter = self.delayCounter - 1
     
-        context.message = "Incorrect login, Try again after \(self.delayCounter) seconds"
+        context.message = "Incorrect login, Try again after".localized() + String(self.delayCounter) + "seconds".localized()
         if self.delayCounter == 0 {
             timer.invalidate()
             context.actions.first?.isEnabled = true
-            context.message = "Incorrect login, Try again"
+            context.message = "Incorrect login, Try again".localized()
         }
     }
     
@@ -411,11 +411,11 @@ class LogInViewController: UIViewController {
         guard var context = timer.userInfo as? UIAlertController else {return}
         self.delayCounter = self.delayCounter - 1
     
-        context.message = "Fill login and password fields and try again after \(self.delayCounter) seconds"
+        context.message = "Fill login and password fields and try again after".localized() + String(self.delayCounter) + "seconds".localized()
         if self.delayCounter == 0 {
             timer.invalidate()
             context.actions.first?.isEnabled = true
-            context.message = "Login is empty"
+            context.message = "Login is empty".localized()
         }
     }
     
@@ -423,11 +423,11 @@ class LogInViewController: UIViewController {
         guard var context = timer.userInfo as? UIAlertController else {return}
         self.delayCounter = self.delayCounter - 1
     
-        context.message = "Fill correct login and password fields, check network connection and try again after \(self.delayCounter) seconds"
+        context.message = "Fill correct login and password fields, check network connection and try again after".localized() + String(self.delayCounter) + "seconds".localized()
         if self.delayCounter == 0 {
             timer.invalidate()
             context.actions.first?.isEnabled = true
-            context.message = "Sign up error"
+            context.message = "Sign up error".localized()
         }
     }
     

@@ -9,11 +9,11 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
-    var postText = Post(title: "New post")
+    var postText = Post(title: "New post".localized())
     private let feedViewModel: FeedViewModel
     
     private lazy var actionButton: UIButton = {
-        let buttonLog = CustomButton(title: "Перейти", titleColor: .black, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
+        let buttonLog = CustomButton(title: "Перейти".localized(), titleColor: .black, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
             self?.buttonPressed()
                 }
         buttonLog.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +26,7 @@ class FeedViewController: UIViewController {
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         
-        textField.placeholder = "Enter password here"
+        textField.placeholder = "Enter password here".localized()
         textField.font = UIFont.systemFont(ofSize: 16)
         //textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.autocorrectionType = UITextAutocorrectionType.no
@@ -43,7 +43,7 @@ class FeedViewController: UIViewController {
     }()
     
     private lazy var checkGuessButton: UIButton = {
-        let buttonLog = CustomButton(title: "Check password", titleColor: .black, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
+        let buttonLog = CustomButton(title: "Check password".localized(), titleColor: .black, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
             self?.Check()
                 }
         buttonLog.translatesAutoresizingMaskIntoConstraints = false

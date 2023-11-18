@@ -72,7 +72,7 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var PhotosLabel : UILabel = {
         let titlePost = UILabel()
         titlePost.translatesAutoresizingMaskIntoConstraints = false
-        titlePost.text = "Photos"
+        titlePost.text = "Photos".localized()
         titlePost.font = .systemFont(ofSize: 24,weight: .bold)
         titlePost.textColor = UIColor.black
         

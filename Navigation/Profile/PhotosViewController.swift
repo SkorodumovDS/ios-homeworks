@@ -72,7 +72,7 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         }
          
         view.backgroundColor = .systemBackground
-        title = "Photo Gallery"
+        title = "Photo Gallery".localized()
         navigationController?.navigationBar.isHidden = false
         let start = DispatchTime.now()
         imageProcessor.processImagesOnThread(sourceImages: photoarray, filter: .colorInvert, qos:.userInteractive, completion: { [self] photoArrayImp in
