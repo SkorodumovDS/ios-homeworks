@@ -47,6 +47,25 @@ class ProfileViewController: UIViewController {
         self.data = PostModel.make()
         tableView.reloadData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if  UITraitCollection.current.userInterfaceStyle == .dark{
+            Theme.current = .dark
+        }else {
+            Theme.current = .light
+        }
+        
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if  UITraitCollection.current.userInterfaceStyle == .dark{
+            Theme.current = .dark
+        }else {
+            Theme.current = .light
+        }
+    }
     private func setupView() {
         //view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = false
