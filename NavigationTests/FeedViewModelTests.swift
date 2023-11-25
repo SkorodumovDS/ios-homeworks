@@ -16,9 +16,7 @@ final class FeedViewModelTests: XCTestCase {
         case passwordUnchecked
         case nextScreen
     }
-    enum testError : Error {
-        case someError
-    }
+   
     private var state : State = .initial
     let feedModel = FeedModelMock()
     
@@ -35,20 +33,24 @@ final class FeedViewModelTests: XCTestCase {
     }
     
     func testSucsessResult() {
-        feedModel.fakeResult = Result.success(true)
+        //feedModel.fakeResult = Result.success(true)
         checkResult(secret: "password")
         XCTAssertEqual(self.state, State.passwordChecked)
     }
     
     func testFailureResult() {
-        feedModel.fakeResult = Result.failure(testError.someError)
-        checkResult(secret: "password")
+        //feedModel.fakeResult = Result.failure(testError.someError)
+        checkResult(secret: "password123")
         XCTAssertEqual(self.state, State.passwordUnchecked)
     }
     
     func testUncheckedPasswordResult() {
-        feedModel.fakeResult = Result.success(false)
-        checkResult(secret: "password")
+       // feedModel.fakeResult = Result.success(false)
+        checkResult(secret: "passwordff")
         XCTAssertEqual(self.state, State.passwordUnchecked)
     }
+}
+
+enum testError : Error {
+    case someError
 }

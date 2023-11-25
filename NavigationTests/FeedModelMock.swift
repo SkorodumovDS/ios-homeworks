@@ -12,10 +12,12 @@ protocol FeedModelProtocol{
 }
 
 class FeedModelMock: FeedModelProtocol {
-    var fakeResult:  Result<Bool, Error>!
-  
+   // var fakeResult:  Result<Bool, Error>!
+    let secretWord : String = "password"
+    
     
     func check(secret: String, completion: (Result<Bool, Error>) -> Void) {
-        completion(fakeResult)
+        if secret == secretWord {completion(.success(true))}
+        else {completion(.failure(testError.someError))}
     }
 }
