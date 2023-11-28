@@ -67,6 +67,7 @@
 		C9FA71C72B10A7BF007B801D /* NavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA71C62B10A7BF007B801D /* NavigationTests.swift */; };
 		C9FA71CE2B10A896007B801D /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA71CD2B10A896007B801D /* FeedViewModelTests.swift */; };
 		C9FA71D02B10AA47007B801D /* FeedModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA71CF2B10AA47007B801D /* FeedModelMock.swift */; };
+		C9FA71D22B166E6C007B801D /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA71D12B166E6B007B801D /* LocalNotificationsService.swift */; };
 		D79766EE68AF340B907A8FE6 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A415988639FFFCFD9A24A2A /* Pods_Navigation.framework */; };
 /* End PBXBuildFile section */
 
@@ -184,6 +185,7 @@
 		C9FA71C62B10A7BF007B801D /* NavigationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTests.swift; sourceTree = "<group>"; };
 		C9FA71CD2B10A896007B801D /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
 		C9FA71CF2B10AA47007B801D /* FeedModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelMock.swift; sourceTree = "<group>"; };
+		C9FA71D12B166E6B007B801D /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		D52865C65FA149764346124A /* Pods-StorageService-StorageServiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.release.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -382,6 +384,7 @@
 				C9FA71B62B0508F5007B801D /* ExtensionString.swift */,
 				C9FA71BC2B050A24007B801D /* Localizable.strings */,
 				C9FA71BE2B08C61F007B801D /* Themes.swift */,
+				C9FA71D12B166E6B007B801D /* LocalNotificationsService.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9FA71D22B166E6C007B801D /* LocalNotificationsService.swift in Sources */,
 				C9417EF62A1805F8007D2343 /* Photo.swift in Sources */,
 				C905B4592A7A93FE00A9D005 /* MainCoordinator.swift in Sources */,
 				C905B46B2A94BFD100A9D005 /* AppError.swift in Sources */,
