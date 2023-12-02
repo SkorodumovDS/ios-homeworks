@@ -68,6 +68,7 @@
 		C9FA71CE2B10A896007B801D /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA71CD2B10A896007B801D /* FeedViewModelTests.swift */; };
 		C9FA71D02B10AA47007B801D /* FeedModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA71CF2B10AA47007B801D /* FeedModelMock.swift */; };
 		C9FA71D22B166E6C007B801D /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA71D12B166E6B007B801D /* LocalNotificationsService.swift */; };
+		C9FA71D42B18C712007B801D /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA71D32B18C712007B801D /* LocalAuthorizationService.swift */; };
 		D79766EE68AF340B907A8FE6 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A415988639FFFCFD9A24A2A /* Pods_Navigation.framework */; };
 /* End PBXBuildFile section */
 
@@ -186,6 +187,7 @@
 		C9FA71CD2B10A896007B801D /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
 		C9FA71CF2B10AA47007B801D /* FeedModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelMock.swift; sourceTree = "<group>"; };
 		C9FA71D12B166E6B007B801D /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
+		C9FA71D32B18C712007B801D /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		D52865C65FA149764346124A /* Pods-StorageService-StorageServiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.release.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -385,6 +387,7 @@
 				C9FA71BC2B050A24007B801D /* Localizable.strings */,
 				C9FA71BE2B08C61F007B801D /* Themes.swift */,
 				C9FA71D12B166E6B007B801D /* LocalNotificationsService.swift */,
+				C9FA71D32B18C712007B801D /* LocalAuthorizationService.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 				C905B4522A67C14F00A9D005 /* CustomButton.swift in Sources */,
 				C9FA71BF2B08C61F007B801D /* Themes.swift in Sources */,
 				C935FCD02ABED3F4003F04B1 /* CheckServise.swift in Sources */,
+				C9FA71D42B18C712007B801D /* LocalAuthorizationService.swift in Sources */,
 				C9417EFA2A1956D7007D2343 /* PhotosCollectionViewCell.swift in Sources */,
 				C9FA71B72B0508F5007B801D /* ExtensionString.swift in Sources */,
 				C9CD267C29E3284900AF811D /* FeedViewController.swift in Sources */,
@@ -1044,7 +1048,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = authoruze;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1075,7 +1079,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = authoruze;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

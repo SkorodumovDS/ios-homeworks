@@ -110,6 +110,15 @@ class LogInViewController: UIViewController {
         
     }()
     
+    private lazy var loginButtonBiometry: UIButton = {
+        let buttonLog = CustomButton(title: "Log In with biometry".localized(), titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
+            self?.buttonPressedWithBiometry()
+        }
+        buttonLog.translatesAutoresizingMaskIntoConstraints = false
+        return buttonLog
+        
+    }()
+    
     private lazy var signUpButton: UIButton = {
         let buttonLog = CustomButton(title: "Sign Up".localized(), titleColor: .white, buttonBackgroundColor: UIColor(patternImage: UIImage(named: "BluePixel")!)) { [weak self] in
             self?.signUp()
@@ -215,7 +224,7 @@ class LogInViewController: UIViewController {
             stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             stack.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 120),
-            stack.heightAnchor.constraint(equalToConstant: 100.5),
+            stack.heightAnchor.constraint(equalToConstant: 160.5),
             
             login.trailingAnchor.constraint(equalTo: stack.trailingAnchor, constant: 0),
             login.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 0),
@@ -232,6 +241,7 @@ class LogInViewController: UIViewController {
             password.topAnchor.constraint(equalTo: emptyView.bottomAnchor, constant: 0),
             password.heightAnchor.constraint(equalToConstant: 50),
             
+            
             loginButton.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor,
                 constant: -16.0
@@ -244,7 +254,7 @@ class LogInViewController: UIViewController {
                 equalTo: password.bottomAnchor,
                 constant: 16.0
             ),
-            loginButton.heightAnchor.constraint(equalToConstant: 50.0),
+            loginButton.heightAnchor.constraint(equalToConstant: 30.0),
             
             signUpButton.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor,
@@ -258,7 +268,21 @@ class LogInViewController: UIViewController {
                 equalTo: loginButton.bottomAnchor,
                 constant: 16.0
             ),
-            signUpButton.heightAnchor.constraint(equalToConstant: 50.0)
+            signUpButton.heightAnchor.constraint(equalToConstant: 30.0),
+            
+            loginButtonBiometry.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -16.0
+            ),
+            loginButtonBiometry.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: 16.0
+            ),
+            loginButtonBiometry.topAnchor.constraint(
+                equalTo: signUpButton.bottomAnchor,
+                constant: 16.0
+            ),
+            loginButtonBiometry.heightAnchor.constraint(equalToConstant: 30.0)
         ])
         
     }
@@ -348,6 +372,25 @@ class LogInViewController: UIViewController {
             
         }
         catch {}
+    }
+    
+    @objc func buttonPressedWithBiometry() {
+        let login  = login.text ?? ""
+        coordinator.login = login
+        DispatchQueue.main.async{
+            Task{
+                await LocalAuthorizationService().authorizeIfPossible() {  authorizeSucsess in
+                    DispatchQueue.main.sync {
+                        
+                        if authorizeSucsess {
+                            self.coordinator.showNextScreen()
+                        } else {
+                            print("error authorize, please try again")
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @objc func signUp() {
@@ -466,6 +509,7 @@ private func addSubviews() {
     contentView.addSubview(stack)
     contentView.addSubview(loginButton)
     contentView.addSubview(signUpButton)
+    contentView.addSubview(loginButtonBiometry)
     scrollView.addSubview(contentView)
     view.addSubview(scrollView)
 }
